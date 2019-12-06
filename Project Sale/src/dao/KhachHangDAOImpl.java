@@ -53,6 +53,9 @@ public class KhachHangDAOImpl implements KhachHangDAO{
 			int generatedKey = 0;
 			if(rs.next()) {
 				generatedKey = rs.getInt(1);
+				if(generatedKey == 0) {
+					generatedKey = khachHang.getMa_khach_hang();
+				}
 			}
 			ps.close();
 			cons.close();
