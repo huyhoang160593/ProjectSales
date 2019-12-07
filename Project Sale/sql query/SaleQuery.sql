@@ -14,10 +14,11 @@ create table khach_hang(
 create table nhan_vien(
 	ma_nhan_vien int IDENTITY primary key,
 	ten_nhan_vien nvarchar(50) not null,
-	gioi_tinh nvarchar(10),
-	dia_chi nvarchar(100) not null,
-	sdt varchar(11) not null,
-	ngay_sinh date check(ngay_sinh<getdate())
+	gioi_tinh bit not null,
+	dia_chi nvarchar(100) default null,
+	sdt varchar(11) default null,
+	ngay_sinh date check(ngay_sinh<getdate()) default null,
+	tinh_trang bit not null
 )
 
 --đặc điểm bảng mat_hang
@@ -70,3 +71,8 @@ insert into khach_hang(ho_ten,sdt,dia_chi) values (N'Trần Trung Quân','033352
 (N'Nguyễn Đức Cảnh','0326520020',N'Hải Phỏng'),
 (N'Lê Bá Vành','0333585420',N'Hà Nội'),
 (N'Trần Phương Thảo','0333520652',N'TP HCM')
+
+MERGE INTO nhan_vien AS t USING (SELECT ma_nhan_vien=?, ten_nhan_vien=?, gioi_tinh=?, dia_chi=?, sdt=?,ngay_sinh=?,tinh_trang=?) AS s ON t.ma_nhan_vien = s.ma_nhan_vien WHEN MATCHED THEN UPDATE SET ten_nhan_vien=s.ten_nhan_vien,gioi_tinh=s.gioi_tinh ,dia_chi=s.dia_chi ,sdt=s.sdt ,ngay_sinh=s.ngay_sinh, tinh_trang= s.tinh_trang WHEN NOT MATCHED THEN INSERT (ten_nhan_vien, gioi_tinh, dia_chi,  sdt, ngay_sinh, tinh_trang) VALUES (s.ten_nhan_vien, s.gioi_tinh, s.dia_chi,  s.sdt, s.ngay_sinh, s.tinh_trang);
+
+
+
