@@ -59,9 +59,9 @@ public class KhachHangPanel extends JPanel {
 					.addComponent(jpnView, GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
 					.addGap(6))
 		);
-		
-		
 		setLayout(groupLayout);
+		
+		
 		QuanLyKhachHangController controller = new QuanLyKhachHangController(jpnView, btnAdd, jtfSreach);
 		controller.setDataToTable();
 		controller.setEvent();

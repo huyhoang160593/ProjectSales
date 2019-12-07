@@ -38,7 +38,6 @@ public class QuanLyKhachHangController {
 	private TableRowSorter<TableModel> rowSorter = null;
 	
 	public QuanLyKhachHangController(JPanel jpnView, JButton btnAdd, JTextField jtfSreach) {
-		super();
 		this.jpnView = jpnView;
 		this.btnAdd = btnAdd;
 		this.jtfSreach = jtfSreach;
