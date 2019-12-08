@@ -26,7 +26,7 @@ public class MainJFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+	private JPanel jpnView;
 	/**
 	 * Launch the application.
 	 */
@@ -42,7 +42,7 @@ public class MainJFrame extends JFrame {
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -57,7 +57,7 @@ public class MainJFrame extends JFrame {
 		JPanel jpnMenu = new JPanel();
 		jpnMenu.setBackground(new Color(0, 0, 128));
 		
-		JPanel jpnView = new JPanel();
+		jpnView = new JPanel();
 		FlowLayout fl_jpnView = (FlowLayout) jpnView.getLayout();
 		fl_jpnView.setVgap(0);
 		fl_jpnView.setHgap(0);

@@ -58,7 +58,7 @@ public class ClassTableModel {
 				@Override
 				public Class<?> getColumnClass(int columnIndex) {
 					// TODO Auto-generated method stub
-					return columnIndex == 4 ? Boolean.class : String.class;
+					return columnIndex == 6 ? Boolean.class : String.class;
 				}
 			};
 			dtm.setColumnIdentifiers(listColumn);
@@ -70,7 +70,7 @@ public class ClassTableModel {
 				obj = new Object[columns];
 				obj[0] = nhanVien.getMa_nhan_vien();
 				obj[1] = nhanVien.getTen_nhan_vien();
-				obj[2] = nhanVien.isGioi_tinh() == true ? "Nam" : "Nữ";;
+				obj[2] = nhanVien.isGioi_tinh() == true ? "Nam" : "Nữ";
 				obj[3] = nhanVien.getDia_chi();
 				obj[4] = nhanVien.getSo_dien_thoai();
 				obj[5] = nhanVien.getNgay_sinh();

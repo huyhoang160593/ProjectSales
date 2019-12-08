@@ -30,7 +30,7 @@ public class NhanVienPanel extends JPanel {
 		
 		JButton btnAdd = new JButton("+ Thêm mới");
 		btnAdd.setForeground(Color.WHITE);
-		btnAdd.setBackground(new Color(0, 255, 0));
+		btnAdd.setBackground(new Color(100,221,23));
 		btnAdd.setFont(new Font("Arial", Font.PLAIN, 20));
 		
 		JPanel jpnView = new JPanel();
@@ -63,6 +63,7 @@ public class NhanVienPanel extends JPanel {
 		
 		QuanLyNhanVienController controller = new QuanLyNhanVienController(jpnView, btnAdd, jtfSreach);
 		controller.setDataToTable();
+		controller.setEvent();
 		
 	}
 
