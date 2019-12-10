@@ -97,7 +97,7 @@ public class QuanLyKhachHangController {
 					selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
 					
 					KhachHang khachHang = new KhachHang();
-					khachHang.setMa_khach_hang((int)model.getValueAt(selectedRowIndex, 0));//chua hieu lam
+					khachHang.setMa_khach_hang((int)model.getValueAt(selectedRowIndex, 0));
 					khachHang.setHo_ten(model.getValueAt(selectedRowIndex, 1).toString());
 					khachHang.setSo_dien_thoai(model.getValueAt(selectedRowIndex, 2).toString());
 					khachHang.setDia_chỉ(model.getValueAt(selectedRowIndex, 3) != null ? model.getValueAt(selectedRowIndex, 3).toString() : null);
@@ -112,6 +112,10 @@ public class QuanLyKhachHangController {
 		});
 		
 		//design
+		table.getColumnModel().getColumn(0).setMaxWidth(120);
+		table.getColumnModel().getColumn(0).setMinWidth(120);
+		table.getColumnModel().getColumn(0).setPreferredWidth(120);
+		
 		table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
 		table.getTableHeader().setPreferredSize(new Dimension(100,50));
 		table.setRowHeight(50);

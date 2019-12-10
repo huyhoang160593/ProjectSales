@@ -25,8 +25,10 @@ create table nhan_vien(
 create table mat_hang(
 	ma_mat_hang int IDENTITY primary key,
 	ten_mat_hang nvarchar(50) not null,
-	don_gia float not null,
-	ton_kho float not null
+	don_gia int not null,
+	ton_kho int not null,
+	co_san bit not null,
+	thoi_gian_nhap smalldatetime
 )
 
 --đặc điểm bảng hoa_don

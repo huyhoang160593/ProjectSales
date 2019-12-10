@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 public class MatHang implements Serializable{
 	/**
@@ -8,15 +9,17 @@ public class MatHang implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String ma_mat_hang;
+	private int ma_mat_hang;
 	private String ten_mat_hang;
 	private int don_gia;
 	private int ton_kho;
+	private boolean co_san;
+	private LocalDateTime thoi_gian_nhap;
 	
-	public String getMa_mat_hang() {
+	public int getMa_mat_hang() {
 		return ma_mat_hang;
 	}
-	public void setMa_mat_hang(String ma_mat_hang) {
+	public void setMa_mat_hang(int ma_mat_hang) {
 		this.ma_mat_hang = ma_mat_hang;
 	}
 	public String getTen_mat_hang() {
@@ -36,6 +39,18 @@ public class MatHang implements Serializable{
 	}
 	public void setTon_kho(int ton_kho) {
 		this.ton_kho = ton_kho;
+	}
+	public boolean isCo_san() {
+		return co_san;
+	}
+	public void setCo_san(boolean co_san) {
+		this.co_san = co_san;
+	}
+	public LocalDateTime getThoi_gian_nhap() {
+		return thoi_gian_nhap;
+	}
+	public void setThoi_gian_nhap(LocalDateTime thoi_gian_nhap) {
+		this.thoi_gian_nhap = thoi_gian_nhap;
 	}
 	
 	

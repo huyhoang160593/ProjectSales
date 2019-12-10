@@ -29,7 +29,7 @@ import view.NhanVienJFrame;
 public class QuanLyNhanVienController {
 	private JPanel jpnView;
 	private JButton btnAdd;
-	private JTextField jtfSreach;
+	private JTextField jtfSearch;
 	
 	private ClassTableModel classTableModel = null;
 	
@@ -40,7 +40,7 @@ public class QuanLyNhanVienController {
 	public QuanLyNhanVienController(JPanel jpnView, JButton btnAdd, JTextField jtfSreach) {
 		this.jpnView = jpnView;
 		this.btnAdd = btnAdd;
-		this.jtfSreach = jtfSreach;
+		this.jtfSearch = jtfSreach;
 		this.classTableModel = new ClassTableModel();
 		this.nhanVienService = new NhanVienServiceImpl();
 	}
@@ -53,12 +53,12 @@ public class QuanLyNhanVienController {
 		rowSorter = new TableRowSorter<>(table.getModel());
 		table.setRowSorter(rowSorter);
 		
-		jtfSreach.getDocument().addDocumentListener(new DocumentListener() {
+		jtfSearch.getDocument().addDocumentListener(new DocumentListener() {
 			
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
-				String text = jtfSreach.getText();
+				String text = jtfSearch.getText();
 				if(text.trim().length()==0) {
 					rowSorter.setRowFilter(null);
 				} else {
@@ -69,7 +69,7 @@ public class QuanLyNhanVienController {
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
-				String text = jtfSreach.getText();
+				String text = jtfSearch.getText();
 				if(text.trim().length()==0) {
 					rowSorter.setRowFilter(null);
 				} else {
@@ -112,7 +112,12 @@ public class QuanLyNhanVienController {
 				}
 			}
 		});
+		
 		//design
+		table.getColumnModel().getColumn(0).setMaxWidth(120);
+		table.getColumnModel().getColumn(0).setMinWidth(120);
+		table.getColumnModel().getColumn(0).setPreferredWidth(120);
+		
 		table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
 		table.getTableHeader().setPreferredSize(new Dimension(100,50));
 		table.setRowHeight(50);

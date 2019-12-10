@@ -1,12 +1,13 @@
 package ultility;
 
 import model.KhachHang;
+import model.MatHang;
 import model.NhanVien;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 public class ClassTableModel {
-	
+		//tableKhachHang
 		public DefaultTableModel setTableKhachHang(List<KhachHang> listItem, String[] listColumn) {
 			int columns = listColumn.length;
 			DefaultTableModel dtm = new DefaultTableModel() {
@@ -41,6 +42,7 @@ public class ClassTableModel {
 			return dtm;
 		} 
 		
+		//tableNhanVien
 		public DefaultTableModel setTableNhanVien(List<NhanVien> listItem, String[] listColumn) {
 			int columns = listColumn.length;
 			DefaultTableModel dtm = new DefaultTableModel() {
@@ -77,6 +79,46 @@ public class ClassTableModel {
 				obj[6] = nhanVien.isTinh_trang();
 				dtm.addRow(obj);
 			}
+			return dtm;
+		}
+		
+		//tableMatHang
+		public DefaultTableModel setTableMatHang(List<MatHang> listItem, String[] listColumn) {
+			int columns = listColumn.length;
+			DefaultTableModel dtm = new DefaultTableModel() {
+				
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public boolean isCellEditable(int row, int column) {
+					return false;
+					}
+				
+				@Override
+				public Class<?> getColumnClass(int columnIndex) {
+					// TODO Auto-generated method stub
+					return columnIndex == 5 ? Boolean.class : String.class;
+				}
+			};
+			dtm.setColumnIdentifiers(listColumn);
+			Object[] obj;
+			int num = listItem.size();
+			MatHang matHang = null;
+			for (int i = 0; i < num; i++) {
+				matHang = listItem.get(i);
+				obj = new Object[columns];
+				obj[0] = matHang.getMa_mat_hang();
+				obj[1] = matHang.getTen_mat_hang();
+				obj[2] = matHang.getDon_gia();
+				obj[3] = matHang.getTon_kho();
+				obj[4] = matHang.isCo_san();
+				obj[5] = matHang.getThoi_gian_nhap();
+				dtm.addRow(obj);
+			}
+			
 			return dtm;
 		}
 }
