@@ -136,7 +136,7 @@ public class QuanLyKhachHangController {
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new KhachHangJFrame(new KhachHang()).setVisible(true);;	
+				new KhachHangJFrame(new KhachHang()).setVisible(true);
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {

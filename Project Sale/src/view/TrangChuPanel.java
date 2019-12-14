@@ -33,7 +33,7 @@ public class TrangChuPanel extends JPanel {
 		label_1.setFont(new Font("Arial", Font.BOLD, 30));
 		panel_1.add(label_1);
 		
-		JLabel label_2 = new JLabel("100");
+		JLabel label_2 = new JLabel("?");
 		label_2.setForeground(Color.WHITE);
 		label_2.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_1.add(label_2);
@@ -52,7 +52,7 @@ public class TrangChuPanel extends JPanel {
 		label_4.setFont(new Font("Arial", Font.BOLD, 30));
 		panel_2.add(label_4);
 		
-		JLabel label_5 = new JLabel("100");
+		JLabel label_5 = new JLabel("?");
 		label_5.setForeground(Color.WHITE);
 		label_5.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_2.add(label_5);
@@ -64,6 +64,24 @@ public class TrangChuPanel extends JPanel {
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(255, 165, 0));
+		
+		JLabel lblNewLabel = new JLabel("|");
+		lblNewLabel.setForeground(new Color(255, 240, 245));
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 30));
+		lblNewLabel.setIcon(new ImageIcon(TrangChuPanel.class.getResource("/images/baseline_account_circle_white_24dp.png")));
+		panel.add(lblNewLabel);
+		
+		JLabel label = new JLabel("?");
+		label.setForeground(new Color(255, 255, 255));
+		label.setFont(new Font("Arial", Font.BOLD, 20));
+		panel.add(label);
+		
+		JLabel lblNewLabel_3 = new JLabel("Khách Hàng");
+		lblNewLabel_3.setForeground(new Color(255, 255, 255));
+		lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 45));
+		panel.add(lblNewLabel_3);
+
+
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -91,24 +109,8 @@ public class TrangChuPanel extends JPanel {
 					.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
 					.addGap(9))
 		);
-		
-		JLabel lblNewLabel = new JLabel("|");
-		lblNewLabel.setForeground(new Color(255, 240, 245));
-		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 30));
-		lblNewLabel.setIcon(new ImageIcon(TrangChuPanel.class.getResource("/images/baseline_account_circle_white_24dp.png")));
-		panel.add(lblNewLabel);
-		
-		JLabel label = new JLabel("100");
-		label.setForeground(new Color(255, 255, 255));
-		label.setFont(new Font("Arial", Font.BOLD, 20));
-		panel.add(label);
-		
-		JLabel lblNewLabel_3 = new JLabel("Khách Hàng");
-		lblNewLabel_3.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 45));
-		panel.add(lblNewLabel_3);
 		setLayout(groupLayout);
-
+		
 	}
 
 }

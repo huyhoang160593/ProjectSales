@@ -8,4 +8,6 @@ public interface MatHangService {
 	
 	public List<MatHang> getList();
 	
+	public int createOrUpdate(MatHang matHang);
+	
 }

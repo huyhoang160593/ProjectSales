@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -23,7 +24,7 @@ import javax.swing.table.TableRowSorter;
 import service.MatHangService;
 import service.MatHangServiceImpl;
 import ultility.ClassTableModel;
-
+import view.MatHangJFrame;
 import model.MatHang;
 
 public class QuanLyMatHangController {
@@ -34,7 +35,7 @@ public class QuanLyMatHangController {
  
     private ClassTableModel classTableModel = null;
     
-    private final String[] COLUMNS = {"Mã mặt hàng","Tên mặt hàng", "Đơn giá",
+    private final String[] COLUMNS = {"Mã mặt hàng","Tên mặt hàng","Loại hàng", "Đơn giá",
             "Tồn kho", "Có sẵn", "Thời gian nhập"};
      
     private MatHangService matHangService = null;
@@ -87,7 +88,33 @@ public class QuanLyMatHangController {
         });
         
         //addMouseListener ở đây
-        
+        table.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		// TODO Auto-generated method stub
+        		if(e.getClickCount() == 2 && table.getSelectedRow() != -1) {
+        			DefaultTableModel model = (DefaultTableModel) table.getModel();
+        			int selectedRowIndex = table.getSelectedRow();
+        			
+        			selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
+        			
+        			MatHang matHang = new MatHang();
+        			matHang.setMa_mat_hang((int)model.getValueAt(selectedRowIndex, 0));
+        			matHang.setTen_mat_hang(model.getValueAt(selectedRowIndex, 1).toString());
+        			matHang.setLoai_hang(model.getValueAt(selectedRowIndex, 2).toString());
+        			matHang.setDon_gia((int)model.getValueAt(selectedRowIndex, 3));
+        			matHang.setTon_kho((int)model.getValueAt(selectedRowIndex, 4));
+        			matHang.setCo_san((boolean)model.getValueAt(selectedRowIndex, 5));
+        			matHang.setThoi_gian_nhap(LocalDateTime.now());
+        			
+        			MatHangJFrame frame = new MatHangJFrame(matHang);
+        			frame.setLocationRelativeTo(null);
+					frame.setResizable(false);
+					frame.setTitle("Thông tin khách hàng");
+					frame.setVisible(true);
+        		}
+        	}
+		});
         
         //design
         table.getColumnModel().getColumn(0).setMaxWidth(120);
@@ -115,8 +142,7 @@ public class QuanLyMatHangController {
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//phần này còn thiếu
-				
+				new MatHangJFrame(new MatHang()).setVisible(true);
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {

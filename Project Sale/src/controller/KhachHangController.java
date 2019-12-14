@@ -49,24 +49,29 @@ public class KhachHangController {
 		btnSubmit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				try {
 					if (!checkNotNull()) {
-					lblMsg.setText("Vui lòng nhập dữ liệu bắt buộc!");
-				} else {
-					khachHang.setHo_ten(textFieldHoTen.getText().trim());
-					khachHang.setSo_dien_thoai(textFieldSoDienThoai.getText());
-					khachHang.setDia_chỉ(textAreaDiaChi.getText());
-					if(showDialog()) {
-						int lastId = khachHangService.createOrUpdate(khachHang);
-						System.out.println(lastId);	//Có lỗi khi sửa thì đã cập nhật dữ liệu nhưng key ID trả về bằng 0 dẫn đến xuất ra thông báo lỗi, nhưng bảng vẫn chạy ngon
-						if (lastId != 0) {
-							
-							khachHang.setMa_khach_hang(lastId);
-							textFieldMaKhachHang.setText("#" + khachHang.getMa_khach_hang());
-							lblMsg.setText("Xử lý cập nhật dữ liệu thành công");
-						} else {
-							lblMsg.setText("Có lỗi xảy ra, vui lòng thử lại!");
+						lblMsg.setText("Vui lòng nhập dữ liệu bắt buộc!");
+					} else {
+						khachHang.setHo_ten(textFieldHoTen.getText().trim());
+						khachHang.setSo_dien_thoai(textFieldSoDienThoai.getText());
+						khachHang.setDia_chỉ(textAreaDiaChi.getText());
+						if(showDialog()) {
+							int lastId = khachHangService.createOrUpdate(khachHang);
+							System.out.println(lastId);
+							if (lastId != 0) {							
+								khachHang.setMa_khach_hang(lastId);
+								textFieldMaKhachHang.setText("#" + khachHang.getMa_khach_hang());
+								lblMsg.setText("Xử lý cập nhật dữ liệu thành công");
+							} else {
+								lblMsg.setText("Có lỗi xảy ra, vui lòng thử lại!");
+							}
 						}
 					}
+				} catch (Exception e2) {
+					lblMsg.setText(e2.toString());
+					e2.printStackTrace();
+					// TODO: handle exception
 				}
 			}
 			@Override
@@ -86,6 +91,6 @@ public class KhachHangController {
 	
 	private boolean showDialog() {
 		int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn có muốn cập nhật dữ liệu hay không", "Thông báo", JOptionPane.YES_NO_OPTION);
-		return dialogResult == JOptionPane.YES_NO_OPTION;
+		return dialogResult == JOptionPane.YES_OPTION;
 	}
 }

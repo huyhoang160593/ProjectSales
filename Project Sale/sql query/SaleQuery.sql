@@ -25,6 +25,7 @@ create table nhan_vien(
 create table mat_hang(
 	ma_mat_hang int IDENTITY primary key,
 	ten_mat_hang nvarchar(50) not null,
+	loai_hang nvarchar(50),
 	don_gia int not null,
 	ton_kho int not null,
 	co_san bit not null,
@@ -76,5 +77,5 @@ insert into khach_hang(ho_ten,sdt,dia_chi) values (N'Trần Trung Quân','033352
 
 MERGE INTO nhan_vien AS t USING (SELECT ma_nhan_vien=?, ten_nhan_vien=?, gioi_tinh=?, dia_chi=?, sdt=?,ngay_sinh=?,tinh_trang=?) AS s ON t.ma_nhan_vien = s.ma_nhan_vien WHEN MATCHED THEN UPDATE SET ten_nhan_vien=s.ten_nhan_vien,gioi_tinh=s.gioi_tinh ,dia_chi=s.dia_chi ,sdt=s.sdt ,ngay_sinh=s.ngay_sinh, tinh_trang= s.tinh_trang WHEN NOT MATCHED THEN INSERT (ten_nhan_vien, gioi_tinh, dia_chi,  sdt, ngay_sinh, tinh_trang) VALUES (s.ten_nhan_vien, s.gioi_tinh, s.dia_chi,  s.sdt, s.ngay_sinh, s.tinh_trang);
 
-
+MERGE INTO mat_hang AS t USING (SELECT ma_mat_hang=?, ten_mat_hang=?, loai_hang=?, don_gia=?, ton_kho=?,co_san=?,thoi_gian_nhap=?) AS s ON t.ma_mat_hang = s.ma_mat_hang WHEN MATCHED THEN UPDATE SET ten_mat_hang=s.ten_mat_hang,loai_hang=s.loai_hang ,don_gia=s.don_gia ,ton_kho=s.ton_kho, co_san= s.co_san, thoi_gian_nhap = s.thoi_gian_nhap WHEN NOT MATCHED THEN INSERT (ten_mat_hang, loai_hang, don_gia, ton_kho, co_san, thoi_gian_nhap) VALUES (s.ten_mat_hang, s.loai_hang, s.don_gia, s.ton_kho, s.co_san, s.thoi_gian_nhap);
 

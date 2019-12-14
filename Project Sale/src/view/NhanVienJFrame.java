@@ -70,7 +70,7 @@ public class NhanVienJFrame extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Thông tin nhân viên", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(192, 192, 192)));
 		
-		lblMsg = new JLabel("Sai sot se duoc chu thich o day");
+		lblMsg = new JLabel(""); //Sai sót được chú thích ở đây
 		lblMsg.setForeground(new Color(255, 0, 0));
 		
 		btnSubmit = new JButton("Lưu dữ liệu");
@@ -82,12 +82,12 @@ public class NhanVienJFrame extends JFrame {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE)
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
 					.addGap(1))
 				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblMsg)
-					.addPreferredGap(ComponentPlacement.RELATED, 596, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 595, Short.MAX_VALUE)
 					.addComponent(btnSubmit, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
@@ -99,7 +99,7 @@ public class NhanVienJFrame extends JFrame {
 						.addComponent(lblMsg)
 						.addComponent(btnSubmit, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
 					.addGap(45)
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE))
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE))
 		);
 		panel.setLayout(new MigLayout("", "[][][grow][][][][][][][][][grow][]", "[][][grow][][][][]"));
 		
@@ -107,8 +107,8 @@ public class NhanVienJFrame extends JFrame {
 		panel.add(lblMaNhanVien, "cell 1 1,alignx trailing");
 		
 		textFieldMaNhanVien = new JTextField();
-		panel.add(textFieldMaNhanVien, "cell 2 1,growx");
-		textFieldMaNhanVien.setColumns(10);
+		textFieldMaNhanVien.setEditable(false);
+		panel.add(textFieldMaNhanVien, "cell 2 1");
 		
 		JLabel label = new JLabel("(*)");
 		label.setForeground(Color.RED);

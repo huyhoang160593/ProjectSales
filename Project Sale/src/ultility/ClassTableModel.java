@@ -112,10 +112,14 @@ public class ClassTableModel {
 				obj = new Object[columns];
 				obj[0] = matHang.getMa_mat_hang();
 				obj[1] = matHang.getTen_mat_hang();
-				obj[2] = matHang.getDon_gia();
-				obj[3] = matHang.getTon_kho();
-				obj[4] = matHang.isCo_san();
-				obj[5] = matHang.getThoi_gian_nhap();
+				obj[2] = matHang.getLoai_hang();
+				obj[3] = matHang.getDon_gia();
+				obj[4] = matHang.getTon_kho();
+				obj[5] = matHang.isCo_san();
+				//hiển thị đúng kiểu thời gian nhập
+				String thoi_gian_nhap = matHang.getThoi_gian_nhap().toString();
+				thoi_gian_nhap = thoi_gian_nhap.replace('T', ' ');
+				obj[6] = thoi_gian_nhap;
 				dtm.addRow(obj);
 			}
 			

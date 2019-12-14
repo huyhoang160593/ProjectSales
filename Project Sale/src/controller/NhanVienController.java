@@ -13,7 +13,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import java.util.Date;
-
 import com.toedter.calendar.JDateChooser;
 
 import model.NhanVien;
@@ -100,6 +99,7 @@ public class NhanVienController {
 					}
 				} catch (Exception ex) {
 					lblMsg.setText(ex.toString());
+					ex.printStackTrace();
 					// TODO: handle exception
 				}
 			}
