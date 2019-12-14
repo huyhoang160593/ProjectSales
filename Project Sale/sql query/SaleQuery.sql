@@ -79,3 +79,4 @@ MERGE INTO nhan_vien AS t USING (SELECT ma_nhan_vien=?, ten_nhan_vien=?, gioi_ti
 
 MERGE INTO mat_hang AS t USING (SELECT ma_mat_hang=?, ten_mat_hang=?, loai_hang=?, don_gia=?, ton_kho=?,co_san=?,thoi_gian_nhap=?) AS s ON t.ma_mat_hang = s.ma_mat_hang WHEN MATCHED THEN UPDATE SET ten_mat_hang=s.ten_mat_hang,loai_hang=s.loai_hang ,don_gia=s.don_gia ,ton_kho=s.ton_kho, co_san= s.co_san, thoi_gian_nhap = s.thoi_gian_nhap WHEN NOT MATCHED THEN INSERT (ten_mat_hang, loai_hang, don_gia, ton_kho, co_san, thoi_gian_nhap) VALUES (s.ten_mat_hang, s.loai_hang, s.don_gia, s.ton_kho, s.co_san, s.thoi_gian_nhap);
 
+select * from mat_hang
