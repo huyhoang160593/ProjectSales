@@ -20,11 +20,6 @@ public class ClassTableModel {
 				public boolean isCellEditable(int rowIndex, int colIndex) {
 					return false;
 				}
-				
-				@Override
-				public Class<?> getColumnClass(int columnIndex){
-					return columnIndex == 4 ? Boolean.class : String.class;
-				}
 			};
 			dtm.setColumnIdentifiers(listColumn);
 			Object[] obj;
