@@ -63,7 +63,10 @@ public class NhanVienJFrame extends JFrame {
 	public NhanVienJFrame(NhanVien nhanVien) {
 		setTitle("Thông tin nhân viên");
 //		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 450);
+		setResizable(false);
+		setSize(900, 450);
+		setLocationRelativeTo(null);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

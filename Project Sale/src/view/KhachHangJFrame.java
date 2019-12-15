@@ -56,9 +56,13 @@ public class KhachHangJFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public KhachHangJFrame(KhachHang khachHang) {
-		setTitle("Thông tin khách hàng");
+		setTitle("Thông tin khách hàng");	
 //		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 450);
+		
+		setResizable(false);
+		setSize(900, 450);
+		setLocationRelativeTo(null);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

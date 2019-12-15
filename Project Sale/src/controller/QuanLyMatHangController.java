@@ -110,7 +110,7 @@ public class QuanLyMatHangController {
         			MatHangJFrame frame = new MatHangJFrame(matHang);
         			frame.setLocationRelativeTo(null);
 					frame.setResizable(false);
-					frame.setTitle("Thông tin khách hàng");
+					frame.setTitle("Thông tin khách hàng thay đổi");
 					frame.setVisible(true);
         		}
         	}
@@ -146,11 +146,11 @@ public class QuanLyMatHangController {
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				btnAdd.setBackground(new Color(0,200,83));
+				btnAdd.setBackground(new Color(38, 70, 83));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				btnAdd.setBackground(new Color(100,221,23));
+				btnAdd.setBackground(new Color(42, 157, 143));
 			}
 		});
 		
@@ -162,11 +162,11 @@ public class QuanLyMatHangController {
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				btnNhapKho.setBackground(new Color(0,200,83));
+				btnNhapKho.setBackground(new Color(38, 70, 83));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				btnNhapKho.setBackground(new Color(100,221,23));
+				btnNhapKho.setBackground(new Color(42, 157, 143));
 			}
 		});
 	}

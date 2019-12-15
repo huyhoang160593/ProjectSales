@@ -36,8 +36,8 @@ public class ChuyenManHinhController {
 	public void setDashboard(JPanel jpnItem, JLabel jlbItem) {
 		// TODO Auto-generated method stub
 		kindSelected = "TrangChinh";
-	       jpnItem.setBackground(new Color(96, 100, 191));
-	       jlbItem.setBackground(new Color(96, 100, 191));
+	       jpnItem.setBackground(new Color(233, 197, 106));
+	       jlbItem.setBackground(new Color(233, 197, 106));
 	       root.removeAll();
 	       root.setLayout(new BorderLayout());
 	       root.add(new TrangChuPanel());
@@ -94,16 +94,16 @@ public class ChuyenManHinhController {
 		@Override
 		public void mouseEntered(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			jpnItem.setBackground(new Color(96, 100, 191));
-	        jlbItem.setBackground(new Color(96, 100, 191));
+			jpnItem.setBackground(new Color(233, 197, 106));
+	        jlbItem.setBackground(new Color(233, 197, 106));
 		}
 
 		@Override
 		public void mouseExited(MouseEvent arg0) {
 			// TODO Auto-generated method stub
 			if (!kindSelected.equalsIgnoreCase(kind)) {
-                jpnItem.setBackground(new Color(50,205,50));
-                jlbItem.setBackground(new Color(50,205,50));
+                jpnItem.setBackground(new Color(42, 157, 143));
+                jlbItem.setBackground(new Color(42, 157, 143));
 			}
 		}
 
@@ -111,15 +111,16 @@ public class ChuyenManHinhController {
 		public void mousePressed(MouseEvent arg0) {
 			// TODO Auto-generated method stub
 			kindSelected = kind;
-	        jpnItem.setBackground(new Color(96, 100, 191));
-	        jlbItem.setBackground(new Color(96, 100, 191));
+	        jpnItem.setBackground(new Color(244, 163, 97));
+	        jlbItem.setBackground(new Color(244, 163, 97));
 			
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			
+			jpnItem.setBackground(new Color(42, 157, 143));
+            jlbItem.setBackground(new Color(42, 157, 143));
 		}
 		
 	}
@@ -127,11 +128,11 @@ public class ChuyenManHinhController {
 	private void setChangeBackgroud(String kind) {
 		for (DanhMucBean item : listItem) {
 			if(item.getKind().equalsIgnoreCase(kind)) {
-					item.getJpn().setBackground(new Color(96, 100, 191));
-					item.getJlb().setBackground(new Color(96, 100, 191));
+					item.getJpn().setBackground(new Color(233, 197, 106));
+					item.getJlb().setBackground(new Color(233, 197, 106));
 				}else {
-					item.getJpn().setBackground(new Color(50,205,50));
-					item.getJlb().setBackground(new Color(50,205,50));
+					item.getJpn().setBackground(new Color(42, 157, 143));
+					item.getJlb().setBackground(new Color(42, 157, 143));
 				}
 		}
 	}

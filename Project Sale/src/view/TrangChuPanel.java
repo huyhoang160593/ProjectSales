@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.FlowLayout;
 
 public class TrangChuPanel extends JPanel {
 
@@ -20,11 +21,56 @@ public class TrangChuPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public TrangChuPanel() {
+		JPanel panelInfo = new JPanel();
+		panelInfo.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JPanel panelEmpty = new JPanel();
+		panelEmpty.setBackground(Color.ORANGE);
+
+
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panelEmpty, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 926, Short.MAX_VALUE)
+						.addComponent(panelInfo, Alignment.LEADING, 0, 0, Short.MAX_VALUE))
+					.addGap(15))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(panelInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panelEmpty, GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+					.addGap(7))
+		);
+
 		
 		JPanel panelKhachHang = new JPanel();
+		panelInfo.add(panelKhachHang);
 		panelKhachHang.setBackground(new Color(255, 69, 0));
 		
+		JLabel IconKhachHang = new JLabel("|");
+		IconKhachHang.setForeground(new Color(255, 240, 245));
+		IconKhachHang.setFont(new Font("Calibri Light", Font.PLAIN, 80));
+		IconKhachHang.setIcon(new ImageIcon(TrangChuPanel.class.getResource("/images/KhachHangTrangChu.png")));
+		panelKhachHang.add(IconKhachHang);
+		
+		JLabel numberKhachHang = new JLabel("?");
+		numberKhachHang.setForeground(new Color(255, 255, 255));
+		numberKhachHang.setFont(new Font("Arial", Font.BOLD, 40));
+		panelKhachHang.add(numberKhachHang);
+		
+		JLabel lblKhachHang = new JLabel("Khách Hàng");
+		lblKhachHang.setForeground(new Color(255, 255, 255));
+		lblKhachHang.setFont(new Font("Arial", Font.BOLD, 30));
+		panelKhachHang.add(lblKhachHang);
+		
 		JPanel panelMatHang = new JPanel();
+		panelInfo.add(panelMatHang);
 		panelMatHang.setBackground(new Color(65, 105, 225));
 		
 		JLabel IconMathang = new JLabel("|");
@@ -44,6 +90,7 @@ public class TrangChuPanel extends JPanel {
 		panelMatHang.add(lblMatHang);
 		
 		JPanel panelDonHang = new JPanel();
+		panelInfo.add(panelDonHang);
 		panelDonHang.setBackground(new Color(50, 205, 50));
 		
 		JLabel IconDonHang = new JLabel("|");
@@ -62,53 +109,6 @@ public class TrangChuPanel extends JPanel {
 		lblDonHang.setFont(new Font("Arial", Font.BOLD, 30));
 		panelDonHang.add(lblDonHang);
 		
-		JPanel panelEmpty = new JPanel();
-		panelEmpty.setBackground(new Color(255, 165, 0));
-		
-		JLabel IconKhachHang = new JLabel("|");
-		IconKhachHang.setForeground(new Color(255, 240, 245));
-		IconKhachHang.setFont(new Font("Calibri Light", Font.PLAIN, 80));
-		IconKhachHang.setIcon(new ImageIcon(TrangChuPanel.class.getResource("/images/KhachHangTrangChu.png")));
-		panelKhachHang.add(IconKhachHang);
-		
-		JLabel numberKhachHang = new JLabel("?");
-		numberKhachHang.setForeground(new Color(255, 255, 255));
-		numberKhachHang.setFont(new Font("Arial", Font.BOLD, 40));
-		panelKhachHang.add(numberKhachHang);
-		
-		JLabel lblKhachHang = new JLabel("Khách Hàng");
-		lblKhachHang.setForeground(new Color(255, 255, 255));
-		lblKhachHang.setFont(new Font("Arial", Font.BOLD, 30));
-		panelKhachHang.add(lblKhachHang);
-
-
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panelEmpty, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(panelKhachHang, GroupLayout.PREFERRED_SIZE, 300, Short.MAX_VALUE)
-							.addGap(18)
-							.addComponent(panelMatHang, GroupLayout.PREFERRED_SIZE, 300, Short.MAX_VALUE)
-							.addGap(18)
-							.addComponent(panelDonHang, GroupLayout.PREFERRED_SIZE, 300, Short.MAX_VALUE)))
-					.addGap(57))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(panelKhachHang, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelMatHang, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelDonHang, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panelEmpty, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
-					.addGap(9))
-		);
 		setLayout(groupLayout);
 		
 	}

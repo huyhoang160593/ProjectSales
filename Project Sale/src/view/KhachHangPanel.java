@@ -17,20 +17,20 @@ public class KhachHangPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField jtfSreach;
+	private JTextField jtfSearch;
 
 	/**
 	 * Create the panel.
 	 */
 	public KhachHangPanel() {
 		
-		jtfSreach = new JTextField();
-		jtfSreach.setFont(new Font("Arial", Font.PLAIN, 20));
-		jtfSreach.setColumns(10);
+		jtfSearch = new JTextField();
+		jtfSearch.setFont(new Font("Arial", Font.PLAIN, 20));
+		jtfSearch.setColumns(10);
 		
 		JButton btnAdd = new JButton("+ Thêm mới");
 		btnAdd.setForeground(Color.WHITE);
-		btnAdd.setBackground(new Color(100,221,23));
+		btnAdd.setBackground(new Color(42, 157, 143));
 		btnAdd.setFont(new Font("Arial", Font.PLAIN, 20));
 		
 		JPanel jpnView = new JPanel();
@@ -41,9 +41,9 @@ public class KhachHangPanel extends JPanel {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(jtfSreach, GroupLayout.PREFERRED_SIZE, 464, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 372, Short.MAX_VALUE)
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(jtfSearch, GroupLayout.PREFERRED_SIZE, 464, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 324, Short.MAX_VALUE)
 							.addComponent(btnAdd))
 						.addComponent(jpnView, GroupLayout.DEFAULT_SIZE, 927, Short.MAX_VALUE))
 					.addGap(8))
@@ -52,17 +52,17 @@ public class KhachHangPanel extends JPanel {
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnAdd)
-						.addComponent(jtfSreach, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(jtfSearch)
+						.addComponent(btnAdd, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 					.addGap(18)
-					.addComponent(jpnView, GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+					.addComponent(jpnView, GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
 					.addGap(6))
 		);
 		setLayout(groupLayout);
 		
 		
-		QuanLyKhachHangController controller = new QuanLyKhachHangController(jpnView, btnAdd, jtfSreach);
+		QuanLyKhachHangController controller = new QuanLyKhachHangController(jpnView, btnAdd, jtfSearch);
 		controller.setDataToTable();
 		controller.setEvent();
 	}

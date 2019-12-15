@@ -107,7 +107,7 @@ public class QuanLyNhanVienController {
 					NhanVienJFrame frame = new NhanVienJFrame(nhanVien);
 					frame.setLocationRelativeTo(null);
 					frame.setResizable(false);
-					frame.setTitle("Thông tin nhân viên");
+					frame.setTitle("Thông tin nhân viên thay đổi");
 					frame.setVisible(true);
 				}
 			}
@@ -143,11 +143,11 @@ public class QuanLyNhanVienController {
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				btnAdd.setBackground(new Color(0,200,83));
+				btnAdd.setBackground(new Color(38, 70, 83));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				btnAdd.setBackground(new Color(100,221,23));
+				btnAdd.setBackground(new Color(42, 157, 143));
 			}
 		});
 	}

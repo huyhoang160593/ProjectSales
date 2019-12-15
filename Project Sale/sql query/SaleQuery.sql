@@ -1,5 +1,5 @@
 ﻿create database sales
-use sales
+use sales --Chạy cái này đầu tiên trước khi làm bất cứ cái gì
 go 
 
 --đặc điểm bảng khach_hang
@@ -35,10 +35,10 @@ create table mat_hang(
 --đặc điểm bảng hoa_don
 create table hoa_don(
 	ma_hoa_don int IDENTITY primary key,
-	ma_nhan_vien int not null,
-	ngay_ban date check(ngay_ban<=getdate()) not null,
-	ma_khach_hang int not null,
-	thanh_tien int not null
+	ma_nhan_vien int,
+	ngay_ban date check(ngay_ban<=getdate()),
+	ma_khach_hang int,
+	thanh_tien int
 	foreign key(ma_nhan_vien) references nhan_vien,
 	foreign key(ma_khach_hang) references khach_hang
 )
@@ -47,9 +47,8 @@ create table hoa_don(
 create table chi_tiet_hoa_don(
 	ma_hoa_don int ,
 	ma_mat_hang int ,
-	so_luong nvarchar(10),
-	don_gia nvarchar(10),
-	giam_gia int,
+	so_luong int,
+	don_gia int,
 	thanh_tien int
 	constraint RB_khoa primary key(ma_hoa_don,ma_mat_hang),
 	foreign key (ma_hoa_don) references hoa_don,
@@ -75,8 +74,13 @@ insert into khach_hang(ho_ten,sdt,dia_chi) values (N'Trần Trung Quân','033352
 (N'Lê Bá Vành','0333585420',N'Hà Nội'),
 (N'Trần Phương Thảo','0333520652',N'TP HCM')
 
+insert into hoa_don(ma_nhan_vien,ngay_ban,ma_khach_hang,thanh_tien) values(2,'2018-10-15',6,0)
+
 MERGE INTO nhan_vien AS t USING (SELECT ma_nhan_vien=?, ten_nhan_vien=?, gioi_tinh=?, dia_chi=?, sdt=?,ngay_sinh=?,tinh_trang=?) AS s ON t.ma_nhan_vien = s.ma_nhan_vien WHEN MATCHED THEN UPDATE SET ten_nhan_vien=s.ten_nhan_vien,gioi_tinh=s.gioi_tinh ,dia_chi=s.dia_chi ,sdt=s.sdt ,ngay_sinh=s.ngay_sinh, tinh_trang= s.tinh_trang WHEN NOT MATCHED THEN INSERT (ten_nhan_vien, gioi_tinh, dia_chi,  sdt, ngay_sinh, tinh_trang) VALUES (s.ten_nhan_vien, s.gioi_tinh, s.dia_chi,  s.sdt, s.ngay_sinh, s.tinh_trang);
 
 MERGE INTO mat_hang AS t USING (SELECT ma_mat_hang=?, ten_mat_hang=?, loai_hang=?, don_gia=?, ton_kho=?,co_san=?,thoi_gian_nhap=?) AS s ON t.ma_mat_hang = s.ma_mat_hang WHEN MATCHED THEN UPDATE SET ten_mat_hang=s.ten_mat_hang,loai_hang=s.loai_hang ,don_gia=s.don_gia ,ton_kho=s.ton_kho, co_san= s.co_san, thoi_gian_nhap = s.thoi_gian_nhap WHEN NOT MATCHED THEN INSERT (ten_mat_hang, loai_hang, don_gia, ton_kho, co_san, thoi_gian_nhap) VALUES (s.ten_mat_hang, s.loai_hang, s.don_gia, s.ton_kho, s.co_san, s.thoi_gian_nhap);
 
-select * from mat_hang
+select * from nhan_vien
+select * from khach_hang
+
+select hd.ma_hoa_don,hd.ma_nhan_vien,ngay_ban,hd.ma_khach_hang,thanh_tien,nv.ten_nhan_vien,kh.ho_ten from hoa_don hd,nhan_vien nv,khach_hang kh where kh.ma_khach_hang = hd.ma_khach_hang and nv.ma_nhan_vien = hd.ma_nhan_vien

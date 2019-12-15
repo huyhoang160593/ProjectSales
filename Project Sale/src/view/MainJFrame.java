@@ -4,7 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
 import bean.DanhMucBean;
 import controller.ChuyenManHinhController;
 import javax.swing.GroupLayout;
@@ -49,13 +50,13 @@ public class MainJFrame extends JFrame {
 	public MainJFrame() {
 		setTitle("QUẢN LÝ ĐƠN HÀNG");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1280, 720);
+		setBounds(100, 100, 1300, 720);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground(new Color(38, 70, 83));
 		setContentPane(contentPane);
 		
 		JPanel jpnMenu = new JPanel();
-		jpnMenu.setBackground(new Color(0, 0, 128));
+		jpnMenu.setBackground(new Color(38, 70, 83));
 		
 		jpnView = new JPanel();
 		FlowLayout fl_jpnView = (FlowLayout) jpnView.getLayout();
@@ -68,45 +69,51 @@ public class MainJFrame extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(jpnMenu, GroupLayout.PREFERRED_SIZE, 227, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(jpnView, GroupLayout.DEFAULT_SIZE, 1021, Short.MAX_VALUE))
+					.addComponent(jpnView, GroupLayout.DEFAULT_SIZE, 1059, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(jpnView, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)
-						.addComponent(jpnMenu, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(2))
+						.addComponent(jpnView, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
+						.addComponent(jpnMenu, GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE))
+					)
 		);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(255, 0, 0));
 		
-		JPanel jpnTrangChu = new JPanel();
-		jpnTrangChu.setBackground(new Color(50, 205, 50));
+		JPanel panelName = new JPanel();
+		panelName.setBackground(new Color(231, 111, 81));
+		
+		JPanel jpnTrangChu = new JPanel(); 
+		jpnTrangChu.setBorder(new LineBorder(new Color(233, 197, 106), 3, true));
+		jpnTrangChu.setBackground(new Color(42, 157, 143));
 		
 		JPanel jpnKhachHang = new JPanel();
-		jpnKhachHang.setBackground(new Color(50, 205, 50));
+		jpnKhachHang.setBorder(new LineBorder(new Color(233, 197, 106), 3, true));
+		jpnKhachHang.setBackground(new Color(42, 157, 143));
 		jpnKhachHang.setLayout(new BorderLayout(0, 0));
 		
 		JPanel jpnNhanVien = new JPanel();
-		jpnNhanVien.setBackground(new Color(50, 205, 50));
+		jpnNhanVien.setBorder(new LineBorder(new Color(233, 197, 106), 3, true));
+		jpnNhanVien.setBackground(new Color(42, 157, 143));
 		jpnNhanVien.setLayout(new BorderLayout(0, 0));
 		
 		JPanel jpnMatHang = new JPanel();
-		jpnMatHang.setBackground(new Color(50, 205, 50));
+		jpnMatHang.setBorder(new LineBorder(new Color(233, 197, 106), 3, true));
+		jpnMatHang.setBackground(new Color(42, 157, 143));
 		jpnMatHang.setLayout(new BorderLayout(0, 0));
 		
 		JPanel jpnDonHang = new JPanel();
-		jpnDonHang.setBackground(new Color(50, 205, 50));
+		jpnDonHang.setBackground(new Color(42, 157, 143));
+		jpnDonHang.setBorder(new LineBorder(new Color(233, 197, 106), 3, true));
 		jpnDonHang.setLayout(new BorderLayout(0, 0));
+		
 		GroupLayout gl_jpnMenu = new GroupLayout(jpnMenu);
 		gl_jpnMenu.setHorizontalGroup(
 			gl_jpnMenu.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_jpnMenu.createSequentialGroup()
 					.addGroup(gl_jpnMenu.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panelName, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_jpnMenu.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(jpnTrangChu, GroupLayout.PREFERRED_SIZE, 208, GroupLayout.PREFERRED_SIZE))
@@ -127,7 +134,7 @@ public class MainJFrame extends JFrame {
 		gl_jpnMenu.setVerticalGroup(
 			gl_jpnMenu.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_jpnMenu.createSequentialGroup()
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panelName, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(jpnTrangChu, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
@@ -171,14 +178,14 @@ public class MainJFrame extends JFrame {
 		jlbTrangChu.setFont(new Font("Arial", Font.BOLD, 14));
 		jlbTrangChu.setForeground(new Color(255, 255, 255));
 		jpnTrangChu.add(jlbTrangChu, BorderLayout.CENTER);
-		panel_2.setLayout(new BorderLayout(0, 0));
+		panelName.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel = new JLabel("QUẢN LÝ ĐƠN HÀNG");
-		lblNewLabel.setIcon(new ImageIcon(MainJFrame.class.getResource("/images/baseline_supervisor_account_white_24dp.png")));
-		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 16));
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_2.add(lblNewLabel);
+		JLabel lblName = new JLabel("QUẢN LÝ ĐƠN HÀNG");
+		lblName.setIcon(new ImageIcon(MainJFrame.class.getResource("/images/baseline_supervisor_account_white_24dp.png")));
+		lblName.setFont(new Font("Arial", Font.BOLD, 16));
+		lblName.setForeground(new Color(255, 255, 255));
+		lblName.setHorizontalAlignment(SwingConstants.CENTER);
+		panelName.add(lblName);
 		jpnMenu.setLayout(gl_jpnMenu);
 		contentPane.setLayout(gl_contentPane);
 		

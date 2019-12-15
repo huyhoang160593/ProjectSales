@@ -1,5 +1,6 @@
 package ultility;
 
+import model.DonHang;
 import model.KhachHang;
 import model.MatHang;
 import model.NhanVien;
@@ -98,6 +99,7 @@ public class ClassTableModel {
 					return columnIndex == 5 ? Boolean.class : String.class;
 				}
 			};
+			
 			dtm.setColumnIdentifiers(listColumn);
 			Object[] obj;
 			int num = listItem.size();
@@ -118,6 +120,39 @@ public class ClassTableModel {
 				dtm.addRow(obj);
 			}
 			
+			return dtm;
+		}
+		
+		//table đơn hàng
+		public DefaultTableModel setTableDonHang(List<DonHang> listItem, String[] listColumn) {
+			int columns = listColumn.length;
+			
+			DefaultTableModel dtm = new DefaultTableModel() {
+				
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public boolean isCellEditable(int row, int column) {
+					return false;
+					}
+			};
+			
+			dtm.setColumnIdentifiers(listColumn);
+			Object[] obj;
+			int num = listItem.size();
+			DonHang donHang = null;
+			for (int i = 0; i < num; i++) {
+				donHang = listItem.get(i);
+				obj = new Object[columns];
+				obj[0] = donHang.getMa_hoa_don();
+				obj[1] = donHang.getTen_khach_hang();
+				obj[2] = donHang.getTen_nhan_vien();
+				obj[3] = donHang.getNgay_ban();
+				dtm.addRow(obj);
+			}
 			return dtm;
 		}
 }
