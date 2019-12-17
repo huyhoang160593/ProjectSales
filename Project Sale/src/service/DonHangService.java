@@ -8,4 +8,6 @@ public interface DonHangService {
 	
 	public List<DonHang> getList();
 	
+	public int create(DonHang donHang);
+	
 }

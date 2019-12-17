@@ -25,6 +25,12 @@ public class MatHangServiceImpl implements MatHangService {
 		// TODO Auto-generated method stub		
 		return matHangDAO.createOrUpdate(matHang);
 	}
+
+	@Override
+	public MatHang getMatHangInfo(String ten_mat_hang) {
+		// TODO Auto-generated method stub
+		return matHangDAO.getMatHangInfo(ten_mat_hang);
+	}
 	
 	
 

@@ -1,5 +1,6 @@
 package ultility;
 
+import model.ChiTietHoaDon;
 import model.DonHang;
 import model.KhachHang;
 import model.MatHang;
@@ -151,6 +152,36 @@ public class ClassTableModel {
 				obj[1] = donHang.getTen_khach_hang();
 				obj[2] = donHang.getTen_nhan_vien();
 				obj[3] = donHang.getNgay_ban();
+				dtm.addRow(obj);
+			}
+			return dtm;
+		}
+		//table chi tiết hoá đơn
+		public DefaultTableModel setTableChiTietHoaDon(List<ChiTietHoaDon> listItem, String[] listColumn) {
+			int columns = listColumn.length;
+			
+			DefaultTableModel dtm = new DefaultTableModel() {
+				
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public boolean isCellEditable(int row, int column) {
+					return false;
+					}
+			};
+			
+			dtm.setColumnIdentifiers(listColumn);
+			
+			Object[] obj;
+			for (ChiTietHoaDon s : listItem) {
+				obj = new Object[columns];
+				obj[0] = s.getTen_mat_hang();
+				obj[1] = s.getDon_gia();
+				obj[2] = s.getSo_luong();
+				obj[3] = s.getThanh_tien();
 				dtm.addRow(obj);
 			}
 			return dtm;

@@ -10,4 +10,5 @@ public interface MatHangService {
 	
 	public int createOrUpdate(MatHang matHang);
 	
+	public MatHang getMatHangInfo(String ten_mat_hang);
 }

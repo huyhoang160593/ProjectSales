@@ -6,6 +6,7 @@ public class ChiTietHoaDon {
 	private int so_luong;
 	private int don_gia;
 	private int thanh_tien;
+	private String ten_mat_hang;
 	
 	public int getMa_hoa_don() {
 		return ma_hoa_don;
@@ -38,6 +39,11 @@ public class ChiTietHoaDon {
 		this.thanh_tien = thanh_tien;
 	}
 	
-	
+	public String getTen_mat_hang() {
+		return ten_mat_hang;
+	}
+	public void setTen_mat_hang(String ten_mat_hang) {
+		this.ten_mat_hang = ten_mat_hang;
+	}	
 	
 }

@@ -1,11 +1,11 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class DonHang {
 	private int ma_hoa_don;
 	private int ma_nhan_vien;
-	private Date ngay_ban;
+	private LocalDateTime ngay_ban;
 	private int ma_khach_hang;
 	private int thanh_tien;
 	private String ten_nhan_vien;
@@ -23,10 +23,10 @@ public class DonHang {
 	public void setMa_nhan_vien(int ma_nhan_vien) {
 		this.ma_nhan_vien = ma_nhan_vien;
 	}
-	public Date getNgay_ban() {
+	public LocalDateTime getNgay_ban() {
 		return ngay_ban;
 	}
-	public void setNgay_ban(Date ngay_ban) {
+	public void setNgay_ban(LocalDateTime ngay_ban) {
 		this.ngay_ban = ngay_ban;
 	}
 	public int getMa_khach_hang() {

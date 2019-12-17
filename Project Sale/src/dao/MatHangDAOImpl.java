@@ -57,7 +57,6 @@ public class MatHangDAOImpl implements MatHangDAO {
 			thoi_gian_nhap = thoi_gian_nhap.replace('T', ' ');
 			ps.setString(7, thoi_gian_nhap);
 			
-			
 			ps.execute();
 			ResultSet rs = ps.getGeneratedKeys();
 			int generatedKey = 0;
@@ -76,6 +75,30 @@ public class MatHangDAOImpl implements MatHangDAO {
 			e.printStackTrace();
 		}		
 		return 0;
+	}
+
+	@Override
+	public MatHang getMatHangInfo(String ten_mat_hang) {
+		// TODO Auto-generated method stub
+		try {
+			MatHang matHang = new MatHang();
+			Connection cons = DBConnect.getConnection();
+			String sql = "SELECT * FROM mat_hang WHERE ten_mat_hang=?";
+			PreparedStatement ps = cons.prepareStatement(sql);
+			ps.setNString(1, ten_mat_hang);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				matHang.setMa_mat_hang(rs.getInt("ma_mat_hang"));
+				matHang.setDon_gia(rs.getInt("don_gia"));
+				matHang.setLoai_hang(rs.getNString("loai_hang"));
+				matHang.setTon_kho(rs.getInt("ton_kho"));
+			}
+			return matHang;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

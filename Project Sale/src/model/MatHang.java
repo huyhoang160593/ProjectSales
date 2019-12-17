@@ -16,6 +16,7 @@ public class MatHang implements Serializable{
 	private int ton_kho;
 	private boolean co_san;
 	private LocalDateTime thoi_gian_nhap;
+	private int so_luong_can;
 	
 	public int getMa_mat_hang() {
 		return ma_mat_hang;
@@ -64,6 +65,13 @@ public class MatHang implements Serializable{
 	}
 	public void setThoi_gian_nhap(LocalDateTime thoi_gian_nhap) {
 		this.thoi_gian_nhap = thoi_gian_nhap;
+	}
+	
+	public int getSo_luong_can() {
+		return so_luong_can;
+	}
+	public void setSo_luong_can(int so_luong_can) {
+		this.so_luong_can = so_luong_can;
 	}
 
 	

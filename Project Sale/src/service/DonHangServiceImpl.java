@@ -21,4 +21,11 @@ public class DonHangServiceImpl implements DonHangService {
 		return donHangDAO.getList();
 	}
 
+
+	@Override
+	public int create(DonHang donHang) {
+		// TODO Auto-generated method stub
+		return donHangDAO.create(donHang);
+	}
+
 }
