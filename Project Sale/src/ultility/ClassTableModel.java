@@ -33,7 +33,7 @@ public class ClassTableModel {
 				obj[0] = khachHang.getMa_khach_hang();
 				obj[1] = khachHang.getHo_ten();
 				obj[2] = khachHang.getSo_dien_thoai();
-				obj[3] = khachHang.getDia_chỉ();	
+				obj[3] = khachHang.getDia_chi();	
 				dtm.addRow(obj);
 			}
 			return dtm;
@@ -151,7 +151,9 @@ public class ClassTableModel {
 				obj[0] = donHang.getMa_hoa_don();
 				obj[1] = donHang.getTen_khach_hang();
 				obj[2] = donHang.getTen_nhan_vien();
-				obj[3] = donHang.getNgay_ban();
+				String thoi_gian_nhap = donHang.getNgay_ban().toString();
+				thoi_gian_nhap = thoi_gian_nhap.replace('T', ' ');
+				obj[3] = thoi_gian_nhap;
 				dtm.addRow(obj);
 			}
 			return dtm;

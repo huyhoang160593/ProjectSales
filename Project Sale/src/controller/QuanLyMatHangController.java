@@ -6,10 +6,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -112,6 +115,11 @@ public class QuanLyMatHangController {
 					frame.setResizable(false);
 					frame.setTitle("Thông tin khách hàng thay đổi");
 					frame.setVisible(true);
+					frame.addWindowListener(new WindowAdapter() {
+						public void windowDeactivated(java.awt.event.WindowEvent e) {
+							setDataToTable();
+						};
+					});
         		}
         	}
 		});
@@ -142,7 +150,15 @@ public class QuanLyMatHangController {
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new MatHangJFrame(new MatHang()).setVisible(true);
+				JFrame frame = new MatHangJFrame(new MatHang());
+				frame.setVisible(true);
+				frame.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowDeactivated(WindowEvent e) {
+						// TODO Auto-generated method stub
+						setDataToTable();
+					}
+				});
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {

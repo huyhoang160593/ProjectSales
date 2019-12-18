@@ -4,6 +4,7 @@ import java.util.List;
 
 import dao.DonHangDAO;
 import dao.DonHangDAOImpl;
+import model.ChiTietHoaDon;
 import model.DonHang;
 
 public class DonHangServiceImpl implements DonHangService {
@@ -26,6 +27,13 @@ public class DonHangServiceImpl implements DonHangService {
 	public int create(DonHang donHang) {
 		// TODO Auto-generated method stub
 		return donHangDAO.create(donHang);
+	}
+
+
+	@Override
+	public void createDetailOrder(ChiTietHoaDon chiTietHoaDon) {
+		// TODO Auto-generated method stub
+		donHangDAO.createDetailOrder(chiTietHoaDon);
 	}
 
 }

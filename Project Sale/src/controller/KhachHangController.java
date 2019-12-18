@@ -41,7 +41,7 @@ public class KhachHangController {
 		textFieldMaKhachHang.setText("#" + khachHang.getMa_khach_hang());
 		textFieldHoTen.setText(khachHang.getHo_ten());
 		textFieldSoDienThoai.setText(khachHang.getSo_dien_thoai());
-		textAreaDiaChi.setText(khachHang.getDia_chỉ());
+		textAreaDiaChi.setText(khachHang.getDia_chi());
 		setEvent();
 	}
 	
@@ -55,7 +55,7 @@ public class KhachHangController {
 					} else {
 						khachHang.setHo_ten(textFieldHoTen.getText().trim());
 						khachHang.setSo_dien_thoai(textFieldSoDienThoai.getText());
-						khachHang.setDia_chỉ(textAreaDiaChi.getText());
+						khachHang.setDia_chi(textAreaDiaChi.getText());
 						if(showDialog()) {
 							int lastId = khachHangService.createOrUpdate(khachHang);
 							System.out.println(lastId);

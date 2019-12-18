@@ -12,7 +12,7 @@ public class KhachHang implements Serializable{
 	private int ma_khach_hang;
 	private String ho_ten;
 	private String so_dien_thoai;
-	private String dia_chỉ;
+	private String dia_chi;
 	
 	public int getMa_khach_hang() {
 		return ma_khach_hang;
@@ -32,11 +32,11 @@ public class KhachHang implements Serializable{
 	public void setSo_dien_thoai(String so_dien_thoai) {
 		this.so_dien_thoai = so_dien_thoai;
 	}
-	public String getDia_chỉ() {
-		return dia_chỉ;
+	public String getDia_chi() {
+		return dia_chi;
 	}
-	public void setDia_chỉ(String dia_chỉ) {
-		this.dia_chỉ = dia_chỉ;
+	public void setDia_chi(String dia_chỉ) {
+		this.dia_chi = dia_chỉ;
 	}
 	
 	

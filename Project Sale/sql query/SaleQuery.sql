@@ -36,7 +36,7 @@ create table mat_hang(
 create table hoa_don(
 	ma_hoa_don int IDENTITY primary key,
 	ma_nhan_vien int,
-	ngay_ban smalldatetime check(ngay_ban<=getdate()),
+	ngay_ban smalldatetime,
 	ma_khach_hang int,
 	thanh_tien int
 	foreign key(ma_nhan_vien) references nhan_vien,
@@ -54,6 +54,7 @@ create table chi_tiet_hoa_don(
 	foreign key (ma_hoa_don) references hoa_don,
 	foreign key (ma_mat_hang) references mat_hang
 );
+
 drop table khach_hang
 drop table nhan_vien
 drop table mat_hang
@@ -80,16 +81,17 @@ MERGE INTO nhan_vien AS t USING (SELECT ma_nhan_vien=?, ten_nhan_vien=?, gioi_ti
 
 MERGE INTO mat_hang AS t USING (SELECT ma_mat_hang=?, ten_mat_hang=?, loai_hang=?, don_gia=?, ton_kho=?,co_san=?,thoi_gian_nhap=?) AS s ON t.ma_mat_hang = s.ma_mat_hang WHEN MATCHED THEN UPDATE SET ten_mat_hang=s.ten_mat_hang,loai_hang=s.loai_hang ,don_gia=s.don_gia ,ton_kho=s.ton_kho, co_san= s.co_san, thoi_gian_nhap = s.thoi_gian_nhap WHEN NOT MATCHED THEN INSERT (ten_mat_hang, loai_hang, don_gia, ton_kho, co_san, thoi_gian_nhap) VALUES (s.ten_mat_hang, s.loai_hang, s.don_gia, s.ton_kho, s.co_san, s.thoi_gian_nhap);
 
-MERGE INTO hoa_don AS t 
-USING (SELECT ma_hoa_don=?, ma_nhan_vien=?, ngay_ban=?, ma_khach_hang=?, thanh_tien=?) AS s 
-ON t.ma_hoa_don = s.ma_hoa_don
-WHEN MATCHED THEN UPDATE SET ma_nhan_vien=s.ma_nhan_vien,ngay_ban=s.ngay_ban ,ma_khach_hang=s.ma_khach_hang ,thanh_tien=s.thanh_tien
-WHEN NOT MATCHED THEN INSERT (ma_nhan_vien, ngay_ban, ma_khach_hang, thanh_tien) VALUES (s.ma_nhan_vien, s.ngay_ban, s.ma_khach_hang, s.thanh_tien);
+MERGE INTO hoa_don AS t USING (SELECT ma_hoa_don=?, ma_nhan_vien=?, ngay_ban=?, ma_khach_hang=?, thanh_tien=?) AS s ON t.ma_hoa_don = s.ma_hoa_don WHEN MATCHED THEN UPDATE SET ma_nhan_vien=s.ma_nhan_vien,ngay_ban=s.ngay_ban ,ma_khach_hang=s.ma_khach_hang ,thanh_tien=s.thanh_tien WHEN NOT MATCHED THEN INSERT (ma_nhan_vien, ngay_ban, ma_khach_hang, thanh_tien) VALUES (s.ma_nhan_vien, s.ngay_ban, s.ma_khach_hang, s.thanh_tien);
 
 select * from nhan_vien
 select * from khach_hang
 SELECT * FROM mat_hang
+SELECT * FROM hoa_don
+SELECT * FROM chi_tiet_hoa_don
+
 
 select hd.ma_hoa_don,hd.ma_nhan_vien,ngay_ban,hd.ma_khach_hang,thanh_tien,nv.ten_nhan_vien,kh.ho_ten from hoa_don hd,nhan_vien nv,khach_hang kh where kh.ma_khach_hang = hd.ma_khach_hang and nv.ma_nhan_vien = hd.ma_nhan_vien
 
 SELECT * FROM mat_hang WHERE ten_mat_hang=N'Củ Chuối'
+
+insert into chi_tiet_hoa_don(ma_hoa_don,ma_mat_hang,so_luong,don_gia,thanh_tien) values(1,2,4,2000,8000)

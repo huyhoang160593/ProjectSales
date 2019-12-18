@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.ThemMatHangController;
+import model.ChiTietHoaDon;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -33,7 +34,7 @@ public class DonHangMatHangJFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DonHangMatHangJFrame frame = new DonHangMatHangJFrame();
+					DonHangMatHangJFrame frame = new DonHangMatHangJFrame(new ChiTietHoaDon());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,8 +46,9 @@ public class DonHangMatHangJFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DonHangMatHangJFrame() {
+	public DonHangMatHangJFrame(ChiTietHoaDon chiTietHoaDon) {
 //		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		setTitle("Thêm mặt hàng");
 		setBounds(100, 100, 450, 300);
 		setResizable(false);
@@ -107,7 +109,7 @@ public class DonHangMatHangJFrame extends JFrame {
 		contentPane.add(btnThemMatHang, "cell 6 7");
 		
 		ThemMatHangController controller = new ThemMatHangController(textFieldMaMatHang, textFieldSoLuong, textFieldDonGia, textFieldThanhTien, textFieldLoaiHang, btnThemMatHang, comboBox);
-		controller.setData();
+		controller.setData(chiTietHoaDon,this);
 	}
 
 }

@@ -23,7 +23,7 @@ public class KhachHangDAOImpl implements KhachHangDAO{
 				KhachHang khachHang = new KhachHang();
 				khachHang.setMa_khach_hang(rs.getInt("ma_khach_hang"));
 				khachHang.setHo_ten(rs.getNString("ho_ten"));
-				khachHang.setDia_chỉ(rs.getNString("dia_chi"));
+				khachHang.setDia_chi(rs.getNString("dia_chi"));
 				khachHang.setSo_dien_thoai(rs.getString("sdt"));
 				list.add(khachHang);
 			}
@@ -47,7 +47,7 @@ public class KhachHangDAOImpl implements KhachHangDAO{
 			ps.setInt(1,khachHang.getMa_khach_hang());
 			ps.setNString(2, khachHang.getHo_ten());
 			ps.setString(3, khachHang.getSo_dien_thoai());
-			ps.setNString(4, khachHang.getDia_chỉ());
+			ps.setNString(4, khachHang.getDia_chi());
 			ps.execute();
 			ResultSet rs = ps.getGeneratedKeys();
 			int generatedKey = 0;
@@ -65,6 +65,54 @@ public class KhachHangDAOImpl implements KhachHangDAO{
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	@Override
+	public KhachHang getKhachHangInfo(String ho_ten) {
+		// TODO Auto-generated method stub
+		try {
+			KhachHang khachHang = new KhachHang();
+			Connection cons = DBConnect.getConnection();
+			String SQL = "SELECT * FROM khach_hang where ho_ten=?";
+			PreparedStatement ps = cons.prepareStatement(SQL);
+			ps.setNString(1, ho_ten);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				khachHang.setMa_khach_hang(rs.getInt("ma_khach_hang"));
+				khachHang.setHo_ten(rs.getNString("ho_ten"));
+				khachHang.setSo_dien_thoai(rs.getString("sdt"));
+				khachHang.setDia_chi(rs.getNString("dia_chi"));
+				return khachHang;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public KhachHang getKhachHangInfoBySDT(String sdt) {
+		// TODO Auto-generated method stub
+		try {
+			KhachHang khachHang = new KhachHang();
+			Connection cons = DBConnect.getConnection();
+			String SQL = "SELECT * FROM khach_hang where sdt=?";
+			PreparedStatement ps = cons.prepareStatement(SQL);
+			ps.setString(1, sdt);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				khachHang.setMa_khach_hang(rs.getInt("ma_khach_hang"));
+				khachHang.setHo_ten(rs.getNString("ho_ten"));
+				khachHang.setSo_dien_thoai(rs.getString("sdt"));
+				khachHang.setDia_chi(rs.getNString("dia_chi"));
+				return khachHang;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

@@ -11,9 +11,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -100,13 +103,18 @@ public class QuanLyKhachHangController {
 					khachHang.setMa_khach_hang((int)model.getValueAt(selectedRowIndex, 0));
 					khachHang.setHo_ten(model.getValueAt(selectedRowIndex, 1).toString());
 					khachHang.setSo_dien_thoai(model.getValueAt(selectedRowIndex, 2).toString());
-					khachHang.setDia_chỉ(model.getValueAt(selectedRowIndex, 3) != null ? model.getValueAt(selectedRowIndex, 3).toString() : null);
+					khachHang.setDia_chi(model.getValueAt(selectedRowIndex, 3) != null ? model.getValueAt(selectedRowIndex, 3).toString() : null);
 					
 					KhachHangJFrame frame = new KhachHangJFrame(khachHang);
 					frame.setLocationRelativeTo(null);
 					frame.setResizable(false);
 					frame.setTitle("Thông tin khách hàng thay đổi");
 					frame.setVisible(true);
+					frame.addWindowListener(new WindowAdapter() {
+						public void windowDeactivated(java.awt.event.WindowEvent e) {
+							setDataToTable();
+						};
+					});
 				}
 			}
 		});
@@ -136,7 +144,15 @@ public class QuanLyKhachHangController {
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new KhachHangJFrame(new KhachHang()).setVisible(true);
+				JFrame frame = new KhachHangJFrame(new KhachHang());
+				frame.setVisible(true);
+				frame.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowDeactivated(WindowEvent e) {
+						// TODO Auto-generated method stub
+						setDataToTable();
+					}
+				});
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {

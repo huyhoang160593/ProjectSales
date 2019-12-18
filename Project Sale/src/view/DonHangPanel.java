@@ -61,7 +61,8 @@ public class DonHangPanel extends JPanel {
 		setLayout(groupLayout);
 		
 		QuanLyDonHangController controller = new QuanLyDonHangController(jpnView, btnAdd, jtfSearch);
-		controller.setDataToTable();	
+		controller.setDataToTable();
+		controller.setEvent();
 	}
 
 }

@@ -19,6 +19,7 @@ import javax.swing.JComboBox;
 import javax.swing.border.TitledBorder;
 
 import controller.DonHangController;
+import model.DonHang;
 
 import javax.swing.border.LineBorder;
 
@@ -40,7 +41,7 @@ public class DonHangJFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DonHangJFrame frame = new DonHangJFrame();
+					DonHangJFrame frame = new DonHangJFrame(new DonHang());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,8 +53,10 @@ public class DonHangJFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DonHangJFrame() {
+	public DonHangJFrame(DonHang donHang) {
 //		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
 		setResizable(false);
 		setSize(900, 450);
 		setLocationRelativeTo(null);
@@ -86,6 +89,7 @@ public class DonHangJFrame extends JFrame {
 		
 		JButton btnSubmit = new JButton("Lưu dữ liệu");
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnSubmit.setBackground(new Color(100,221,23));
 		
 		JLabel lblMgs = new JLabel("Thông báo sẽ được hiển thị ở đây");
 		lblMgs.setForeground(Color.RED);
@@ -117,57 +121,71 @@ public class DonHangJFrame extends JFrame {
 		
 		JPanel panelDetail = new JPanel();
 		panelInfo.add(panelDetail);
-		panelDetail.setLayout(new MigLayout("", "[][grow][][][][][][][][][][grow]", "[grow][][][grow]"));
+		panelDetail.setLayout(new MigLayout("", "[][grow][grow][][grow][][grow]", "[grow][][][grow]"));
 		
 		JLabel lblMaHoaDon = new JLabel("Mã hoá đơn");
-		panelDetail.add(lblMaHoaDon, "cell 0 1,alignx trailing");
+		panelDetail.add(lblMaHoaDon, "cell 0 0,alignx trailing");
 		
 		textFieldMaHoaDon = new JTextField();
-		panelDetail.add(textFieldMaHoaDon, "cell 1 1");
+		panelDetail.add(textFieldMaHoaDon, "cell 1 0");
 		textFieldMaHoaDon.setEditable(false);
 		
 		JLabel lblTenNhanVien = new JLabel("Tên nhân viên");
-		panelDetail.add(lblTenNhanVien, "cell 10 1,alignx trailing");
+		panelDetail.add(lblTenNhanVien, "cell 5 0,alignx trailing");
 		
 		JComboBox<String> comboNhanVien = new JComboBox<String>();
-		panelDetail.add(comboNhanVien, "cell 11 1,growx");
+		panelDetail.add(comboNhanVien, "cell 6 0,growx");
+		
 		
 		JLabel lblTenKhachHang = new JLabel("Tên khách hàng");
-		panelDetail.add(lblTenKhachHang, "cell 0 2,alignx trailing");
+		panelDetail.add(lblTenKhachHang, "cell 0 1,alignx trailing");
 		
 		JComboBox<String> comboKhachHang = new JComboBox<String>();
-		panelDetail.add(comboKhachHang, "cell 1 2,growx");
+		panelDetail.add(comboKhachHang, "cell 1 1,growx");
+		
+		JButton btnThayDoi = new JButton("Thay đổi");
+		panelDetail.add(btnThayDoi, "cell 2 1,aligny baseline");
+		
+		JLabel lblSDT = new JLabel("Số điện thoại");
+		panelDetail.add(lblSDT, "cell 0 2,alignx trailing");
+		
+		JComboBox<String> comboBoxSDTKhachHang = new JComboBox<String>();
+		panelDetail.add(comboBoxSDTKhachHang, "cell 1 2,growx");
 		
 		JLabel lblNgayBan = new JLabel("Ngày bán");
-		panelDetail.add(lblNgayBan, "cell 10 2,alignx trailing");
+		panelDetail.add(lblNgayBan, "cell 5 2,alignx trailing");		
 		
 		textFieldNgayBan = new JTextField();
-		panelDetail.add(textFieldNgayBan, "cell 11 2");
+		panelDetail.add(textFieldNgayBan, "cell 6 2");
 		textFieldNgayBan.setEditable(false);
 		textFieldNgayBan.setColumns(10);
 		
 		//phần table(các nút để trong panelInfo ^^)
 		JButton btnThemMatHang = new JButton("Thêm mặt hàng");
-		panelDetail.add(btnThemMatHang, "cell 4 3");
+		panelDetail.add(btnThemMatHang, "flowx,cell 3 3");
+		
 		
 		JButton btnXoaMatHang = new JButton("Xoá mặt hàng");
-		panelDetail.add(btnXoaMatHang, "cell 6 3");
+		panelDetail.add(btnXoaMatHang, "cell 3 3");
 		
 		JLabel lblThanhTien = new JLabel("Thành Tiền");
-		panelDetail.add(lblThanhTien, "cell 10 3,alignx trailing");
+		panelDetail.add(lblThanhTien, "cell 5 3,alignx trailing");
 		
 		textFieldThanhTien = new JTextField();
-		panelDetail.add(textFieldThanhTien, "cell 11 3,growx");
+		panelDetail.add(textFieldThanhTien, "cell 6 3,growx");
 		textFieldThanhTien.setEditable(false);
 		textFieldThanhTien.setColumns(10);
 		
 		JPanel panelTable = new JPanel();
 		panelInfo.add(panelTable);
-		
-		
 		contentPane.setLayout(gl_contentPane);
 		
-		DonHangController controller = new DonHangController(btnSubmit, textFieldMaHoaDon, comboNhanVien, comboKhachHang, textFieldNgayBan, lblMgs, btnThemMatHang, btnXoaMatHang, panelTable);
+		JLabel lblSecret = new JLabel();
+		lblSecret.setVisible(false);
+		
+		//controller
+		DonHangController controller = new DonHangController(btnSubmit, textFieldMaHoaDon, comboNhanVien, comboKhachHang, comboBoxSDTKhachHang, textFieldNgayBan, textFieldThanhTien, lblMgs, lblSecret, btnThemMatHang, btnXoaMatHang, btnThayDoi, panelTable);
 		controller.setDataToTable();
+		controller.event(this);
 	}
 }

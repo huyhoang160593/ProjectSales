@@ -9,4 +9,6 @@ public interface NhanVienService {
 	public List<NhanVien> getList();
 	
 	public int createOrUpdate(NhanVien nhanVien);
+	
+	public NhanVien getNhanVienInfo(String ten_nhan_vien);
 }

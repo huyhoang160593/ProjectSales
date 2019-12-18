@@ -75,6 +75,28 @@ public class NhanVienDAOImpl implements NhanVienDAO{
 		}
 		return 0;
 	}
+
+	@Override
+	public NhanVien getNhanVienInfo(String ten_nhan_vien) {
+		// TODO Auto-generated method stub
+		NhanVien nhanVien = new NhanVien();
+		try {
+			Connection cons = DBConnect.getConnection();
+			String sql = "SELECT ma_nhan_vien,ten_nhan_vien FROM nhan_vien WHERE ten_nhan_vien=?";
+			PreparedStatement ps = cons.prepareStatement(sql);
+			ps.setNString(1, ten_nhan_vien);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				nhanVien.setMa_nhan_vien(rs.getInt("ma_nhan_vien"));
+				nhanVien.setTen_nhan_vien(rs.getNString("ten_nhan_vien"));
+				return nhanVien;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
 		
 		
 }

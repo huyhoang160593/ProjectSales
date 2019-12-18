@@ -25,4 +25,16 @@ public class KhachHangServiceImpl implements KhachHangService {
 		return khachHangDAO.createOrUpdate(khachHang);
 	}
 
+	@Override
+	public KhachHang getKhachHangInfo(String ho_ten) {
+		// TODO Auto-generated method stub
+		return khachHangDAO.getKhachHangInfo(ho_ten);
+	}
+
+	@Override
+	public KhachHang getKhachHangInfoBySDT(String sdt) {
+		// TODO Auto-generated method stub
+		return khachHangDAO.getKhachHangInfoBySDT(sdt);
+	}
+
 }

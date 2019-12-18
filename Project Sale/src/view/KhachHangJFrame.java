@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Font;
 
 
 
@@ -100,51 +101,55 @@ public class KhachHangJFrame extends JFrame {
 					.addGap(45)
 					.addComponent(panelThongTin, GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE))
 		);
-		panelThongTin.setLayout(new MigLayout("", "[][][grow][][][][][][][][][grow][]", "[][][][][][grow][]"));
+		panelThongTin.setLayout(new MigLayout("", "[][grow][][grow][grow][]", "[][][][][][grow][]"));
 		
 		JLabel lblMaKhachHang = new JLabel("Mã khách hàng:");
-		panelThongTin.add(lblMaKhachHang, "cell 1 1,alignx trailing");
+		lblMaKhachHang.setFont(new Font("Arial", Font.PLAIN, 15));
+		panelThongTin.add(lblMaKhachHang, "cell 0 1,alignx trailing");
 		
 		textFieldMaKhachHang = new JTextField();
+		textFieldMaKhachHang.setFont(new Font("Arial", Font.PLAIN, 15));
 		textFieldMaKhachHang.setEditable(false);
-		panelThongTin.add(textFieldMaKhachHang, "cell 2 1");
+		panelThongTin.add(textFieldMaKhachHang, "flowx,cell 1 1");
 		
 		JLabel lblStar = new JLabel("(*)");
 		lblStar.setForeground(new Color(255, 0, 0));
-		panelThongTin.add(lblStar, "cell 3 1");
+		panelThongTin.add(lblStar, "cell 2 1");
 		
 		JLabel lblSoDienThoai = new JLabel("Số điện thoại");
-		panelThongTin.add(lblSoDienThoai, "cell 10 1,alignx trailing");
+		panelThongTin.add(lblSoDienThoai, "cell 3 1,alignx trailing");
 		
 		textFieldSoDienThoai = new JTextField();
-		panelThongTin.add(textFieldSoDienThoai, "cell 11 1,growx");
+		panelThongTin.add(textFieldSoDienThoai, "cell 4 1,growx");
 		textFieldSoDienThoai.setColumns(10);
-			
+		
 		JLabel label_1 = new JLabel("(*)");
 		label_1.setForeground(Color.RED);
-		panelThongTin.add(label_1, "cell 12 1");
-		
+		panelThongTin.add(label_1, "cell 5 1");
 		JLabel lblHoTen = new JLabel("Họ và tên:");
-		panelThongTin.add(lblHoTen, "cell 1 3,alignx trailing");
+		lblHoTen.setFont(new Font("Arial", Font.PLAIN, 15));
+		panelThongTin.add(lblHoTen, "cell 0 3,alignx trailing");
 		
 		textFieldHoTen = new JTextField();
-		panelThongTin.add(textFieldHoTen, "cell 2 3,growx");
+		panelThongTin.add(textFieldHoTen, "cell 1 3,growx");
 		textFieldHoTen.setColumns(10);
 		
 		JLabel label = new JLabel("(*)");
 		label.setForeground(Color.RED);
-		panelThongTin.add(label, "cell 3 3");
+		panelThongTin.add(label, "cell 2 3");
 		
 		JLabel lblDiaChi = new JLabel("Địa chỉ:");
-		panelThongTin.add(lblDiaChi, "cell 1 5,alignx trailing");
+		lblDiaChi.setFont(new Font("Arial", Font.PLAIN, 15));
+		panelThongTin.add(lblDiaChi, "cell 0 5,alignx trailing");
 		
 		JTextArea textAreaDiaChi = new JTextArea();
-		panelThongTin.add(textAreaDiaChi, "cell 2 5,grow");
+		panelThongTin.add(textAreaDiaChi, "cell 1 5,grow");
 		
 		JLabel lblTip = new JLabel("(*) Dữ liệu yêu cầu bắt buộc");
 		lblTip.setForeground(new Color(255, 0, 0));
-		panelThongTin.add(lblTip, "cell 2 6");
+		panelThongTin.add(lblTip, "cell 1 6");
 		contentPane.setLayout(gl_contentPane);
+		
 		
 		KhachHangController controller = new KhachHangController(btnSubmit, textFieldMaKhachHang, textFieldHoTen, textFieldSoDienThoai, textAreaDiaChi, lblMsg);
 		controller.setView(khachHang);

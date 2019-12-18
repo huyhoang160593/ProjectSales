@@ -1,18 +1,23 @@
 package controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import model.ChiTietHoaDon;
 import model.MatHang;
 import service.MatHangService;
 import service.MatHangServiceImpl;
+import ultility.AutoCompletion;
 
 public class ThemMatHangController {
 	private JTextField textFieldMaMatHang;
@@ -23,7 +28,12 @@ public class ThemMatHangController {
 	private JButton btnThemMatHang;
 	private JComboBox<String> comboBox;
 	
+	//flag
+	boolean flag = false;
+	
 	private MatHangService matHangService = null;
+	
+	ChiTietHoaDon chiTietHoaDon = null;
 	
 	public ThemMatHangController(JTextField textFieldMaMatHang, JTextField textFieldSoLuong, JTextField textFieldDonGia,
 			JTextField textFieldThanhTien, JTextField textFieldLoaiHang, JButton btnThemMatHang,
@@ -40,14 +50,23 @@ public class ThemMatHangController {
 		this.matHangService = new MatHangServiceImpl();
 	}
 	
-	public void setData() {
+	public void setData(ChiTietHoaDon chiTietHoaDon,JFrame frame) {
+		
+		this.chiTietHoaDon = chiTietHoaDon;
+		
+		textFieldMaMatHang.setEditable(false);
+		textFieldLoaiHang.setEditable(false);
+		textFieldDonGia.setEditable(false);
+		textFieldThanhTien.setEditable(false);
+		AutoCompletion.enable(comboBox);
+		
 		List<MatHang> listItem = matHangService.getList();
 		for (MatHang mh : listItem) {
 			comboBox.addItem(mh.getTen_mat_hang());
 		}
 		MatHang matHang = matHangService.getMatHangInfo(comboBox.getItemAt(0));
 		System.out.println(comboBox.getName());
-		textFieldMaMatHang.setText(Integer.toString(matHang.getMa_mat_hang()));
+		textFieldMaMatHang.setText("#"+Integer.toString(matHang.getMa_mat_hang()));
 		textFieldLoaiHang.setText(matHang.getLoai_hang());
 		textFieldDonGia.setText(Integer.toString(matHang.getDon_gia()));
 				
@@ -57,31 +76,73 @@ public class ThemMatHangController {
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
 				MatHang matHang = matHangService.getMatHangInfo(e.getItem().toString());
-				textFieldMaMatHang.setText(Integer.toString(matHang.getMa_mat_hang()));
+				textFieldMaMatHang.setText("#"+Integer.toString(matHang.getMa_mat_hang()));
 				textFieldLoaiHang.setText(matHang.getLoai_hang());
 				textFieldDonGia.setText(Integer.toString(matHang.getDon_gia()));				
 			}
-		});
+		});		
 		
 		textFieldSoLuong.getDocument().addDocumentListener(new DocumentListener() {
 			
 			@Override
 			public void removeUpdate(DocumentEvent e) {
+				try {
+					if(!textFieldSoLuong.getText().equalsIgnoreCase("")) {
+						int thanhtien = 0;
+						int soluong = Integer.parseInt(textFieldSoLuong.getText());
+						int dongia = Integer.parseInt(textFieldDonGia.getText());
+						thanhtien = soluong * dongia;
+						textFieldThanhTien.setText(Integer.toString(thanhtien));
+					}
+					
+				} catch (Exception e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
+				}
 				
 			}
 			
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
-				
+				try {
+					if(!textFieldSoLuong.getText().equalsIgnoreCase("")) {
+						int thanhtien = 0;
+						int soluong = Integer.parseInt(textFieldSoLuong.getText());
+						int dongia = Integer.parseInt(textFieldDonGia.getText());
+						thanhtien = soluong * dongia;
+						textFieldThanhTien.setText(Integer.toString(thanhtien));
+					}
+				} catch (Exception e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
+				}
 			}
 			
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
-				
+				// TODO Auto-generated method stub		
+			}
+		});
+		//set Event
+		setEvent(frame);
+		
+	}
+	
+	public void setEvent(JFrame frame) {
+		btnThemMatHang.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub				
+				chiTietHoaDon.setMa_mat_hang(Integer.parseInt((textFieldMaMatHang.getText().substring(1))));
+				chiTietHoaDon.setDon_gia(Integer.parseInt(textFieldDonGia.getText()));
+				chiTietHoaDon.setSo_luong(Integer.parseInt(textFieldSoLuong.getText()));
+				chiTietHoaDon.setTen_mat_hang(comboBox.getSelectedItem().toString());
+				chiTietHoaDon.setThanh_tien(Integer.parseInt(textFieldThanhTien.getText()));
+				System.out.println(chiTietHoaDon.getMa_mat_hang()+"\t"+chiTietHoaDon.getMa_mat_hang()+"\t"+chiTietHoaDon.getSo_luong()+"\t"+chiTietHoaDon.getTen_mat_hang()+"\t"+chiTietHoaDon.getThanh_tien());
+				frame.dispose();				
 			}
 		});
 	}
-	
 }

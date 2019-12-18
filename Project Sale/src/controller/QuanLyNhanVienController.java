@@ -6,10 +6,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Date;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -109,6 +112,11 @@ public class QuanLyNhanVienController {
 					frame.setResizable(false);
 					frame.setTitle("Thông tin nhân viên thay đổi");
 					frame.setVisible(true);
+					frame.addWindowListener(new WindowAdapter() {
+						public void windowDeactivated(java.awt.event.WindowEvent e) {
+							setDataToTable();
+						};
+					});
 				}
 			}
 		});
@@ -139,7 +147,15 @@ public class QuanLyNhanVienController {
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new NhanVienJFrame(new NhanVien()).setVisible(true);;	
+				JFrame frame = new NhanVienJFrame(new NhanVien());
+				frame.setVisible(true);
+				frame.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowDeactivated(WindowEvent e) {
+						// TODO Auto-generated method stub
+						setDataToTable();
+					}
+				});
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {

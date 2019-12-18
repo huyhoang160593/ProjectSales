@@ -1,11 +1,17 @@
 package controller;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -21,6 +27,7 @@ import model.DonHang;
 import service.DonHangService;
 import service.DonHangServiceImpl;
 import ultility.ClassTableModel;
+import view.DonHangJFrame;
 
 public class QuanLyDonHangController {
 	private JPanel jpnView;
@@ -98,5 +105,31 @@ public class QuanLyDonHangController {
 		jpnView.add(scroll);
 		jpnView.validate();
 		jpnView.repaint();
+	}
+	
+	public void setEvent() {
+		btnAdd.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JFrame frame = new DonHangJFrame(new DonHang());
+				frame.setVisible(true);
+				frame.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosed(WindowEvent e) {
+						// TODO Auto-generated method stub
+						setDataToTable();
+					}
+				});
+				
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnAdd.setBackground(new Color(38, 70, 83));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnAdd.setBackground(new Color(42, 157, 143));
+			}
+		});
 	}
 }
