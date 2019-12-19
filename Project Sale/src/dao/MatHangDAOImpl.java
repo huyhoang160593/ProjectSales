@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,6 +100,53 @@ public class MatHangDAOImpl implements MatHangDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public MatHang getMatHangInfoByMaMatHang(int ma_mat_hang) {
+		// TODO Auto-generated method stub
+		
+		try {
+			MatHang matHang = new MatHang();
+			Connection cons = DBConnect.getConnection();
+			String sql = "SELECT * FROM mat_hang WHERE ma_mat_hang=?";
+			PreparedStatement ps = cons.prepareStatement(sql);
+			ps.setInt(1, ma_mat_hang);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				matHang.setMa_mat_hang(rs.getInt("ma_mat_hang"));
+				matHang.setTen_mat_hang(rs.getNString("ten_mat_hang"));
+				matHang.setLoai_hang(rs.getNString("loai_hang"));
+				matHang.setDon_gia(rs.getInt("don_gia"));
+				matHang.setTon_kho(rs.getInt("ton_kho"));
+				matHang.setCo_san(rs.getBoolean("co_san"));
+				matHang.setThoi_gian_nhap(rs.getTimestamp("thoi_gian_nhap").toLocalDateTime());
+			}
+			return matHang;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public int count() {
+		// TODO Auto-generated method stub
+		try {
+			Connection cons = DBConnect.getConnection();
+			String sql = "SELECT count(ma_mat_hang) AS dem FROM mat_hang";
+			Statement stmt = cons.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			if(rs.next()) {
+				int count = rs.getInt("dem");
+				return count;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 }

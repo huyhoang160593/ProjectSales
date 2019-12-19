@@ -8,6 +8,9 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import controller.TrangChuController;
+
 import java.awt.FlowLayout;
 
 public class TrangChuPanel extends JPanel {
@@ -61,12 +64,12 @@ public class TrangChuPanel extends JPanel {
 		
 		JLabel numberKhachHang = new JLabel("?");
 		numberKhachHang.setForeground(new Color(255, 255, 255));
-		numberKhachHang.setFont(new Font("Arial", Font.BOLD, 40));
+		numberKhachHang.setFont(new Font("Cambria Math", Font.BOLD, 50));
 		panelKhachHang.add(numberKhachHang);
 		
 		JLabel lblKhachHang = new JLabel("Khách Hàng");
 		lblKhachHang.setForeground(new Color(255, 255, 255));
-		lblKhachHang.setFont(new Font("Arial", Font.BOLD, 30));
+		lblKhachHang.setFont(new Font("Arial", Font.PLAIN, 20));
 		panelKhachHang.add(lblKhachHang);
 		
 		JPanel panelMatHang = new JPanel();
@@ -81,12 +84,12 @@ public class TrangChuPanel extends JPanel {
 		
 		JLabel numberMatHang = new JLabel("?");
 		numberMatHang.setForeground(Color.WHITE);
-		numberMatHang.setFont(new Font("Arial", Font.BOLD, 40));
+		numberMatHang.setFont(new Font("Cambria Math", Font.BOLD, 50));
 		panelMatHang.add(numberMatHang);
 		
 		JLabel lblMatHang = new JLabel("Mặt Hàng");
 		lblMatHang.setForeground(Color.WHITE);
-		lblMatHang.setFont(new Font("Arial", Font.BOLD, 30));
+		lblMatHang.setFont(new Font("Arial", Font.PLAIN, 20));
 		panelMatHang.add(lblMatHang);
 		
 		JPanel panelDonHang = new JPanel();
@@ -101,15 +104,18 @@ public class TrangChuPanel extends JPanel {
 		
 		JLabel numberDonHang = new JLabel("?");
 		numberDonHang.setForeground(Color.WHITE);
-		numberDonHang.setFont(new Font("Arial", Font.BOLD, 40));
+		numberDonHang.setFont(new Font("Cambria Math", Font.BOLD, 50));
 		panelDonHang.add(numberDonHang);
 		
 		JLabel lblDonHang = new JLabel("Đơn Hàng");
 		lblDonHang.setForeground(Color.WHITE);
-		lblDonHang.setFont(new Font("Arial", Font.BOLD, 30));
+		lblDonHang.setFont(new Font("Arial", Font.PLAIN, 20));
 		panelDonHang.add(lblDonHang);
 		
 		setLayout(groupLayout);
+		
+		TrangChuController controller = new TrangChuController(numberKhachHang, numberMatHang, numberDonHang);
+		controller.setData();
 		
 	}
 

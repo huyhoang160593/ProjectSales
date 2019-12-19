@@ -10,4 +10,8 @@ public interface KhachHangService {
 	public KhachHang getKhachHangInfo(String ho_ten);
 	
 	public KhachHang getKhachHangInfoBySDT(String sdt);
+	
+	public KhachHang getKhachHangSDT(int ma_khach_hang);
+	
+	public int count();
 }

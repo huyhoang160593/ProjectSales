@@ -23,6 +23,7 @@ import javax.swing.JCheckBox;
 import com.toedter.calendar.JDateChooser;
 
 import controller.NhanVienController;
+import java.awt.Font;
 
 public class NhanVienJFrame extends JFrame {
 
@@ -83,55 +84,61 @@ public class NhanVienJFrame extends JFrame {
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
-					.addGap(1))
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblMsg)
-					.addPreferredGap(ComponentPlacement.RELATED, 595, Short.MAX_VALUE)
-					.addComponent(btnSubmit, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblMsg)
+							.addPreferredGap(ComponentPlacement.RELATED, 754, Short.MAX_VALUE)
+							.addComponent(btnSubmit, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 883, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblMsg)
 						.addComponent(btnSubmit, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
 					.addGap(45)
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE))
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
 		);
-		panel.setLayout(new MigLayout("", "[][][grow][][][][][][][][][grow][]", "[][][grow][][][][]"));
+		panel.setLayout(new MigLayout("", "[][][grow][][grow][][grow][]", "[][][grow][][][][]"));
 		
 		JLabel lblMaNhanVien = new JLabel("Mã nhân viên:");
-		panel.add(lblMaNhanVien, "cell 1 1,alignx trailing");
+		lblMaNhanVien.setFont(new Font("Arial", Font.PLAIN, 15));
+		panel.add(lblMaNhanVien, "cell 1 0,alignx right");
 		
 		textFieldMaNhanVien = new JTextField();
+		textFieldMaNhanVien.setFont(new Font("Arial", Font.PLAIN, 15));
 		textFieldMaNhanVien.setEditable(false);
-		panel.add(textFieldMaNhanVien, "cell 2 1");
+		panel.add(textFieldMaNhanVien, "cell 2 0");
 		
 		JLabel label = new JLabel("(*)");
 		label.setForeground(Color.RED);
-		panel.add(label, "cell 3 1");
+		panel.add(label, "cell 3 0");
 		
 		JLabel lblSoDienThoai = new JLabel("Số điện thoại:");
-		panel.add(lblSoDienThoai, "cell 10 1,alignx trailing");
+		lblSoDienThoai.setFont(new Font("Arial", Font.PLAIN, 15));
+		panel.add(lblSoDienThoai, "cell 5 0,alignx right");
 		
 		textFieldSoDienThoai = new JTextField();
-		panel.add(textFieldSoDienThoai, "cell 11 1,growx");
+		textFieldSoDienThoai.setFont(new Font("Arial", Font.PLAIN, 15));
+		panel.add(textFieldSoDienThoai, "cell 6 0,growx");
 		textFieldSoDienThoai.setColumns(10);
 		
 		JLabel label_4 = new JLabel("(*)");
 		label_4.setForeground(Color.RED);
-		panel.add(label_4, "cell 12 1");
+		panel.add(label_4, "cell 7 0");
 		
 		JLabel lblHoTen = new JLabel("Họ và tên:");
-		panel.add(lblHoTen, "cell 1 2,alignx leading");
+		lblHoTen.setFont(new Font("Arial", Font.PLAIN, 15));
+		panel.add(lblHoTen, "cell 1 2,alignx right");
 		
 		textFieldHoTen = new JTextField();
+		textFieldHoTen.setFont(new Font("Arial", Font.PLAIN, 15));
 		panel.add(textFieldHoTen, "cell 2 2,growx");
 		textFieldHoTen.setColumns(10);
 		
@@ -140,36 +147,36 @@ public class NhanVienJFrame extends JFrame {
 		panel.add(label_1, "cell 3 2");
 		
 		JLabel lblDiaChi = new JLabel("Địa chỉ:");
-		panel.add(lblDiaChi, "cell 10 2,aligny top");
+		lblDiaChi.setFont(new Font("Arial", Font.PLAIN, 15));
+		panel.add(lblDiaChi, "cell 5 2,alignx right,aligny top");				
 		
 		textAreaDiaChi = new JTextArea();
-		panel.add(textAreaDiaChi, "cell 11 2,grow");
+		textAreaDiaChi.setFont(new Font("Arial", Font.PLAIN, 15));
+		panel.add(textAreaDiaChi, "cell 6 2,grow");
 		
 		JLabel label_5 = new JLabel("(*)");
 		label_5.setForeground(Color.RED);
-		panel.add(label_5, "cell 12 2,aligny top");
+		panel.add(label_5, "cell 7 2,aligny top");
 		
 		JLabel lblGioiTinh = new JLabel("Giới tính:");
-		panel.add(lblGioiTinh, "cell 1 3");
+		lblGioiTinh.setFont(new Font("Arial", Font.PLAIN, 15));
+		panel.add(lblGioiTinh, "cell 1 3,alignx right");
 		
 		//Xét Button Group để nhóm phím và chỉ chọn 1 trong 2 giá trị nam và nữ
 		ButtonGroup bg = new ButtonGroup();
 		rdbtnNam = new JRadioButton("Nam");
-		panel.add(rdbtnNam, "cell 2 3");
-		
-		rdbtnNu = new JRadioButton("Nữ");
-		panel.add(rdbtnNu, "cell 3 3");
-		
-		bg.add(rdbtnNu);
+		rdbtnNam.setFont(new Font("Arial", Font.PLAIN, 15));
+		panel.add(rdbtnNam, "flowx,cell 2 3");
 		bg.add(rdbtnNam);
 		
 		JLabel label_3 = new JLabel("(*)");
 		label_3.setForeground(Color.RED);
-		panel.add(label_3, "cell 4 3");
+		panel.add(label_3, "cell 3 3");
 		
 		
 		JLabel lblNgaySinh = new JLabel("Ngày sinh:");
-		panel.add(lblNgaySinh, "cell 1 4");
+		lblNgaySinh.setFont(new Font("Arial", Font.PLAIN, 15));
+		panel.add(lblNgaySinh, "cell 1 4,alignx right");
 		
 		jdcNgaySinh = new JDateChooser();
 		panel.add(jdcNgaySinh, "cell 2 4,grow");
@@ -179,15 +186,22 @@ public class NhanVienJFrame extends JFrame {
 		panel.add(label_2, "cell 3 4");
 		
 		JLabel lblTinhTrang = new JLabel("Tính trạng:");
-		panel.add(lblTinhTrang, "cell 1 5");
+		lblTinhTrang.setFont(new Font("Arial", Font.PLAIN, 15));
+		panel.add(lblTinhTrang, "cell 1 5,alignx right");
 		
 		chkbxTinhTrang = new JCheckBox("Còn làm");
+		chkbxTinhTrang.setFont(new Font("Arial", Font.PLAIN, 15));
 		panel.add(chkbxTinhTrang, "cell 2 5");
 		
 		JLabel lblNote = new JLabel("(*)Dữ liệu yêu cầu là bắt buộc");
 		lblNote.setForeground(Color.RED);
 		panel.add(lblNote, "cell 2 6");
-
+		
+		rdbtnNu = new JRadioButton("Nữ");
+		rdbtnNu.setFont(new Font("Arial", Font.PLAIN, 15));
+		panel.add(rdbtnNu, "cell 2 3");
+		
+		bg.add(rdbtnNu);
 		
 		contentPane.setLayout(gl_contentPane);
 		

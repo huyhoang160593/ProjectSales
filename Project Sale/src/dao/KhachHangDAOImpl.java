@@ -115,4 +115,45 @@ public class KhachHangDAOImpl implements KhachHangDAO{
 		return null;
 	}
 
+	@Override
+	public KhachHang getKhachHangSDT(int ma_khach_hang) {
+		// TODO Auto-generated method stub
+		try {
+			KhachHang khachHang = new KhachHang();
+			Connection cons = DBConnect.getConnection();
+			String SQL = "SELECT * FROM khach_hang where ma_khach_hang=?";
+			PreparedStatement ps = cons.prepareStatement(SQL);
+			ps.setInt(1, ma_khach_hang);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				khachHang.setMa_khach_hang(rs.getInt("ma_khach_hang"));
+				khachHang.setSo_dien_thoai(rs.getString("sdt"));
+				return khachHang;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public int count() {
+		// TODO Auto-generated method stub
+		try {
+			Connection cons = DBConnect.getConnection();
+			String sql = "SELECT count(ma_khach_hang) AS dem FROM khach_hang";
+			Statement stmt = cons.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			if(rs.next()) {
+				int count = rs.getInt("dem");
+				return count;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 }

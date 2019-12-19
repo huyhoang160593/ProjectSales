@@ -19,6 +19,7 @@ import model.MatHang;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
+import java.awt.Font;
 
 public class MatHangJFrame extends JFrame {
 
@@ -97,53 +98,66 @@ public class MatHangJFrame extends JFrame {
 					.addGap(45)
 					.addComponent(panelThongTin, GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE))
 		);
-		panelThongTin.setLayout(new MigLayout("", "[][][grow][][][][][][][][][]", "[][][][grow][][grow][]"));
+		panelThongTin.setLayout(new MigLayout("", "[][][][grow][][]", "[][grow][][grow][][grow][]"));
 		
 		JLabel lblMaMatHang = new JLabel("Mã mặt hàng:");
-		panelThongTin.add(lblMaMatHang, "cell 1 1,alignx trailing");
+		lblMaMatHang.setFont(new Font("Arial", Font.PLAIN, 15));
+		panelThongTin.add(lblMaMatHang, "cell 1 0,alignx trailing");
 		
 		jtfMaMatHang = new JTextField();
+		jtfMaMatHang.setFont(new Font("Arial", Font.PLAIN, 15));
 		jtfMaMatHang.setEditable(false);
-		panelThongTin.add(jtfMaMatHang, "cell 2 1");
+		panelThongTin.add(jtfMaMatHang, "cell 2 0");
 		
 		JLabel lblDonGia = new JLabel("Đơn giá(đ/đơn vị tính):");
-		panelThongTin.add(lblDonGia, "cell 10 1,alignx trailing");
+		lblDonGia.setFont(new Font("Arial", Font.PLAIN, 15));
+		panelThongTin.add(lblDonGia, "cell 4 0,alignx trailing");
 		
 		jtfDonGia = new JTextField();
-		panelThongTin.add(jtfDonGia, "cell 11 1");
+		jtfDonGia.setFont(new Font("Arial", Font.PLAIN, 15));
+		panelThongTin.add(jtfDonGia, "cell 5 0");
 		jtfDonGia.setColumns(7);
 		
 		JLabel lblTenMatHang = new JLabel("Tên mặt hàng:");
-		panelThongTin.add(lblTenMatHang, "cell 1 3,alignx trailing");
+		lblTenMatHang.setFont(new Font("Arial", Font.PLAIN, 15));
+		panelThongTin.add(lblTenMatHang, "cell 1 2,alignx trailing");
 		
 		jtfTenMatHang = new JTextField();
-		panelThongTin.add(jtfTenMatHang, "cell 2 3");
+		jtfTenMatHang.setFont(new Font("Arial", Font.PLAIN, 15));
+		panelThongTin.add(jtfTenMatHang, "cell 2 2");
 		jtfTenMatHang.setColumns(15);
 		
 		JLabel lblTonKho = new JLabel("Tồn kho:");
-		panelThongTin.add(lblTonKho, "cell 10 3,alignx trailing");
+		lblTonKho.setFont(new Font("Arial", Font.PLAIN, 15));
+		panelThongTin.add(lblTonKho, "cell 4 2,alignx trailing");
 		
 		jtfTonKho = new JTextField();
-		panelThongTin.add(jtfTonKho, "cell 11 3");
+		jtfTonKho.setFont(new Font("Arial", Font.PLAIN, 15));
+		panelThongTin.add(jtfTonKho, "cell 5 2");
 		jtfTonKho.setColumns(7);
 		
 		JLabel lblLoaiHang = new JLabel("Loại hàng:");
-		panelThongTin.add(lblLoaiHang, "cell 1 5,alignx trailing");
+		lblLoaiHang.setFont(new Font("Arial", Font.PLAIN, 15));
+		panelThongTin.add(lblLoaiHang, "cell 1 4,alignx trailing");
 		
 		jtfLoaiHang = new JTextField();
-		panelThongTin.add(jtfLoaiHang, "cell 2 5");
+		jtfLoaiHang.setFont(new Font("Arial", Font.PLAIN, 15));
+		panelThongTin.add(jtfLoaiHang, "cell 2 4");
 		jtfLoaiHang.setColumns(15);
 		
-		JCheckBox jcbCoSan = new JCheckBox("Có sẵn");
-		panelThongTin.add(jcbCoSan, "cell 11 5");
-		
 		JLabel lblThoiGianNhap = new JLabel("Thời gian nhập");
+		lblThoiGianNhap.setFont(new Font("Arial", Font.PLAIN, 15));
 		panelThongTin.add(lblThoiGianNhap, "cell 1 6,alignx trailing");
 		
 		jtfThoiGianNhap = new JTextField();
+		jtfThoiGianNhap.setFont(new Font("Arial", Font.PLAIN, 15));
 		jtfThoiGianNhap.setEditable(false);
 		panelThongTin.add(jtfThoiGianNhap, "cell 2 6");
 		jtfThoiGianNhap.setColumns(10);
+		
+		JCheckBox jcbCoSan = new JCheckBox("Có sẵn");
+		jcbCoSan.setFont(new Font("Arial", Font.BOLD, 15));
+		panelThongTin.add(jcbCoSan, "cell 5 6");
 		
 		contentPane.setLayout(gl_contentPane);
 		

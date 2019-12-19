@@ -113,7 +113,7 @@ public class QuanLyMatHangController {
         			MatHangJFrame frame = new MatHangJFrame(matHang);
         			frame.setLocationRelativeTo(null);
 					frame.setResizable(false);
-					frame.setTitle("Thông tin khách hàng thay đổi");
+					frame.setTitle("Thông tin mặt hàng thay đổi");
 					frame.setVisible(true);
 					frame.addWindowListener(new WindowAdapter() {
 						public void windowDeactivated(java.awt.event.WindowEvent e) {

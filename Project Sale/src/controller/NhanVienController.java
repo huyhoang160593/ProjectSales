@@ -91,8 +91,10 @@ public class NhanVienController {
 							if (lastID != 0) {
 								nhanVien.setMa_nhan_vien(lastID);
 								textFieldMaNhanVien.setText("#" + nhanVien.getMa_nhan_vien());
-								lblMsg.setText("Xử lý cập nhật dữ liệu thành công!");
+								lblMsg.setForeground(new Color(0, 255, 0));
+								lblMsg.setText("Xử lý cập nhật dữ liệu thành công! Bấm X để cập nhật dữ liệu...");	
 							} else {
+								lblMsg.setForeground(new Color(255, 0, 0));
 								lblMsg.setText("Có lỗi xảy ra. Vui lòng thử lại");
 							}
 						}

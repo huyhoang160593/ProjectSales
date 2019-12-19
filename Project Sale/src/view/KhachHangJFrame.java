@@ -72,7 +72,6 @@ public class KhachHangJFrame extends JFrame {
 		panelThongTin.setBorder(new TitledBorder(null, "Thông tin khách hàng", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(192, 192, 192)));
 		
 		JLabel lblMsg = new JLabel(""); //Sai sót được chú thích ở đây
-		lblMsg.setForeground(new Color(255, 0, 0));
 		
 		JButton btnSubmit = new JButton("Lưu dữ liệu");
 		btnSubmit.setBackground(new Color(100,221,23));
@@ -117,9 +116,11 @@ public class KhachHangJFrame extends JFrame {
 		panelThongTin.add(lblStar, "cell 2 1");
 		
 		JLabel lblSoDienThoai = new JLabel("Số điện thoại");
+		lblSoDienThoai.setFont(new Font("Arial", Font.PLAIN, 15));
 		panelThongTin.add(lblSoDienThoai, "cell 3 1,alignx trailing");
 		
 		textFieldSoDienThoai = new JTextField();
+		textFieldSoDienThoai.setFont(new Font("Arial", Font.PLAIN, 15));
 		panelThongTin.add(textFieldSoDienThoai, "cell 4 1,growx");
 		textFieldSoDienThoai.setColumns(10);
 		
@@ -131,6 +132,7 @@ public class KhachHangJFrame extends JFrame {
 		panelThongTin.add(lblHoTen, "cell 0 3,alignx trailing");
 		
 		textFieldHoTen = new JTextField();
+		textFieldHoTen.setFont(new Font("Arial", Font.PLAIN, 15));
 		panelThongTin.add(textFieldHoTen, "cell 1 3,growx");
 		textFieldHoTen.setColumns(10);
 		
@@ -143,6 +145,7 @@ public class KhachHangJFrame extends JFrame {
 		panelThongTin.add(lblDiaChi, "cell 0 5,alignx trailing");
 		
 		JTextArea textAreaDiaChi = new JTextArea();
+		textAreaDiaChi.setFont(new Font("Arial", Font.PLAIN, 15));
 		panelThongTin.add(textAreaDiaChi, "cell 1 5,grow");
 		
 		JLabel lblTip = new JLabel("(*) Dữ liệu yêu cầu bắt buộc");

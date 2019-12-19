@@ -10,4 +10,8 @@ public interface MatHangDAO {
 	public int createOrUpdate(MatHang matHang);
 	
 	public MatHang getMatHangInfo(String ten_mat_hang);
+	
+	public MatHang getMatHangInfoByMaMatHang(int ma_mat_hang);
+	
+	public int count();
 }

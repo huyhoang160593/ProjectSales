@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import java.awt.Font;
 
 public class DonHangMatHangJFrame extends JFrame {
 
@@ -50,63 +51,77 @@ public class DonHangMatHangJFrame extends JFrame {
 //		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		setTitle("Thêm mặt hàng");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 500, 300);
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[][grow][][][][][grow][]", "[][][][][][][grow][]"));
+		contentPane.setLayout(new MigLayout("", "[][grow][][][][]", "[grow][][][][][][grow][]"));
 		
-		JLabel lblMaMatHang = new JLabel("Mã mặt hàng");
+		JLabel lblMaMatHang = new JLabel("Mã mặt hàng:");
+		lblMaMatHang.setFont(new Font("Arial", Font.PLAIN, 15));
 		contentPane.add(lblMaMatHang, "cell 0 1,alignx trailing");
 		
-		JLabel lblTenMatHang = new JLabel("Tên mặt hàng");
-		contentPane.add(lblTenMatHang, "cell 5 1,alignx trailing");
+		JLabel lblTenMatHang = new JLabel("Tên mặt hàng:");
+		lblTenMatHang.setFont(new Font("Arial", Font.PLAIN, 15));
+		contentPane.add(lblTenMatHang, "cell 3 1,alignx trailing");
 		
-		JLabel lblSoLuong = new JLabel("Số lượng");
+		
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setFont(new Font("Arial", Font.PLAIN, 15));
+		contentPane.add(comboBox, "cell 4 1,growx");
+		
+		JLabel lblSoLuong = new JLabel("Số lượng:");
+		lblSoLuong.setFont(new Font("Arial", Font.PLAIN, 15));
 		contentPane.add(lblSoLuong, "cell 0 2,alignx trailing");
 		
-		JLabel lblDonGia = new JLabel("Đơn giá");
-		contentPane.add(lblDonGia, "cell 5 2,alignx trailing");
+		JLabel lblDonGia = new JLabel("Đơn giá:");
+		lblDonGia.setFont(new Font("Arial", Font.PLAIN, 15));
+		contentPane.add(lblDonGia, "cell 3 2,alignx trailing");
 		
-		JLabel lblLoaiHang = new JLabel("Loại Hàng");
+		
+		textFieldDonGia = new JTextField();
+		textFieldDonGia.setFont(new Font("Arial", Font.PLAIN, 15));
+		contentPane.add(textFieldDonGia, "cell 4 2,growx");
+		textFieldDonGia.setColumns(10);
+		
+		JLabel lblLoaiHang = new JLabel("Loại Hàng:");
+		lblLoaiHang.setFont(new Font("Arial", Font.PLAIN, 15));
 		contentPane.add(lblLoaiHang, "cell 0 4,alignx trailing");
 		
 		textFieldLoaiHang = new JTextField();
+		textFieldLoaiHang.setFont(new Font("Arial", Font.PLAIN, 15));
 		contentPane.add(textFieldLoaiHang, "cell 1 4,growx");
 		textFieldLoaiHang.setColumns(10);
 		
-		JLabel lblThanhTien = new JLabel("Thành tiền");
-		contentPane.add(lblThanhTien, "cell 6 4");
-		
 		textFieldMaMatHang = new JTextField();
+		textFieldMaMatHang.setFont(new Font("Arial", Font.PLAIN, 15));
 		contentPane.add(textFieldMaMatHang, "cell 1 1");
 		textFieldMaMatHang.setColumns(2);
-			
-		
-		JComboBox<String> comboBox = new JComboBox<String>();
-		contentPane.add(comboBox, "cell 6 1,growx");
 				
 		
 		textFieldSoLuong = new JTextField();
+		textFieldSoLuong.setFont(new Font("Arial", Font.PLAIN, 15));
 		contentPane.add(textFieldSoLuong, "cell 1 2,growx");
 		textFieldSoLuong.setColumns(10);
-				
 		
-		textFieldDonGia = new JTextField();
-		contentPane.add(textFieldDonGia, "cell 6 2,growx");
-		textFieldDonGia.setColumns(10);
-				
+		JLabel lblThanhTien = new JLabel("Thành tiền:");
+		lblThanhTien.setFont(new Font("Arial", Font.BOLD, 15));
+		contentPane.add(lblThanhTien, "cell 4 4");
+		
 		
 		textFieldThanhTien = new JTextField();
-		contentPane.add(textFieldThanhTien, "cell 6 5,growx");
+		textFieldThanhTien.setFont(new Font("Arial", Font.PLAIN, 15));
+		contentPane.add(textFieldThanhTien, "cell 4 5,growx");
 		textFieldThanhTien.setColumns(10);
 		
 		JLabel lblCurrency = new JLabel("vnđ");
-		contentPane.add(lblCurrency, "cell 7 5");
+		lblCurrency.setFont(new Font("Arial", Font.PLAIN, 15));
+		contentPane.add(lblCurrency, "cell 5 5");
 		
 		JButton btnThemMatHang = new JButton("Thêm mặt hàng");
-		contentPane.add(btnThemMatHang, "cell 6 7");
+		btnThemMatHang.setFont(new Font("Arial", Font.PLAIN, 12));
+		contentPane.add(btnThemMatHang, "cell 4 7");
 		
 		ThemMatHangController controller = new ThemMatHangController(textFieldMaMatHang, textFieldSoLuong, textFieldDonGia, textFieldThanhTien, textFieldLoaiHang, btnThemMatHang, comboBox);
 		controller.setData(chiTietHoaDon,this);

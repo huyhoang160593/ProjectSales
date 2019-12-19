@@ -95,3 +95,9 @@ select hd.ma_hoa_don,hd.ma_nhan_vien,ngay_ban,hd.ma_khach_hang,thanh_tien,nv.ten
 SELECT * FROM mat_hang WHERE ten_mat_hang=N'Củ Chuối'
 
 insert into chi_tiet_hoa_don(ma_hoa_don,ma_mat_hang,so_luong,don_gia,thanh_tien) values(1,2,4,2000,8000)
+
+select hd.ma_hoa_don,ten_mat_hang, mh.don_gia, cthd.so_luong, cthd.thanh_tien from chi_tiet_hoa_don cthd, mat_hang mh, hoa_don hd where mh.ma_mat_hang = cthd.ma_mat_hang and hd.ma_hoa_don = cthd.ma_hoa_don and hd.ma_hoa_don = 1
+
+SELECT count(ma_khach_hang) AS dem FROM khach_hang
+SELECT count(ma_mat_hang) AS dem FROM mat_hang
+SELECT count(ma_hoa_don) AS dem FROM hoa_don

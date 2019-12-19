@@ -31,13 +31,17 @@ import javax.swing.table.DefaultTableModel;
 import model.ChiTietHoaDon;
 import model.DonHang;
 import model.KhachHang;
+import model.MatHang;
 import model.NhanVien;
 import service.DonHangService;
 import service.DonHangServiceImpl;
 import service.KhachHangService;
 import service.KhachHangServiceImpl;
+import service.MatHangService;
+import service.MatHangServiceImpl;
 import service.NhanVienService;
 import service.NhanVienServiceImpl;
+import ultility.AutoCompletion;
 import ultility.ClassTableModel;
 import view.DonHangMatHangJFrame;
 
@@ -63,6 +67,7 @@ public class DonHangController {
 	private DonHangService donHangService = null;
 	private KhachHangService khachHangService = null;
 	private NhanVienService nhanVienService = null;
+	private MatHangService matHangService = null;
 	
 	private List<ChiTietHoaDon> listOrder = null;	
 	private ChiTietHoaDon chiTietHoaDon = null;
@@ -89,6 +94,7 @@ public class DonHangController {
 		this.donHangService = new DonHangServiceImpl();
 		this.khachHangService = new KhachHangServiceImpl();
 		this.nhanVienService = new NhanVienServiceImpl();
+		this.matHangService = new MatHangServiceImpl();
 		
 		this.panelTable = panelTable;
 		this.classTableModel = new ClassTableModel();
@@ -123,6 +129,7 @@ public class DonHangController {
         		lblSecret.setText(Integer.toString(table.getSelectedRow()));
         	}
 		});
+        
         if(table.getRowCount()!=0) {
         	for (int i = 0; i < table.getRowCount(); i++) {
 				thanhTien += (int)table.getValueAt(i, 3);
@@ -136,18 +143,25 @@ public class DonHangController {
 		//frame details
 		donHang = new DonHang();
 		textFieldMaHoaDon.setText("#"+donHang.getMa_hoa_don());
-		textFieldNgayBan.setText(LocalDate.now().toString());		
+		textFieldNgayBan.setText(LocalDate.now().toString());	
+		AutoCompletion.enable(comboBoxSDTKhachHang);
+		AutoCompletion.enable(comboKhachHang);
+		AutoCompletion.enable(comboNhanVien);
+		
 		List<KhachHang> listKhachHangs = khachHangService.getList();
 		for(KhachHang khachHang : listKhachHangs) {
 			comboKhachHang.addItem(khachHang.getHo_ten());
 			comboBoxSDTKhachHang.addItem(khachHang.getSo_dien_thoai());
 		}		
+		
 		List<NhanVien> listNhanViens = nhanVienService.getList();
 		for(NhanVien nhanVien : listNhanViens) {
 			comboNhanVien.addItem(nhanVien.getTen_nhan_vien());
 		}
+		
 		btnThayDoi.setVisible(false);
 		//Chọn khách hàng theo số điện thoại sẽ thấy tên và ngược lại(bấm phím thay đổi)
+		
 		comboKhachHang.addItemListener(new ItemListener() {
 			
 			@Override
@@ -238,11 +252,23 @@ public class DonHangController {
 									chiTietHoaDon.setMa_hoa_don(lastID);
 									System.out.println(chiTietHoaDon.getMa_hoa_don()+"\t"+chiTietHoaDon.getMa_mat_hang()+"\t"+chiTietHoaDon.getSo_luong()+"\t"+chiTietHoaDon.getThanh_tien());
 									donHangService.createDetailOrder(chiTietHoaDon);
+									MatHang matHang = matHangService.getMatHangInfoByMaMatHang(chiTietHoaDon.getMa_mat_hang());
+									System.out.println(matHang.getMa_mat_hang()+"\t"+matHang.getTen_mat_hang()+"\t"+matHang.getTon_kho()+"\t"+matHang.getThoi_gian_nhap());
+									int ton_kho = matHang.getTon_kho();
+									int so_luong_mua = chiTietHoaDon.getSo_luong();
+									ton_kho -= so_luong_mua;
+									matHang.setTon_kho(ton_kho);
+									matHang.setThoi_gian_nhap(LocalDateTime.now());
+									int done = matHangService.createOrUpdate(matHang);
+									lblSecret.setText(Integer.toString(done));
+									System.out.println("Mã đơn hàng thay đổi: " + matHang.getMa_mat_hang());
 								}
-								lblMgs.setText("Cập nhật đơn hàng thành công");
+								lblMgs.setForeground(new Color(0, 255, 0));
+								lblMgs.setText("Cập nhật đơn hàng thành công...");
 								frame.dispose();
 							} else {
-								lblMgs.setText("Có lỗi xảy ra, vui lòng kiểm tra lại");
+								lblMgs.setForeground(new Color(255, 0, 0));
+								lblMgs.setText("Có lỗi xảy ra, vui lòng kiểm tra lại!");
 							}
 						}
 					} catch (Exception e2) {

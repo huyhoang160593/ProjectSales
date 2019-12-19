@@ -5,9 +5,11 @@ import javax.swing.JPanel;
 
 public class DanhMucBean {
 
-	private String kind;
-    private JPanel jpn;
-    private JLabel jlb;
+	private String kind;	//Loại danh mục
+    private JPanel jpn;		//Cái panel chứa tên danh mục
+    private JLabel jlb;		//tên danh mục
+    
+    //Đây là phần để model của danh mục.Chính là phần này
     
 	public DanhMucBean() {
     }

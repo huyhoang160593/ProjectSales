@@ -42,11 +42,11 @@ public class KhachHangPanel extends JPanel {
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addComponent(jtfSearch, GroupLayout.PREFERRED_SIZE, 464, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 324, Short.MAX_VALUE)
+							.addComponent(jtfSearch, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
 							.addComponent(btnAdd))
-						.addComponent(jpnView, GroupLayout.DEFAULT_SIZE, 927, Short.MAX_VALUE))
-					.addGap(8))
+						.addComponent(jpnView, GroupLayout.DEFAULT_SIZE, 925, Short.MAX_VALUE))
+					.addGap(5))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -55,9 +55,9 @@ public class KhachHangPanel extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(jtfSearch)
 						.addComponent(btnAdd, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(18)
-					.addComponent(jpnView, GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
-					.addGap(6))
+					.addGap(20)
+					.addComponent(jpnView, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+					.addGap(5))
 		);
 		setLayout(groupLayout);
 		

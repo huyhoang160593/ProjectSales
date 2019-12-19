@@ -40,6 +40,8 @@ public class MatHangPanel extends JPanel {
 		btnNhapKho.setForeground(Color.WHITE);
 		btnNhapKho.setFont(new Font("Arial", Font.PLAIN, 20));
 		btnNhapKho.setBackground(new Color(42, 157, 143));
+		//Phím chưa được thêm chức năng nên chưa cho hiển thị, đỡ hỏi ahohi :>
+		btnNhapKho.setVisible(false);
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

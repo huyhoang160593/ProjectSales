@@ -36,4 +36,25 @@ public class DonHangServiceImpl implements DonHangService {
 		donHangDAO.createDetailOrder(chiTietHoaDon);
 	}
 
+
+	@Override
+	public DonHang getOrderInfo(int ma_hoa_don) {
+		// TODO Auto-generated method stub
+		return donHangDAO.getOrderInfo(ma_hoa_don);
+	}
+
+
+	@Override
+	public List<ChiTietHoaDon> getDetailOrderList(int ma_hoa_don) {
+		// TODO Auto-generated method stub
+		return donHangDAO.getDetailOrderList(ma_hoa_don);
+	}
+
+
+	@Override
+	public int count() {
+		// TODO Auto-generated method stub
+		return donHangDAO.Count();
+	}
+
 }

@@ -62,8 +62,10 @@ public class KhachHangController {
 							if (lastId != 0) {							
 								khachHang.setMa_khach_hang(lastId);
 								textFieldMaKhachHang.setText("#" + khachHang.getMa_khach_hang());
-								lblMsg.setText("Xử lý cập nhật dữ liệu thành công");
+								lblMsg.setForeground(new Color(0, 255, 0));
+								lblMsg.setText("Xử lý cập nhật dữ liệu thành công! Bấm X để cập nhật dữ liệu...");	
 							} else {
+								lblMsg.setForeground(new Color(255, 0, 0));
 								lblMsg.setText("Có lỗi xảy ra, vui lòng thử lại!");
 							}
 						}

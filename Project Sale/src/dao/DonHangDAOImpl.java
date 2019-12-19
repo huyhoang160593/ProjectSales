@@ -3,6 +3,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,6 +97,76 @@ public class DonHangDAOImpl implements DonHangDAO {
 			e.printStackTrace();
 		}
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public DonHang getOrderInfo(int ma_hoa_don) {
+		// TODO Auto-generated method stub
+		try {
+			DonHang donHang = new DonHang();
+			String SQL = "SELECT * from hoa_don where ma_hoa_don=?";
+			Connection cons = DBConnect.getConnection();
+			PreparedStatement ps = cons.prepareStatement(SQL);
+			ps.setInt(1, ma_hoa_don);
+			ResultSet rSet = ps.executeQuery();
+			if(rSet.next()) {
+				donHang.setMa_hoa_don(rSet.getInt("ma_hoa_don"));
+				donHang.setMa_khach_hang(rSet.getInt("ma_khach_hang"));
+				donHang.setNgay_ban(rSet.getTimestamp("ngay_ban").toLocalDateTime());
+				donHang.setThanh_tien(rSet.getInt("thanh_tien"));
+			}
+			return donHang;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<ChiTietHoaDon> getDetailOrderList(int ma_hoa_don) {
+		// TODO Auto-generated method stub
+			try {
+				List<ChiTietHoaDon> listOrder =new ArrayList<ChiTietHoaDon>();
+				String sqlString = "select hd.ma_hoa_don,ten_mat_hang, mh.don_gia, cthd.so_luong, cthd.thanh_tien from chi_tiet_hoa_don cthd, mat_hang mh, hoa_don hd where mh.ma_mat_hang = cthd.ma_mat_hang and hd.ma_hoa_don = cthd.ma_hoa_don and hd.ma_hoa_don = ?";
+				Connection cons = DBConnect.getConnection();
+				PreparedStatement ps = cons.prepareStatement(sqlString);
+				ps.setInt(1, ma_hoa_don);
+				ResultSet rs = ps.executeQuery();
+				while (rs.next()) {
+					ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon();
+					chiTietHoaDon.setMa_hoa_don(ma_hoa_don);
+					chiTietHoaDon.setTen_mat_hang(rs.getNString("ten_mat_hang"));
+					chiTietHoaDon.setDon_gia(rs.getInt("don_gia"));
+					chiTietHoaDon.setSo_luong(rs.getInt("so_luong"));
+					chiTietHoaDon.setThanh_tien(rs.getInt("thanh_tien"));
+					listOrder.add(chiTietHoaDon);
+				}
+				return listOrder;
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		return null;
+	}
+
+	@Override
+	public int Count() {
+		// TODO Auto-generated method stub
+				try {
+					Connection cons = DBConnect.getConnection();
+					String sql = "SELECT count(ma_hoa_don) AS dem FROM hoa_don";
+					Statement stmt = cons.createStatement();
+					ResultSet rs = stmt.executeQuery(sql);
+					if(rs.next()) {
+						int count = rs.getInt("dem");
+						return count;
+					}
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+				return 0;
 	}
 
 

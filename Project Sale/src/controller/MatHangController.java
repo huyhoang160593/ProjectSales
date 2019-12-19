@@ -78,8 +78,10 @@ public class MatHangController {
 							if (lastID != 0) {
 								matHang.setMa_mat_hang(lastID);
 								jtfMaMatHang.setText("#" + matHang.getMa_mat_hang());
-								jlbMsg.setText("Xử lý cập nhật dữ liệu thành công!");
+								jlbMsg.setForeground(new Color(0, 255, 0));
+								jlbMsg.setText("Xử lý cập nhật dữ liệu thành công! Bấm X để cập nhật dữ liệu...");	
 							}else {
+								jlbMsg.setForeground(new Color(255, 0, 0));
 								jlbMsg.setText("Có lỗi xảy ra vui lòng thử lại");
 							}
 						}		

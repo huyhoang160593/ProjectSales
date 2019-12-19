@@ -37,4 +37,16 @@ public class KhachHangServiceImpl implements KhachHangService {
 		return khachHangDAO.getKhachHangInfoBySDT(sdt);
 	}
 
+	@Override
+	public KhachHang getKhachHangSDT(int ma_khach_hang) {
+		// TODO Auto-generated method stub
+		return khachHangDAO.getKhachHangSDT(ma_khach_hang);
+	}
+
+	@Override
+	public int count() {
+		// TODO Auto-generated method stub
+		return khachHangDAO.count();
+	}
+
 }

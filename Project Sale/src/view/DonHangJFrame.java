@@ -54,9 +54,7 @@ public class DonHangJFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public DonHangJFrame(DonHang donHang) {
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		setResizable(false);
 		setSize(900, 450);
 		setLocationRelativeTo(null);
@@ -91,8 +89,7 @@ public class DonHangJFrame extends JFrame {
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnSubmit.setBackground(new Color(100,221,23));
 		
-		JLabel lblMgs = new JLabel("Thông báo sẽ được hiển thị ở đây");
-		lblMgs.setForeground(Color.RED);
+		JLabel lblMgs = new JLabel("");
 		lblMgs.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		GroupLayout gl_panelController = new GroupLayout(panelController);
@@ -121,42 +118,52 @@ public class DonHangJFrame extends JFrame {
 		
 		JPanel panelDetail = new JPanel();
 		panelInfo.add(panelDetail);
-		panelDetail.setLayout(new MigLayout("", "[][grow][grow][][grow][][grow]", "[grow][][][grow]"));
+		panelDetail.setLayout(new MigLayout("", "[][grow][][][][grow]", "[grow][][][grow]"));
 		
-		JLabel lblMaHoaDon = new JLabel("Mã hoá đơn");
+		JLabel lblMaHoaDon = new JLabel("Mã hoá đơn:");
+		lblMaHoaDon.setFont(new Font("Arial", Font.PLAIN, 15));
 		panelDetail.add(lblMaHoaDon, "cell 0 0,alignx trailing");
 		
 		textFieldMaHoaDon = new JTextField();
+		textFieldMaHoaDon.setFont(new Font("Arial", Font.PLAIN, 15));
 		panelDetail.add(textFieldMaHoaDon, "cell 1 0");
 		textFieldMaHoaDon.setEditable(false);
 		
-		JLabel lblTenNhanVien = new JLabel("Tên nhân viên");
-		panelDetail.add(lblTenNhanVien, "cell 5 0,alignx trailing");
+		JLabel lblTenNhanVien = new JLabel("Tên nhân viên:");
+		lblTenNhanVien.setFont(new Font("Arial", Font.PLAIN, 15));
+		panelDetail.add(lblTenNhanVien, "cell 4 0,alignx trailing");
 		
 		JComboBox<String> comboNhanVien = new JComboBox<String>();
-		panelDetail.add(comboNhanVien, "cell 6 0,growx");
+		comboNhanVien.setFont(new Font("Arial", Font.PLAIN, 15));
+		panelDetail.add(comboNhanVien, "cell 5 0,growx");
 		
 		
-		JLabel lblTenKhachHang = new JLabel("Tên khách hàng");
+		JLabel lblTenKhachHang = new JLabel("Tên khách hàng:");
+		lblTenKhachHang.setFont(new Font("Arial", Font.PLAIN, 15));
 		panelDetail.add(lblTenKhachHang, "cell 0 1,alignx trailing");
 		
 		JComboBox<String> comboKhachHang = new JComboBox<String>();
+		comboKhachHang.setFont(new Font("Arial", Font.PLAIN, 15));
 		panelDetail.add(comboKhachHang, "cell 1 1,growx");
 		
 		JButton btnThayDoi = new JButton("Thay đổi");
 		panelDetail.add(btnThayDoi, "cell 2 1,aligny baseline");
 		
-		JLabel lblSDT = new JLabel("Số điện thoại");
+		JLabel lblSDT = new JLabel("Số điện thoại:");
+		lblSDT.setFont(new Font("Arial", Font.PLAIN, 15));
 		panelDetail.add(lblSDT, "cell 0 2,alignx trailing");
 		
 		JComboBox<String> comboBoxSDTKhachHang = new JComboBox<String>();
+		comboBoxSDTKhachHang.setFont(new Font("Arial", Font.PLAIN, 15));
 		panelDetail.add(comboBoxSDTKhachHang, "cell 1 2,growx");
 		
-		JLabel lblNgayBan = new JLabel("Ngày bán");
-		panelDetail.add(lblNgayBan, "cell 5 2,alignx trailing");		
+		JLabel lblNgayBan = new JLabel("Ngày bán:");
+		lblNgayBan.setFont(new Font("Arial", Font.PLAIN, 15));
+		panelDetail.add(lblNgayBan, "cell 4 2,alignx trailing");		
 		
 		textFieldNgayBan = new JTextField();
-		panelDetail.add(textFieldNgayBan, "cell 6 2");
+		textFieldNgayBan.setFont(new Font("Arial", Font.PLAIN, 15));
+		panelDetail.add(textFieldNgayBan, "cell 5 2");
 		textFieldNgayBan.setEditable(false);
 		textFieldNgayBan.setColumns(10);
 		
@@ -168,11 +175,15 @@ public class DonHangJFrame extends JFrame {
 		JButton btnXoaMatHang = new JButton("Xoá mặt hàng");
 		panelDetail.add(btnXoaMatHang, "cell 3 3");
 		
-		JLabel lblThanhTien = new JLabel("Thành Tiền");
-		panelDetail.add(lblThanhTien, "cell 5 3,alignx trailing");
+		JLabel lblThanhTien = new JLabel("Thành Tiền:");
+		lblThanhTien.setFont(new Font("Arial", Font.BOLD, 15));
+		panelDetail.add(lblThanhTien, "cell 4 3,alignx trailing");
+		
+		//controller
 		
 		textFieldThanhTien = new JTextField();
-		panelDetail.add(textFieldThanhTien, "cell 6 3,growx");
+		textFieldThanhTien.setFont(new Font("Arial", Font.PLAIN, 15));
+		panelDetail.add(textFieldThanhTien, "cell 5 3,growx");
 		textFieldThanhTien.setEditable(false);
 		textFieldThanhTien.setColumns(10);
 		
@@ -183,7 +194,6 @@ public class DonHangJFrame extends JFrame {
 		JLabel lblSecret = new JLabel();
 		lblSecret.setVisible(false);
 		
-		//controller
 		DonHangController controller = new DonHangController(btnSubmit, textFieldMaHoaDon, comboNhanVien, comboKhachHang, comboBoxSDTKhachHang, textFieldNgayBan, textFieldThanhTien, lblMgs, lblSecret, btnThemMatHang, btnXoaMatHang, btnThayDoi, panelTable);
 		controller.setDataToTable();
 		controller.event(this);

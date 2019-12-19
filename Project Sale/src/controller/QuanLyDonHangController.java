@@ -27,6 +27,7 @@ import model.DonHang;
 import service.DonHangService;
 import service.DonHangServiceImpl;
 import ultility.ClassTableModel;
+import view.DonHangInfo;
 import view.DonHangJFrame;
 
 public class QuanLyDonHangController {
@@ -85,7 +86,27 @@ public class QuanLyDonHangController {
             public void changedUpdate(DocumentEvent e) {
             }
         });
-		
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getClickCount() == 2 && table.getSelectedRow() != -1) {
+					DefaultTableModel model = (DefaultTableModel) table.getModel();
+					int selectedRowIndex = table.getSelectedRow();
+					
+					selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
+					
+					DonHang donHang = donHangService.getOrderInfo((int)model.getValueAt(selectedRowIndex, 0));
+					donHang.setTen_khach_hang((model.getValueAt(selectedRowIndex, 1).toString()));
+					donHang.setTen_nhan_vien((model.getValueAt(selectedRowIndex, 2).toString()));	
+					JFrame frame = new DonHangInfo(donHang);
+					frame.setLocationRelativeTo(null);
+					frame.setResizable(false);
+					frame.setTitle("Thông tin chi tiết đơn hàng");
+					frame.setVisible(true);
+				}
+			}
+		});
 		//design
 		table.getColumnModel().getColumn(0).setMaxWidth(120);
 		table.getColumnModel().getColumn(0).setMinWidth(120);

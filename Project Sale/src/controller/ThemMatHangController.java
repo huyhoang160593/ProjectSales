@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -121,7 +122,19 @@ public class ThemMatHangController {
 			
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub		
+				// TODO Auto-generated method stub	
+				try {
+					if(!textFieldSoLuong.getText().equalsIgnoreCase("")) {
+						int thanhtien = 0;
+						int soluong = Integer.parseInt(textFieldSoLuong.getText());
+						int dongia = Integer.parseInt(textFieldDonGia.getText());
+						thanhtien = soluong * dongia;
+						textFieldThanhTien.setText(Integer.toString(thanhtien));
+					}
+				} catch (Exception e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
+				}
 			}
 		});
 		//set Event
@@ -134,6 +147,14 @@ public class ThemMatHangController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				MatHang matHang = matHangService.getMatHangInfoByMaMatHang(Integer.parseInt((textFieldMaMatHang.getText().substring(1))));
+				int ton_kho = matHang.getTon_kho();
+				int so_luong = Integer.parseInt(textFieldSoLuong.getText());
+				ton_kho -= so_luong;
+				if(ton_kho < 0 ) {
+					JOptionPane.showMessageDialog(null, "Số lượng tồn kho của bạn không đủ", "Lỗi mua quá tồn kho", JOptionPane.ERROR_MESSAGE);
+					throw new ArithmeticException("Số lượng tồn kho của bạn không đủ");
+				}
 				// TODO Auto-generated method stub				
 				chiTietHoaDon.setMa_mat_hang(Integer.parseInt((textFieldMaMatHang.getText().substring(1))));
 				chiTietHoaDon.setDon_gia(Integer.parseInt(textFieldDonGia.getText()));

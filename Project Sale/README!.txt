@@ -2,8 +2,12 @@
 bên trong từng file sẽ có thêm các file README! để giúp mọi người định hình code có những gì, mong mọi
 người cố gắng hiểu nha, có gì thì hỏi thêm...
 
-	-Yêu cầu: đã cài đặt và dùng Eclipse, đã kết nối cơ sở dữ liệu, add sqljdbc42.jar vào trong
-	project(mở Eclipse lên và thêm vào,đã ở trong ngay file này 
+	-Yêu cầu: đã cài đặt và dùng Eclipse, add sqljdbc42.jar vào trong
+	project(mở Eclipse lên và thêm vào,đã ở trong ngay file này)
+				Tạo nick trong cơ sở dữ liệu của bạn với user:iulover99 và pass:1234
+				Hướng dẫn chi tiết ở đây: https://laptrinhvb.net/bai-viet/co-so-du-lieu/--SQL-SERVER---Huong-dan-cau-hinh-cho-phep-user-chi-duoc-quyen-truy-cap-vao-mot-so-table-dac-biet-trong-database/5a89f6148638b54c.html
+				Sau thi tạo thì phải chạy sql query để chương trình có thể chạy được
+														
 
 	-Các file .jar là các thư viện được thêm vào để project chạy
 	-Muốn khởi chạy project thì bắt buôc dùng Eclipse để mở, File-> Import, tab General->Existing 
