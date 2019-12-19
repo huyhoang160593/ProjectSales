@@ -55,6 +55,13 @@ create table chi_tiet_hoa_don(
 	foreign key (ma_mat_hang) references mat_hang
 );
 
+create table tai_khoan(
+	ma_tai_khoan int not null IDENTITY(1,2) primary key,
+	ten_dang_nhap varchar(100) default null,
+	mat_khau varchar(100) default null,
+	tinh_trang bit default null
+)
+
 drop table khach_hang
 drop table nhan_vien
 drop table mat_hang
