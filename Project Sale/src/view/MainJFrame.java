@@ -113,38 +113,38 @@ public class MainJFrame extends JFrame {
 			gl_jpnMenu.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_jpnMenu.createSequentialGroup()
 					.addGroup(gl_jpnMenu.createParallelGroup(Alignment.LEADING)
-						.addComponent(panelName, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panelName, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_jpnMenu.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(jpnTrangChu, GroupLayout.PREFERRED_SIZE, 208, GroupLayout.PREFERRED_SIZE))
+							.addComponent(jpnTrangChu, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_jpnMenu.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(jpnKhachHang, GroupLayout.PREFERRED_SIZE, 208, GroupLayout.PREFERRED_SIZE))
+							.addComponent(jpnKhachHang, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_jpnMenu.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(jpnNhanVien, GroupLayout.PREFERRED_SIZE, 208, GroupLayout.PREFERRED_SIZE))
+							.addComponent(jpnNhanVien, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_jpnMenu.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(jpnMatHang, GroupLayout.PREFERRED_SIZE, 208, GroupLayout.PREFERRED_SIZE))
+							.addComponent(jpnMatHang, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_jpnMenu.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(jpnDonHang, GroupLayout.PREFERRED_SIZE, 208, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(jpnDonHang, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_jpnMenu.setVerticalGroup(
 			gl_jpnMenu.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_jpnMenu.createSequentialGroup()
-					.addComponent(panelName, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panelName, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(jpnTrangChu, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
+					.addComponent(jpnTrangChu, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(jpnKhachHang, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
+					.addComponent(jpnKhachHang, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(jpnNhanVien, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
+					.addComponent(jpnNhanVien, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(jpnMatHang, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
+					.addComponent(jpnMatHang, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(jpnDonHang, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
+					.addComponent(jpnDonHang, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(185, Short.MAX_VALUE))
 		);
 		
@@ -161,7 +161,7 @@ public class MainJFrame extends JFrame {
 		jpnMatHang.add(jlbMatHang, BorderLayout.CENTER);
 		
 		JLabel jlbNhanVien = new JLabel("Quản lý nhân viên");
-		jlbNhanVien.setIcon(new ImageIcon(MainJFrame.class.getResource("/images/baseline_account_circle_white_24dp.png")));
+		jlbNhanVien.setIcon(new ImageIcon(MainJFrame.class.getResource("/images/baseline_face_white_24dp.png")));
 		jlbNhanVien.setForeground(new Color(255, 255, 255));
 		jlbNhanVien.setFont(new Font("Arial", Font.BOLD, 14));
 		jpnNhanVien.add(jlbNhanVien, BorderLayout.CENTER);
