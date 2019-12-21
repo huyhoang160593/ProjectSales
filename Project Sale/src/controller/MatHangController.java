@@ -22,22 +22,26 @@ public class MatHangController {
 	private JTextField jtfLoaiHang;
 	private JTextField jtfDonGia;
 	private JTextField jtfTonKho;
+	private JTextField jtfThoiGianNhap;
+	private JLabel lblTonKho;
+	private JLabel lblSecret;
 	private JCheckBox jcbCoSan;
 	private JLabel jlbMsg;
-	private JTextField jtfThoiGianNhap;
-	
+
 	private MatHang matHang = null;
 	
 	private MatHangService matHangService = null;
 
 	public MatHangController(JButton btnSubmit, JTextField jtfMaMatHang, JTextField jtfTenMatHang,
-			JTextField jtfLoaiHang, JTextField jtfDonGia, JTextField jtfTonKho, JCheckBox jcbCoSan,JTextField jtfThoiGianNhap, JLabel jlbMsg) {
+			JTextField jtfLoaiHang, JTextField jtfDonGia, JTextField jtfTonKho,JLabel lblTonKho,JLabel lblSecret, JCheckBox jcbCoSan,JTextField jtfThoiGianNhap, JLabel jlbMsg) {
 		this.btnSubmit = btnSubmit;
 		this.jtfMaMatHang = jtfMaMatHang;
 		this.jtfTenMatHang = jtfTenMatHang;
 		this.jtfLoaiHang = jtfLoaiHang;
 		this.jtfDonGia = jtfDonGia;
 		this.jtfTonKho = jtfTonKho;
+		this.lblTonKho = lblTonKho;
+		this.lblSecret = lblSecret;
 		this.jcbCoSan = jcbCoSan;
 		this.jtfThoiGianNhap = jtfThoiGianNhap;
 		this.jlbMsg = jlbMsg;
@@ -45,21 +49,31 @@ public class MatHangController {
 		this.matHangService = new MatHangServiceImpl();
 	}
 	
-	public void setView(MatHang matHang) {
+	public void setView(MatHang matHang,boolean flag) {
 		this.matHang = matHang;
 		//set data
 		jtfMaMatHang.setText("#" + matHang.getMa_mat_hang());
 		jtfTenMatHang.setText(matHang.getTen_mat_hang());
 		jtfLoaiHang.setText(matHang.getLoai_hang());
 		jtfDonGia.setText(Integer.toString(matHang.getDon_gia()));
-		jtfTonKho.setText(Integer.toString(matHang.getTon_kho()));
 		jcbCoSan.setSelected(true);
 		jtfThoiGianNhap.setText(LocalDate.now().toString());
+		if(flag) {			
+			jtfTonKho.setText(Integer.toString(matHang.getTon_kho()));
+		} else {			
+			jtfMaMatHang.setEditable(false);
+			jtfTenMatHang.setEditable(false);
+			jtfLoaiHang.setEditable(false);
+			jtfDonGia.setEditable(false);
+			lblTonKho.setText("Lượng hàng muốn nhập thêm:");
+			lblSecret.setText(Integer.toString(matHang.getTon_kho()));
+		}
+		
 		//setEvent
-		setEvent();
+		setEvent(flag);
 	}
 	
-	public void setEvent() {
+	public void setEvent(boolean flag) {
 		btnSubmit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -70,7 +84,13 @@ public class MatHangController {
 						matHang.setTen_mat_hang(jtfTenMatHang.getText().trim());
 						matHang.setLoai_hang(jtfLoaiHang.getText());
 						matHang.setDon_gia(Integer.parseInt(jtfDonGia.getText()));
-						matHang.setTon_kho(Integer.parseInt(jtfTonKho.getText()));
+						if(flag) {
+							matHang.setTon_kho(Integer.parseInt(jtfTonKho.getText()));
+						} else {
+							int newTonKho = Integer.parseInt(lblSecret.getText()) + Integer.parseInt(lblSecret.getText());
+							matHang.setTon_kho(newTonKho);
+						}
+
 						matHang.setCo_san(jcbCoSan.isSelected());
 						matHang.setThoi_gian_nhap(LocalDateTime.now());
 						if (showDialog()) {							

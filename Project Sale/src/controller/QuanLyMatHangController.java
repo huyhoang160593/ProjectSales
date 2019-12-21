@@ -171,7 +171,7 @@ public class QuanLyMatHangController {
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JFrame frame = new MatHangJFrame(new MatHang());
+				JFrame frame = new MatHangJFrame(new MatHang(),true);
 				frame.setVisible(true);
 				frame.addWindowListener(new WindowAdapter() {
 					@Override
@@ -195,6 +195,26 @@ public class QuanLyMatHangController {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				//phần này còn thiếu
+				String[] mhInfo= lblSecret.getText().split("\\$");
+				MatHang matHang = new MatHang();
+				matHang.setMa_mat_hang(Integer.parseInt(mhInfo[0]));
+				matHang.setTen_mat_hang(mhInfo[1]);
+				matHang.setLoai_hang(mhInfo[2]);
+				matHang.setDon_gia(Integer.parseInt(mhInfo[3]));
+				matHang.setTon_kho(Integer.parseInt(mhInfo[4]));
+				matHang.setCo_san(Boolean.parseBoolean(mhInfo[5]));
+				matHang.setThoi_gian_nhap(LocalDateTime.now());
+
+				MatHangJFrame frame = new MatHangJFrame(matHang,false);
+				frame.setLocationRelativeTo(null);
+				frame.setResizable(false);
+				frame.setTitle("Nhập lượng hàng mới");
+				frame.setVisible(true);
+				frame.addWindowListener(new WindowAdapter() {
+					public void windowDeactivated(java.awt.event.WindowEvent e) {
+						setDataToTable();
+					};
+				});
 				
 			}
 			@Override
@@ -221,7 +241,7 @@ public class QuanLyMatHangController {
 			matHang.setCo_san(Boolean.parseBoolean(mhInfo[5]));
 			matHang.setThoi_gian_nhap(LocalDateTime.now());
 
-			MatHangJFrame frame = new MatHangJFrame(matHang);
+			MatHangJFrame frame = new MatHangJFrame(matHang,true);
 			frame.setLocationRelativeTo(null);
 			frame.setResizable(false);
 			frame.setTitle("Thông tin khách hàng thay đổi");

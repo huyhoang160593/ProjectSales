@@ -48,7 +48,7 @@ public class MainJFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public MainJFrame() {
-		setTitle("QUẢN LÝ ĐƠN HÀNG");
+		setTitle("MANAGEDSILY-Quản lý đơn hàng của bạn dễ dàng hơn");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1300, 720);
 		contentPane = new JPanel();

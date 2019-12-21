@@ -52,7 +52,7 @@ public class DangNhapJDialog extends JDialog {
 	 */
 	public DangNhapJDialog(){
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setTitle("Phần mềm quản lý bán hàng tối giản");
+		setTitle("MANAGEDSILY-Phần mềm quản lý bán hàng tối giản");
 		
 		//Managedsily - Manage your order easily :)))
 		

@@ -42,7 +42,7 @@ public class MatHangJFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MatHangJFrame frame = new MatHangJFrame(new MatHang());
+					MatHangJFrame frame = new MatHangJFrame(new MatHang(),true);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,7 +54,7 @@ public class MatHangJFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MatHangJFrame(MatHang matHang) {
+	public MatHangJFrame(MatHang matHang,boolean flag) {
 		setTitle("Thông tin mặt hàng");
 //		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -161,8 +161,11 @@ public class MatHangJFrame extends JFrame {
 		
 		contentPane.setLayout(gl_contentPane);
 		
-		MatHangController controller = new MatHangController(btnSubmit, jtfMaMatHang, jtfTenMatHang, jtfLoaiHang, jtfDonGia, jtfTonKho, jcbCoSan, jtfThoiGianNhap, jlbMsg);
-		controller.setView(matHang);
+		JLabel lblSecret = new JLabel();
+		lblSecret.setVisible(false);
+		
+		MatHangController controller = new MatHangController(btnSubmit, jtfMaMatHang, jtfTenMatHang, jtfLoaiHang, jtfDonGia, jtfTonKho, lblTonKho, lblSecret, jcbCoSan, jtfThoiGianNhap, jlbMsg);
+		controller.setView(matHang,flag);
 	}
 
 }
