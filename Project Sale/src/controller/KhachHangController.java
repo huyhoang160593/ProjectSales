@@ -55,6 +55,7 @@ public class KhachHangController {
 					} else {
 						khachHang.setHo_ten(textFieldHoTen.getText().trim());
 						khachHang.setSo_dien_thoai(textFieldSoDienThoai.getText());
+						if(!numberOnly(khachHang.getSo_dien_thoai())) throw new NumberFormatException("Số điện thoại của bạn phải là số nhen");
 						khachHang.setDia_chi(textAreaDiaChi.getText());
 						if(showDialog()) {
 							int lastId = khachHangService.createOrUpdate(khachHang);
@@ -88,11 +89,16 @@ public class KhachHangController {
 	}
 	
 	private boolean checkNotNull(){
-		return textFieldHoTen.getText() != null && !textFieldHoTen.getText().equalsIgnoreCase("");
+		return textFieldHoTen.getText() != null && !textFieldHoTen.getText().equalsIgnoreCase("") && textFieldSoDienThoai.getText() != null && !textFieldSoDienThoai.getText().equalsIgnoreCase("");
 	}
 	
 	private boolean showDialog() {
 		int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn có muốn cập nhật dữ liệu hay không", "Thông báo", JOptionPane.YES_NO_OPTION);
 		return dialogResult == JOptionPane.YES_OPTION;
+	}
+	
+	private boolean numberOnly(String sodienthoai) {
+		String regex = "\\d";
+		return sodienthoai.matches(regex);
 	}
 }

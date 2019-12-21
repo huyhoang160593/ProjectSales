@@ -56,8 +56,9 @@ public class DangNhapJDialog extends JDialog {
 		
 		//Managedsily - Manage your order easily :)))
 		
-		setSize(800, 435);
+		setSize(800, 425);
 		setLocationRelativeTo(null);
+		setResizable(false);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(1, 2, 0, 0));
