@@ -13,6 +13,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -31,6 +32,8 @@ import view.NhanVienJFrame;
 
 public class QuanLyNhanVienController {
 	private JPanel jpnView;
+	private JLabel lblSecret;
+	private JButton btnThayDoi;
 	private JButton btnAdd;
 	private JTextField jtfSearch;
 	
@@ -40,8 +43,10 @@ public class QuanLyNhanVienController {
 	
 	private NhanVienService nhanVienService = null;
 	private TableRowSorter<TableModel> rowSorter = null;
-	public QuanLyNhanVienController(JPanel jpnView, JButton btnAdd, JTextField jtfSreach) {
+	public QuanLyNhanVienController(JPanel jpnView,JLabel lblSecret,JButton btnThayDoi, JButton btnAdd, JTextField jtfSreach) {
 		this.jpnView = jpnView;
+		this.lblSecret = lblSecret;
+		this.btnThayDoi = btnThayDoi;
 		this.btnAdd = btnAdd;
 		this.jtfSearch = jtfSreach;
 		this.classTableModel = new ClassTableModel();
@@ -92,7 +97,7 @@ public class QuanLyNhanVienController {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				if(e.getClickCount() == 2 && table.getSelectedRow() != -1) {
+				if(e.getClickCount() ==1 && table.getSelectedRow() != -1) {
 					DefaultTableModel model = (DefaultTableModel) table.getModel();
 					int selectedRowIndex = table.getSelectedRow();
 					
@@ -106,18 +111,35 @@ public class QuanLyNhanVienController {
 					nhanVien.setSo_dien_thoai(model.getValueAt(selectedRowIndex, 4).toString());
 					nhanVien.setNgay_sinh((Date) model.getValueAt(selectedRowIndex, 5));
 					nhanVien.setTinh_trang((boolean) model.getValueAt(selectedRowIndex, 6));
-					
-					NhanVienJFrame frame = new NhanVienJFrame(nhanVien);
-					frame.setLocationRelativeTo(null);
-					frame.setResizable(false);
-					frame.setTitle("Thông tin nhân viên thay đổi");
-					frame.setVisible(true);
-					frame.addWindowListener(new WindowAdapter() {
-						public void windowDeactivated(java.awt.event.WindowEvent e) {
-							setDataToTable();
-						};
-					});
+					lblSecret.setText(nhanVien.getMa_nhan_vien()+"$"+nhanVien.getTen_nhan_vien()+"$"+nhanVien.isGioi_tinh()+"$"+nhanVien.getDia_chi()+"$"+nhanVien.getSo_dien_thoai()+"$"+nhanVien.getNgay_sinh()+"$"+nhanVien.isTinh_trang());
 				}
+				
+//				if(e.getClickCount() == 2 && table.getSelectedRow() != -1) {
+//					DefaultTableModel model = (DefaultTableModel) table.getModel();
+//					int selectedRowIndex = table.getSelectedRow();
+//					
+//					selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
+//					
+//					NhanVien nhanVien = new NhanVien();
+//					nhanVien.setMa_nhan_vien((int) model.getValueAt(selectedRowIndex, 0));
+//					nhanVien.setTen_nhan_vien(model.getValueAt(selectedRowIndex, 1).toString());
+//					nhanVien.setGioi_tinh(model.getValueAt(selectedRowIndex, 2).toString().equalsIgnoreCase("Nam"));
+//					nhanVien.setDia_chi(model.getValueAt(selectedRowIndex, 3).toString());
+//					nhanVien.setSo_dien_thoai(model.getValueAt(selectedRowIndex, 4).toString());
+//					nhanVien.setNgay_sinh((Date) model.getValueAt(selectedRowIndex, 5));
+//					nhanVien.setTinh_trang((boolean) model.getValueAt(selectedRowIndex, 6));
+//					
+//					NhanVienJFrame frame = new NhanVienJFrame(nhanVien);
+//					frame.setLocationRelativeTo(null);
+//					frame.setResizable(false);
+//					frame.setTitle("Thông tin nhân viên thay đổi");
+//					frame.setVisible(true);
+//					frame.addWindowListener(new WindowAdapter() {
+//						public void windowDeactivated(java.awt.event.WindowEvent e) {
+//							setDataToTable();
+//						};
+//					});
+//				}
 			}
 		});
 		
@@ -165,6 +187,44 @@ public class QuanLyNhanVienController {
 			public void mouseExited(MouseEvent e) {
 				btnAdd.setBackground(new Color(42, 157, 143));
 			}
+		});
+		
+		btnThayDoi.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			// TODO Auto-generated method stub
+			String[] nvInfo= lblSecret.getText().split("\\$");
+			NhanVien nhanVien = new NhanVien();
+			nhanVien.setMa_nhan_vien(Integer.parseInt(nvInfo[0]));
+			nhanVien.setTen_nhan_vien(nvInfo[1]);
+			nhanVien.setGioi_tinh(Boolean.parseBoolean(nvInfo[2]));
+			nhanVien.setDia_chi(nvInfo[3]);
+			nhanVien.setSo_dien_thoai(nvInfo[4]);
+			nhanVien.setTinh_trang(Boolean.parseBoolean(nvInfo[6]));
+			
+		
+			NhanVienJFrame frame = new NhanVienJFrame(nhanVien);
+			frame.setLocationRelativeTo(null);
+			frame.setResizable(false);
+			frame.setTitle("Thông tin khách hàng thay đổi");
+			frame.setVisible(true);
+			frame.addWindowListener(new WindowAdapter() {
+				public void windowDeactivated(java.awt.event.WindowEvent e) {
+					setDataToTable();
+				};
+			});
+		}
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			btnThayDoi.setBackground(new Color(38, 70, 83));
+		}
+		
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			btnThayDoi.setBackground(new Color(42, 157, 143));
+		}
 		});
 	}
 }

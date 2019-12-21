@@ -12,6 +12,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import controller.TrangChuController;
 
 import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import javax.swing.SwingConstants;
 
 public class TrangChuPanel extends JPanel {
 
@@ -50,67 +52,76 @@ public class TrangChuPanel extends JPanel {
 					.addComponent(panelEmpty, GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
 					.addGap(7))
 		);
-
+		panelEmpty.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panelKhachHang = new JPanel();
-		panelInfo.add(panelKhachHang);
-		panelKhachHang.setBackground(new Color(255, 69, 0));
-		
-		JLabel IconKhachHang = new JLabel("|");
-		IconKhachHang.setForeground(new Color(255, 240, 245));
-		IconKhachHang.setFont(new Font("Calibri Light", Font.PLAIN, 80));
-		IconKhachHang.setIcon(new ImageIcon(TrangChuPanel.class.getResource("/images/KhachHangTrangChu.png")));
-		panelKhachHang.add(IconKhachHang);
-		
-		JLabel numberKhachHang = new JLabel("?");
-		numberKhachHang.setForeground(new Color(255, 255, 255));
-		numberKhachHang.setFont(new Font("Cambria Math", Font.BOLD, 50));
-		panelKhachHang.add(numberKhachHang);
-		
-		JLabel lblKhachHang = new JLabel("Khách Hàng");
-		lblKhachHang.setForeground(new Color(255, 255, 255));
-		lblKhachHang.setFont(new Font("Arial", Font.PLAIN, 20));
-		panelKhachHang.add(lblKhachHang);
+				
+				JPanel panelKhachHang = new JPanel();
+				panelInfo.add(panelKhachHang);
+				panelKhachHang.setBackground(new Color(255, 69, 0));
+				panelKhachHang.setLayout(new BorderLayout(0, 0));
+				
+				JLabel IconKhachHang = new JLabel("|");
+				IconKhachHang.setForeground(new Color(255, 240, 245));
+				IconKhachHang.setFont(new Font("Calibri Light", Font.PLAIN, 80));
+				IconKhachHang.setIcon(new ImageIcon(TrangChuPanel.class.getResource("/images/KhachHangTrangChu.png")));
+				panelKhachHang.add(IconKhachHang, BorderLayout.WEST);
+				
+				JLabel numberKhachHang = new JLabel("?");
+				numberKhachHang.setForeground(new Color(255, 255, 255));
+				numberKhachHang.setFont(new Font("Cambria Math", Font.BOLD, 50));
+				panelKhachHang.add(numberKhachHang);
+				
+				JLabel lblKhachHang = new JLabel("Khách Hàng");
+				lblKhachHang.setHorizontalAlignment(SwingConstants.CENTER);
+				lblKhachHang.setForeground(new Color(255, 255, 255));
+				lblKhachHang.setFont(new Font("Arial", Font.PLAIN, 20));
+				panelKhachHang.add(lblKhachHang, BorderLayout.SOUTH);
+				
+				
 		
 		JPanel panelMatHang = new JPanel();
 		panelInfo.add(panelMatHang);
 		panelMatHang.setBackground(new Color(65, 105, 225));
+		panelMatHang.setLayout(new BorderLayout(0, 0));
 		
 		JLabel IconMathang = new JLabel("|");
 		IconMathang.setIcon(new ImageIcon(TrangChuPanel.class.getResource("/images/MatHangTrangChu.png")));
 		IconMathang.setForeground(new Color(255, 240, 245));
 		IconMathang.setFont(new Font("Calibri Light", Font.PLAIN, 80));
-		panelMatHang.add(IconMathang);
+		panelMatHang.add(IconMathang, BorderLayout.WEST);
 		
 		JLabel numberMatHang = new JLabel("?");
 		numberMatHang.setForeground(Color.WHITE);
 		numberMatHang.setFont(new Font("Cambria Math", Font.BOLD, 50));
-		panelMatHang.add(numberMatHang);
+		panelMatHang.add(numberMatHang, BorderLayout.CENTER);
 		
 		JLabel lblMatHang = new JLabel("Mặt Hàng");
+		lblMatHang.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMatHang.setForeground(Color.WHITE);
 		lblMatHang.setFont(new Font("Arial", Font.PLAIN, 20));
-		panelMatHang.add(lblMatHang);
+		panelMatHang.add(lblMatHang, BorderLayout.SOUTH);
 		
 		JPanel panelDonHang = new JPanel();
 		panelInfo.add(panelDonHang);
 		panelDonHang.setBackground(new Color(50, 205, 50));
+		panelDonHang.setLayout(new BorderLayout(0, 0));
 		
 		JLabel IconDonHang = new JLabel("|");
 		IconDonHang.setIcon(new ImageIcon(TrangChuPanel.class.getResource("/images/DonHangTrangChu.png")));
 		IconDonHang.setForeground(new Color(255, 240, 245));
 		IconDonHang.setFont(new Font("Calibri Light", Font.PLAIN, 80));
-		panelDonHang.add(IconDonHang);
+		panelDonHang.add(IconDonHang, BorderLayout.WEST);
 		
 		JLabel numberDonHang = new JLabel("?");
 		numberDonHang.setForeground(Color.WHITE);
 		numberDonHang.setFont(new Font("Cambria Math", Font.BOLD, 50));
-		panelDonHang.add(numberDonHang);
+		panelDonHang.add(numberDonHang, BorderLayout.CENTER);
 		
 		JLabel lblDonHang = new JLabel("Đơn Hàng");
+		lblDonHang.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDonHang.setForeground(Color.WHITE);
 		lblDonHang.setFont(new Font("Arial", Font.PLAIN, 20));
-		panelDonHang.add(lblDonHang);
+		panelDonHang.add(lblDonHang, BorderLayout.SOUTH);
 		
 		setLayout(groupLayout);
 		
@@ -118,5 +129,4 @@ public class TrangChuPanel extends JPanel {
 		controller.setData();
 		
 	}
-
 }

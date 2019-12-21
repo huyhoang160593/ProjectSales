@@ -55,7 +55,9 @@ public class KhachHangController {
 					} else {
 						khachHang.setHo_ten(textFieldHoTen.getText().trim());
 						khachHang.setSo_dien_thoai(textFieldSoDienThoai.getText());
-						if(!numberOnly(khachHang.getSo_dien_thoai())) throw new NumberFormatException("Số điện thoại của bạn phải là số nhen");
+						if(numberOnly(khachHang.getSo_dien_thoai())) { 
+							throw new NumberFormatException("Số điện thoại của bạn phải là số nhen");
+						}
 						khachHang.setDia_chi(textAreaDiaChi.getText());
 						if(showDialog()) {
 							int lastId = khachHangService.createOrUpdate(khachHang);

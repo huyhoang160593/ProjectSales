@@ -26,6 +26,7 @@ public class ThemMatHangController {
 	private JTextField textFieldDonGia;
 	private JTextField textFieldThanhTien;
 	private JTextField textFieldLoaiHang;
+	private JTextField textFieldConLai;
 	private JButton btnThemMatHang;
 	private JComboBox<String> comboBox;
 	
@@ -37,7 +38,7 @@ public class ThemMatHangController {
 	ChiTietHoaDon chiTietHoaDon = null;
 	
 	public ThemMatHangController(JTextField textFieldMaMatHang, JTextField textFieldSoLuong, JTextField textFieldDonGia,
-			JTextField textFieldThanhTien, JTextField textFieldLoaiHang, JButton btnThemMatHang,
+			JTextField textFieldThanhTien, JTextField textFieldLoaiHang,JTextField textFieldConLai, JButton btnThemMatHang,
 			JComboBox<String> comboBox) {
 		super();
 		this.textFieldMaMatHang = textFieldMaMatHang;
@@ -45,6 +46,7 @@ public class ThemMatHangController {
 		this.textFieldDonGia = textFieldDonGia;
 		this.textFieldThanhTien = textFieldThanhTien;
 		this.textFieldLoaiHang = textFieldLoaiHang;
+		this.textFieldConLai = textFieldConLai;
 		this.btnThemMatHang = btnThemMatHang;
 		this.comboBox = comboBox;
 		
@@ -59,6 +61,7 @@ public class ThemMatHangController {
 		textFieldLoaiHang.setEditable(false);
 		textFieldDonGia.setEditable(false);
 		textFieldThanhTien.setEditable(false);
+		textFieldConLai.setEditable(false);
 		AutoCompletion.enable(comboBox);
 		
 		List<MatHang> listItem = matHangService.getList();
@@ -70,6 +73,7 @@ public class ThemMatHangController {
 		textFieldMaMatHang.setText("#"+Integer.toString(matHang.getMa_mat_hang()));
 		textFieldLoaiHang.setText(matHang.getLoai_hang());
 		textFieldDonGia.setText(Integer.toString(matHang.getDon_gia()));
+		textFieldConLai.setText(Integer.toString(matHang.getTon_kho()));
 				
 		comboBox.addItemListener(new ItemListener() {
 			
@@ -79,7 +83,8 @@ public class ThemMatHangController {
 				MatHang matHang = matHangService.getMatHangInfo(e.getItem().toString());
 				textFieldMaMatHang.setText("#"+Integer.toString(matHang.getMa_mat_hang()));
 				textFieldLoaiHang.setText(matHang.getLoai_hang());
-				textFieldDonGia.setText(Integer.toString(matHang.getDon_gia()));				
+				textFieldDonGia.setText(Integer.toString(matHang.getDon_gia()));
+				textFieldConLai.setText(Integer.toString(matHang.getTon_kho()));
 			}
 		});		
 		

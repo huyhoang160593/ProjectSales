@@ -27,6 +27,7 @@ public class DonHangMatHangJFrame extends JFrame {
 	private JTextField textFieldDonGia;
 	private JTextField textFieldThanhTien;
 	private JTextField textFieldLoaiHang;
+	private JTextField textFieldConLai;
 
 	/**
 	 * Launch the application.
@@ -119,11 +120,18 @@ public class DonHangMatHangJFrame extends JFrame {
 		lblCurrency.setFont(new Font("Arial", Font.PLAIN, 15));
 		contentPane.add(lblCurrency, "cell 5 5");
 		
+		JLabel lblConLai = new JLabel("Còn lại");
+		contentPane.add(lblConLai, "cell 0 7,alignx trailing");
+		
+		textFieldConLai = new JTextField();
+		contentPane.add(textFieldConLai, "cell 1 7");
+		textFieldConLai.setColumns(5);
+		
 		JButton btnThemMatHang = new JButton("Thêm mặt hàng");
 		btnThemMatHang.setFont(new Font("Arial", Font.PLAIN, 12));
 		contentPane.add(btnThemMatHang, "cell 4 7");
 		
-		ThemMatHangController controller = new ThemMatHangController(textFieldMaMatHang, textFieldSoLuong, textFieldDonGia, textFieldThanhTien, textFieldLoaiHang, btnThemMatHang, comboBox);
+		ThemMatHangController controller = new ThemMatHangController(textFieldMaMatHang, textFieldSoLuong, textFieldDonGia, textFieldThanhTien, textFieldLoaiHang, textFieldConLai, btnThemMatHang, comboBox);
 		controller.setData(chiTietHoaDon,this);
 	}
 

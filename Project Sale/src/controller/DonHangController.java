@@ -51,14 +51,13 @@ public class DonHangController {
 	private JTextField textFieldNgayBan;
 	private JTextField textFieldThanhTien;
 	private JComboBox<String> comboNhanVien;
-	private JComboBox<String> comboKhachHang;
+	private JTextField textFieldTenKhachHang;
 	private JComboBox<String> comboBoxSDTKhachHang;
 
 	private JLabel lblMgs;
 	private JLabel lblSecret;
 	private JButton btnThemMatHang;
 	private JButton btnXoaMatHang;
-	private JButton btnThayDoi;
 	
 	private JPanel panelTable;
 	
@@ -76,12 +75,12 @@ public class DonHangController {
 	private ClassTableModel classTableModel = null;
 
 	public DonHangController(JButton btnSubmit, JTextField textFieldMaHoaDon, JComboBox<String> comboNhanVien,
-			JComboBox<String> comboKhachHang,JComboBox<String> comboBoxSDTKhachHang, JTextField textFieldNgayBan,JTextField textFieldThanhTien, JLabel lblMgs,JLabel lblSecret, JButton btnThemMatHang,
-			JButton btnXoaMatHang,JButton btnThayDoi, JPanel panelTable) {
+			JTextField textFieldTenKhachHang,JComboBox<String> comboBoxSDTKhachHang, JTextField textFieldNgayBan,JTextField textFieldThanhTien, JLabel lblMgs,JLabel lblSecret, JButton btnThemMatHang,
+			JButton btnXoaMatHang, JPanel panelTable) {
 		this.btnSubmit = btnSubmit;
 		this.textFieldMaHoaDon = textFieldMaHoaDon;
 		this.comboNhanVien = comboNhanVien;
-		this.comboKhachHang = comboKhachHang;
+		this.textFieldTenKhachHang = textFieldTenKhachHang;
 		this.comboBoxSDTKhachHang = comboBoxSDTKhachHang;
 		this.textFieldNgayBan = textFieldNgayBan;
 		this.textFieldThanhTien = textFieldThanhTien;
@@ -89,7 +88,6 @@ public class DonHangController {
 		this.lblSecret = lblSecret;
 		this.btnThemMatHang = btnThemMatHang;
 		this.btnXoaMatHang = btnXoaMatHang;
-		this.btnThayDoi = btnThayDoi;
 		
 		this.donHangService = new DonHangServiceImpl();
 		this.khachHangService = new KhachHangServiceImpl();
@@ -145,59 +143,31 @@ public class DonHangController {
 		textFieldMaHoaDon.setText("#"+donHang.getMa_hoa_don());
 		textFieldNgayBan.setText(LocalDate.now().toString());	
 		AutoCompletion.enable(comboBoxSDTKhachHang);
-		AutoCompletion.enable(comboKhachHang);
-		AutoCompletion.enable(comboNhanVien);
-		
-		List<KhachHang> listKhachHangs = khachHangService.getList();
-		for(KhachHang khachHang : listKhachHangs) {
-			comboKhachHang.addItem(khachHang.getHo_ten());
-			comboBoxSDTKhachHang.addItem(khachHang.getSo_dien_thoai());
-		}		
+		textFieldTenKhachHang.setEditable(false);
+		AutoCompletion.enable(comboNhanVien);	
 		
 		List<NhanVien> listNhanViens = nhanVienService.getList();
 		for(NhanVien nhanVien : listNhanViens) {
 			comboNhanVien.addItem(nhanVien.getTen_nhan_vien());
 		}
 		
-		btnThayDoi.setVisible(false);
-		//Chọn khách hàng theo số điện thoại sẽ thấy tên và ngược lại(bấm phím thay đổi)
+		List<KhachHang> listKhachHangs = khachHangService.getList();
+		for(KhachHang khachHang : listKhachHangs) {
+			comboBoxSDTKhachHang.addItem(khachHang.getSo_dien_thoai());
+		}
+		textFieldTenKhachHang.setText(listKhachHangs.get(0).getHo_ten());
+		//Chọn khách hàng theo số điện thoại sẽ thấy tên
 		
-		comboKhachHang.addItemListener(new ItemListener() {
-			
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				// TODO Auto-generated method stub
-				lblSecret.setText("0");
-				btnThayDoi.setVisible(true);
-			}
-		});
 		comboBoxSDTKhachHang.addItemListener(new ItemListener() {
 			
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
-				lblSecret.setText("1");
-				btnThayDoi.setVisible(true);
+				KhachHang khachHang = khachHangService.getKhachHangInfoBySDT(comboBoxSDTKhachHang.getSelectedItem().toString());
+				textFieldTenKhachHang.setText(khachHang.getHo_ten());
 			}
-		});
-		btnThayDoi.addActionListener(new ActionListener() {
 			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				if(lblSecret.getText().equals("0")) {
-					KhachHang khachHang = khachHangService.getKhachHangInfo(comboKhachHang.getSelectedItem().toString());
-					comboBoxSDTKhachHang.setSelectedItem(khachHang.getSo_dien_thoai());
-					btnThayDoi.setVisible(false);
-				} else {
-					KhachHang khachHang = khachHangService.getKhachHangInfoBySDT(comboBoxSDTKhachHang.getSelectedItem().toString());
-					comboKhachHang.setSelectedItem(khachHang.getHo_ten());
-					btnThayDoi.setVisible(false);
-				}
-			}
 		});
-		
-
 		//btnThemMatHang
 		btnThemMatHang.addActionListener(new ActionListener() {
 			
@@ -210,9 +180,30 @@ public class DonHangController {
 					@Override
 					public void windowClosed(WindowEvent e) {
 						// TODO Auto-generated method stub
-						listOrder.add(chiTietHoaDon);
-						setDataToTable();
-						chiTietHoaDon = new ChiTietHoaDon();
+						int count=0;
+						for(ChiTietHoaDon cthd:listOrder) {
+							if(cthd.getMa_mat_hang()==chiTietHoaDon.getMa_mat_hang()) {
+								int so_luong_moi = cthd.getSo_luong() + chiTietHoaDon.getSo_luong();
+								cthd.setSo_luong(so_luong_moi);
+								cthd.setThanh_tien(so_luong_moi*cthd.getDon_gia());
+								break;
+							}
+							count++;
+						}
+						if(count<listOrder.size()) {
+							for (ChiTietHoaDon chiTietHoaDon : listOrder) {
+								MatHang matHang = matHangService.getMatHangInfoByMaMatHang(chiTietHoaDon.getMa_mat_hang());
+								if(chiTietHoaDon.getSo_luong()>matHang.getTon_kho()) {
+									lblMgs.setForeground(new Color(255, 0, 0));
+									lblMgs.setText(matHang.getTen_mat_hang()+" không thể mua vì quá số lượng tồn kho");
+								}
+							}
+							setDataToTable();
+						} else {
+							listOrder.add(chiTietHoaDon);
+							setDataToTable();
+							chiTietHoaDon = new ChiTietHoaDon();
+						}					
 					}
 				});
 				
@@ -236,7 +227,10 @@ public class DonHangController {
 				public void mouseClicked(MouseEvent e) {
 					// TODO Auto-generated method stub
 					try {
-						KhachHang khachHang = khachHangService.getKhachHangInfo(comboKhachHang.getSelectedItem().toString());
+						if(!lblMgs.getText().trim().equals("")) {
+							throw new Exception(lblMgs.getText());
+						}
+						KhachHang khachHang = khachHangService.getKhachHangInfo(textFieldTenKhachHang.getText().toString());
 						NhanVien nhanVien = nhanVienService.getNhanVienInfo(comboNhanVien.getSelectedItem().toString());
 						donHang.setMa_khach_hang(khachHang.getMa_khach_hang());
 						donHang.setMa_nhan_vien(nhanVien.getMa_nhan_vien());

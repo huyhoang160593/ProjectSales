@@ -33,6 +33,7 @@ public class DonHangJFrame extends JFrame {
 	private JTextField textFieldMaHoaDon;
 	private JTextField textFieldNgayBan;
 	private JTextField textFieldThanhTien;
+	private JTextField textFieldTenKhachHang;
 
 	/**
 	 * Launch the application.
@@ -142,12 +143,9 @@ public class DonHangJFrame extends JFrame {
 		lblTenKhachHang.setFont(new Font("Arial", Font.PLAIN, 15));
 		panelDetail.add(lblTenKhachHang, "cell 0 1,alignx trailing");
 		
-		JComboBox<String> comboKhachHang = new JComboBox<String>();
-		comboKhachHang.setFont(new Font("Arial", Font.PLAIN, 15));
-		panelDetail.add(comboKhachHang, "cell 1 1,growx");
-		
-		JButton btnThayDoi = new JButton("Thay đổi");
-		panelDetail.add(btnThayDoi, "cell 2 1,aligny baseline");
+		textFieldTenKhachHang = new JTextField();
+		panelDetail.add(textFieldTenKhachHang, "cell 1 1,growx");
+		textFieldTenKhachHang.setColumns(10);
 		
 		JLabel lblSDT = new JLabel("Số điện thoại:");
 		lblSDT.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -194,7 +192,7 @@ public class DonHangJFrame extends JFrame {
 		JLabel lblSecret = new JLabel();
 		lblSecret.setVisible(false);
 		
-		DonHangController controller = new DonHangController(btnSubmit, textFieldMaHoaDon, comboNhanVien, comboKhachHang, comboBoxSDTKhachHang, textFieldNgayBan, textFieldThanhTien, lblMgs, lblSecret, btnThemMatHang, btnXoaMatHang, btnThayDoi, panelTable);
+		DonHangController controller = new DonHangController(btnSubmit, textFieldMaHoaDon, comboNhanVien, textFieldTenKhachHang, comboBoxSDTKhachHang, textFieldNgayBan, textFieldThanhTien, lblMgs, lblSecret, btnThemMatHang, btnXoaMatHang, panelTable);
 		controller.setDataToTable();
 		controller.event(this);
 	}
