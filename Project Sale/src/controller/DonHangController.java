@@ -133,7 +133,10 @@ public class DonHangController {
 				thanhTien += (int)table.getValueAt(i, 3);
 				textFieldThanhTien.setText(Integer.toString(thanhTien));
 			}
+        } else {
+        	textFieldThanhTien.setText("0");
         }
+        		
 	}
 	
 	
@@ -216,6 +219,17 @@ public class DonHangController {
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
 					listOrder.remove(Integer.parseInt(lblSecret.getText()));
+					int count = 0;
+					for (ChiTietHoaDon chiTietHoaDon : listOrder) {
+						MatHang matHang = matHangService.getMatHangInfoByMaMatHang(chiTietHoaDon.getMa_mat_hang());
+						if(chiTietHoaDon.getSo_luong()>matHang.getTon_kho()) {
+							lblMgs.setForeground(new Color(255, 0, 0));
+							lblMgs.setText(matHang.getTen_mat_hang()+" không thể mua vì quá số lượng tồn kho");
+							count++;
+						}
+					}
+					if (count == 0) lblMgs.setText("");
+					
 					setDataToTable();
 				}
 			});
@@ -229,6 +243,11 @@ public class DonHangController {
 					try {
 						if(!lblMgs.getText().trim().equals("")) {
 							throw new Exception(lblMgs.getText());
+						}
+						if(listOrder.size() == 0) {
+							lblMgs.setForeground(new Color(255, 0, 0));
+							lblMgs.setText("Đơn hàng của bạn đang bị trống");
+							throw new NullPointerException(lblMgs.getText());
 						}
 						KhachHang khachHang = khachHangService.getKhachHangInfo(textFieldTenKhachHang.getText().toString());
 						NhanVien nhanVien = nhanVienService.getNhanVienInfo(comboNhanVien.getSelectedItem().toString());

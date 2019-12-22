@@ -56,6 +56,7 @@ public class DonHangJFrame extends JFrame {
 	 */
 	public DonHangJFrame(DonHang donHang) {
 //		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		setTitle("Đơn hàng mới");
 		setResizable(false);
 		setSize(900, 450);
 		setLocationRelativeTo(null);

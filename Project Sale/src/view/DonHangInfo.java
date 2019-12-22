@@ -16,6 +16,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
+import javax.swing.JButton;
 
 public class DonHangInfo extends JFrame {
 
@@ -109,6 +110,9 @@ public class DonHangInfo extends JFrame {
 		panelInfo.add(textFieldNgayBan, "cell 4 2,growx");
 		textFieldNgayBan.setColumns(10);
 		
+		JButton btnChuyenQuaPDF = new JButton("In Hoá Đơn");
+		panelInfo.add(btnChuyenQuaPDF, "cell 2 4,alignx right");
+		
 		JLabel lblThanhTien = new JLabel("Thành tiền");
 		lblThanhTien.setFont(new Font("Arial", Font.BOLD, 14));
 		panelInfo.add(lblThanhTien, "cell 3 4,alignx trailing");
@@ -121,7 +125,7 @@ public class DonHangInfo extends JFrame {
 		JPanel panelTable = new JPanel();
 		contentPane.add(panelTable);
 		
-		DonHangInfoController controller = new DonHangInfoController(textFieldMaHoaDon, textFieldNgayBan, textFieldThanhTien, textFieldNhanVien, textFieldTenKhachHang, textFieldSDT, panelTable);
+		DonHangInfoController controller = new DonHangInfoController(textFieldMaHoaDon, textFieldNgayBan, textFieldThanhTien, textFieldNhanVien, textFieldTenKhachHang, textFieldSDT, btnChuyenQuaPDF, panelTable);
 		controller.setDataToTable(donHang);
 		controller.event(donHang);
 	}

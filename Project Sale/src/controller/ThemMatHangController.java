@@ -85,6 +85,9 @@ public class ThemMatHangController {
 				textFieldLoaiHang.setText(matHang.getLoai_hang());
 				textFieldDonGia.setText(Integer.toString(matHang.getDon_gia()));
 				textFieldConLai.setText(Integer.toString(matHang.getTon_kho()));
+				
+				int thanhtien = Integer.parseInt(textFieldSoLuong.getText()) * Integer.parseInt(textFieldDonGia.getText());
+				textFieldThanhTien.setText(Integer.toString(thanhtien));
 			}
 		});		
 		
@@ -94,11 +97,14 @@ public class ThemMatHangController {
 			public void removeUpdate(DocumentEvent e) {
 				try {
 					if(!textFieldSoLuong.getText().equalsIgnoreCase("")) {
-						int thanhtien = 0;
-						int soluong = Integer.parseInt(textFieldSoLuong.getText());
-						int dongia = Integer.parseInt(textFieldDonGia.getText());
-						thanhtien = soluong * dongia;
-						textFieldThanhTien.setText(Integer.toString(thanhtien));
+						if(textFieldSoLuong.getText().equals("0")) {
+							textFieldThanhTien.setText("");
+						} else {
+							int thanhtien = Integer.parseInt(textFieldSoLuong.getText()) * Integer.parseInt(textFieldDonGia.getText());
+							textFieldThanhTien.setText(Integer.toString(thanhtien));
+						}					
+					} else {
+						textFieldThanhTien.setText("");
 					}
 					
 				} catch (Exception e2) {
@@ -113,11 +119,14 @@ public class ThemMatHangController {
 				// TODO Auto-generated method stub
 				try {
 					if(!textFieldSoLuong.getText().equalsIgnoreCase("")) {
-						int thanhtien = 0;
-						int soluong = Integer.parseInt(textFieldSoLuong.getText());
-						int dongia = Integer.parseInt(textFieldDonGia.getText());
-						thanhtien = soluong * dongia;
-						textFieldThanhTien.setText(Integer.toString(thanhtien));
+						if(textFieldSoLuong.getText().equals("0")) {
+							textFieldThanhTien.setText("");
+						} else {
+							int thanhtien = Integer.parseInt(textFieldSoLuong.getText()) * Integer.parseInt(textFieldDonGia.getText());
+							textFieldThanhTien.setText(Integer.toString(thanhtien));
+						}					
+					} else {
+						textFieldThanhTien.setText("");
 					}
 				} catch (Exception e2) {
 					// TODO: handle exception
@@ -128,18 +137,6 @@ public class ThemMatHangController {
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub	
-				try {
-					if(!textFieldSoLuong.getText().equalsIgnoreCase("")) {
-						int thanhtien = 0;
-						int soluong = Integer.parseInt(textFieldSoLuong.getText());
-						int dongia = Integer.parseInt(textFieldDonGia.getText());
-						thanhtien = soluong * dongia;
-						textFieldThanhTien.setText(Integer.toString(thanhtien));
-					}
-				} catch (Exception e2) {
-					// TODO: handle exception
-					e2.printStackTrace();
-				}
 			}
 		});
 		//set Event

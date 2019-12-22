@@ -3,15 +3,19 @@ package controller;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import bean.HoaDonInfoBean;
 import model.ChiTietHoaDon;
 import model.DonHang;
 import model.KhachHang;
@@ -20,6 +24,7 @@ import service.DonHangServiceImpl;
 import service.KhachHangService;
 import service.KhachHangServiceImpl;
 import ultility.ClassTableModel;
+import ultility.HoaDonPDF;
 
 public class DonHangInfoController {
 	private JTextField textFieldMaHoaDon;
@@ -28,6 +33,8 @@ public class DonHangInfoController {
 	private JTextField textFieldNhanVien;
 	private JTextField textFieldTenKhachHang;
 	private JTextField textFieldSDT;
+	
+	private JButton btnChuyenQuaPDF;
 	
 	private JPanel panelTable;
 	
@@ -42,7 +49,7 @@ public class DonHangInfoController {
 	
 	public DonHangInfoController(JTextField textFieldMaHoaDon, JTextField textFieldNgayBan,
 			JTextField textFieldThanhTien, JTextField textFieldNhanVien, JTextField textFieldTenKhachHang,
-			JTextField textFieldSDT, JPanel panelTable) {
+			JTextField textFieldSDT,JButton btnChuyenQuaPDF, JPanel panelTable) {
 
 		this.textFieldMaHoaDon = textFieldMaHoaDon;
 		this.textFieldNgayBan = textFieldNgayBan;
@@ -51,6 +58,8 @@ public class DonHangInfoController {
 		this.textFieldTenKhachHang = textFieldTenKhachHang;
 		this.textFieldSDT = textFieldSDT;
 		this.panelTable = panelTable;
+		
+		this.btnChuyenQuaPDF = btnChuyenQuaPDF;
 		
 		this.donHangService = new DonHangServiceImpl();
 		this.khachHangService = new KhachHangServiceImpl();
@@ -94,5 +103,24 @@ public class DonHangInfoController {
 		KhachHang khachHang = khachHangService.getKhachHangSDT(donHang.getMa_khach_hang());
 		textFieldSDT.setText(khachHang.getSo_dien_thoai());
 		textFieldSDT.setEditable(false);
+		
+		btnChuyenQuaPDF.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				HoaDonInfoBean hoaDonInfo = new HoaDonInfoBean();
+				hoaDonInfo.setMaHoaDon(textFieldMaHoaDon.getText());
+				hoaDonInfo.setNgayBan(textFieldNgayBan.getText());
+				hoaDonInfo.setNhanVien(textFieldNhanVien.getText());
+				hoaDonInfo.setTenKhachHang(textFieldTenKhachHang.getText());
+				hoaDonInfo.setsDT(textFieldSDT.getText());
+				hoaDonInfo.setThanhTien(textFieldThanhTien.getText());
+				listOrder = donHangService.getDetailOrderList(donHang.getMa_hoa_don());
+				hoaDonInfo.setListOrder(listOrder);
+				new HoaDonPDF(hoaDonInfo);
+				
+			}
+		});
 	}
 }
