@@ -14,6 +14,7 @@ import view.DonHangPanel;
 import view.KhachHangPanel;
 import view.MatHangPanel;
 import view.NhanVienPanel;
+import view.ThongKePanel;
 import view.TrangChuPanel;
 
 public class ChuyenManHinhController {
@@ -78,7 +79,10 @@ public class ChuyenManHinhController {
                  break;
              case "DonHang":
                  node = new DonHangPanel();
-                 break;            
+                 break; 
+             case "ThongKe":
+            	 node = new ThongKePanel();
+            	 break;
              default:
             	 node = new TrangChuPanel();
                  break;

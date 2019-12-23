@@ -1,6 +1,9 @@
 package controller;
 
+import java.time.LocalDate;
+
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 import service.DonHangService;
 import service.DonHangServiceImpl;
@@ -13,15 +16,16 @@ public class TrangChuController {
 	private JLabel numberKhachHang;
 	private JLabel numberMatHang;
 	private JLabel numberDonHang;
+	private JTextField textFieldThang;
 	
 	private KhachHangService khachHangService = null;
 	private MatHangService matHangService = null;
 	private DonHangService donHangService = null;
-	public TrangChuController(JLabel numberKhachHang, JLabel numberMatHang, JLabel numberDonHang) {
-		super();
+	public TrangChuController(JLabel numberKhachHang, JLabel numberMatHang, JLabel numberDonHang,JTextField textFieldThang) {
 		this.numberKhachHang = numberKhachHang;
 		this.numberMatHang = numberMatHang;
 		this.numberDonHang = numberDonHang;
+		this.textFieldThang = textFieldThang;
 		
 		this.khachHangService = new KhachHangServiceImpl();
 		this.matHangService = new MatHangServiceImpl();
@@ -35,6 +39,8 @@ public class TrangChuController {
 		numberMatHang.setText(Integer.toString(countMatHang));
 		int countDonHang = donHangService.count();
 		numberDonHang.setText(Integer.toString(countDonHang));
+		String nowMonth = LocalDate.now().toString().substring(0, 7);
+		textFieldThang.setText(nowMonth);
 	}
 	
 	

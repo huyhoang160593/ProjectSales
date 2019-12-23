@@ -108,3 +108,7 @@ select hd.ma_hoa_don,ten_mat_hang, mh.don_gia, cthd.so_luong, cthd.thanh_tien fr
 SELECT count(ma_khach_hang) AS dem FROM khach_hang
 SELECT count(ma_mat_hang) AS dem FROM mat_hang
 SELECT count(ma_hoa_don) AS dem FROM hoa_don
+
+SELECT CONVERT(date,ngay_ban) as Ngay_mua, COUNT(*) as so_luong FROM hoa_don GROUP BY CONVERT(date,ngay_ban);
+
+select convert(varchar(7), ngay_ban, 120) as thang_mua, sum(thanh_tien) as doanh_thu from hoa_don group by convert(varchar(7), ngay_ban, 120);

@@ -108,6 +108,11 @@ public class MainJFrame extends JFrame {
 		jpnDonHang.setBorder(new LineBorder(new Color(233, 197, 106), 3, true));
 		jpnDonHang.setLayout(new BorderLayout(0, 0));
 		
+		JPanel jpnThongKe = new JPanel();
+		jpnThongKe.setBorder(new LineBorder(new Color(233, 197, 106), 3, true));
+		jpnThongKe.setBackground(new Color(42, 157, 143));
+		jpnThongKe.setLayout(new BorderLayout(0, 0));
+		
 		GroupLayout gl_jpnMenu = new GroupLayout(jpnMenu);
 		gl_jpnMenu.setHorizontalGroup(
 			gl_jpnMenu.createParallelGroup(Alignment.LEADING)
@@ -128,7 +133,10 @@ public class MainJFrame extends JFrame {
 							.addComponent(jpnMatHang, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_jpnMenu.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(jpnDonHang, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(jpnDonHang, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_jpnMenu.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(jpnThongKe, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_jpnMenu.setVerticalGroup(
@@ -145,8 +153,16 @@ public class MainJFrame extends JFrame {
 					.addComponent(jpnMatHang, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(jpnDonHang, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(185, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(jpnThongKe, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(75, Short.MAX_VALUE))
 		);
+		
+		JLabel jlbThongKe = new JLabel("Thống kê");
+		jlbThongKe.setIcon(new ImageIcon(MainJFrame.class.getResource("/images/baseline_bar_chart_white_24dp.png")));
+		jlbThongKe.setForeground(Color.WHITE);
+		jlbThongKe.setFont(new Font("Arial", Font.BOLD, 14));
+		jpnThongKe.add(jlbThongKe, BorderLayout.CENTER);
 		
 		JLabel jlbDonHang = new JLabel("Quản lý đơn hàng");
 		jlbDonHang.setIcon(new ImageIcon(MainJFrame.class.getResource("/images/baseline_add_shopping_cart_white_24dp.png")));
@@ -195,6 +211,7 @@ public class MainJFrame extends JFrame {
         listDanhMuc.add(new DanhMucBean("NhanVien", jpnNhanVien, jlbNhanVien));
         listDanhMuc.add(new DanhMucBean("MatHang", jpnMatHang, jlbMatHang));
         listDanhMuc.add(new DanhMucBean("DonHang", jpnDonHang, jlbDonHang));
+        listDanhMuc.add(new DanhMucBean("ThongKe", jpnThongKe, jlbThongKe));
  
         ChuyenManHinhController controller = new ChuyenManHinhController(jpnView);
         controller.setDashboard(jpnTrangChu, jlbTrangChu);
