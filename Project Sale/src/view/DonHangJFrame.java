@@ -96,22 +96,25 @@ public class DonHangJFrame extends JFrame {
 		
 		GroupLayout gl_panelController = new GroupLayout(panelController);
 		gl_panelController.setHorizontalGroup(
-			gl_panelController.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panelController.createSequentialGroup()
+			gl_panelController.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panelController.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblMgs)
-					.addPreferredGap(ComponentPlacement.RELATED, 725, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 757, Short.MAX_VALUE)
 					.addComponent(btnSubmit)
 					.addContainerGap())
 		);
 		gl_panelController.setVerticalGroup(
 			gl_panelController.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelController.createSequentialGroup()
-					.addGap(35)
-					.addGroup(gl_panelController.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnSubmit)
-						.addComponent(lblMgs))
-					.addContainerGap(45, Short.MAX_VALUE))
+					.addGroup(gl_panelController.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panelController.createSequentialGroup()
+							.addGap(35)
+							.addComponent(lblMgs))
+						.addGroup(gl_panelController.createSequentialGroup()
+							.addGap(23)
+							.addComponent(btnSubmit, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(23, Short.MAX_VALUE))
 		);
 		panelController.setLayout(gl_panelController);
 		
@@ -145,6 +148,7 @@ public class DonHangJFrame extends JFrame {
 		panelDetail.add(lblTenKhachHang, "cell 0 1,alignx trailing");
 		
 		textFieldTenKhachHang = new JTextField();
+		textFieldTenKhachHang.setFont(new Font("Arial", Font.PLAIN, 15));
 		panelDetail.add(textFieldTenKhachHang, "cell 1 1,growx");
 		textFieldTenKhachHang.setColumns(10);
 		

@@ -83,9 +83,10 @@ public class NhanVienController {
 						nhanVien.setTen_nhan_vien(textFieldHoTen.getText().trim());
 						nhanVien.setNgay_sinh(covertDateToDateSql(jdcNgaySinh.getDate()));
 						nhanVien.setSo_dien_thoai(textFieldSoDienThoai.getText());
-						if(numberOnly(nhanVien.getSo_dien_thoai())) {
-							throw new NumberFormatException("Số điện thoại của bạn phải là số nhen");
-							}
+						Integer.parseInt(textFieldSoDienThoai.getText());
+//						if(!numberOnly(nhanVien.getSo_dien_thoai().trim())) {
+//							throw new NumberFormatException("Số điện thoại của bạn phải là số nhen");
+//							}
 						nhanVien.setGioi_tinh(rdbtnNam.isSelected());
 						nhanVien.setDia_chi(textAreaDiaChi.getText());
 						nhanVien.setTinh_trang(chkbxTinhTrang.isSelected());
@@ -131,10 +132,5 @@ public class NhanVienController {
 	
 	public java.sql.Date covertDateToDateSql(Date d){
 		return new java.sql.Date(d.getTime());
-	}
-	
-	private boolean numberOnly(String sodienthoai) {
-		String regex = "\\d";
-		return sodienthoai.matches(regex);
 	}
 }

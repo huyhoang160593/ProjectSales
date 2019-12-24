@@ -55,9 +55,10 @@ public class KhachHangController {
 					} else {
 						khachHang.setHo_ten(textFieldHoTen.getText().trim());
 						khachHang.setSo_dien_thoai(textFieldSoDienThoai.getText());
-						if(numberOnly(khachHang.getSo_dien_thoai())) { 
-							throw new NumberFormatException("Số điện thoại của bạn phải là số nhen");
-						}
+						Integer.parseInt(textFieldSoDienThoai.getText());
+//						if(!numberOnly(khachHang.getSo_dien_thoai())) { 
+//							throw new NumberFormatException("Số điện thoại của bạn phải là số nhen");
+//						}
 						khachHang.setDia_chi(textAreaDiaChi.getText());
 						if(showDialog()) {
 							int lastId = khachHangService.createOrUpdate(khachHang);
@@ -74,6 +75,7 @@ public class KhachHangController {
 						}
 					}
 				} catch (Exception e2) {
+					lblMsg.setForeground(new Color(255, 0, 0));
 					lblMsg.setText(e2.toString());
 					e2.printStackTrace();
 					// TODO: handle exception
@@ -99,8 +101,8 @@ public class KhachHangController {
 		return dialogResult == JOptionPane.YES_OPTION;
 	}
 	
-	private boolean numberOnly(String sodienthoai) {
-		String regex = "\\d";
-		return sodienthoai.matches(regex);
-	}
+//	private boolean numberOnly(String sodienthoai) {
+//		String regex = "\\d";
+//		return sodienthoai.matches(regex);
+//	}
 }

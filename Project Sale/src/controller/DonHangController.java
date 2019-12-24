@@ -177,6 +177,7 @@ public class DonHangController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				lblMgs.setText("");
 				JFrame themMathangJFrame = new DonHangMatHangJFrame(chiTietHoaDon);
 				themMathangJFrame.setVisible(true);
 				themMathangJFrame.addWindowListener(new WindowAdapter() {
