@@ -59,67 +59,8 @@ public class TrangChuPanel extends JPanel {
 					.addComponent(panelEmpty, GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
 					.addGap(7))
 		);
-		panelEmpty.setLayout(new MigLayout("", "[][grow][][][grow]", "[][][][][]"));
+		setLayout(groupLayout);
 		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(TrangChuPanel.class.getResource("/images/LogoMakr_0YGHvD.png")));
-		panelEmpty.add(label, "cell 2 0");
-		
-		JLabel lblThang = new JLabel("Tháng");
-		lblThang.setForeground(new Color(38, 70, 83));
-		lblThang.setFont(new Font("Consolas", Font.BOLD, 17));
-		panelEmpty.add(lblThang, "flowx,cell 2 1,alignx center");
-		
-		textFieldThang = new JTextField();
-		textFieldThang.setFont(new Font("Consolas", Font.PLAIN, 17));
-		panelEmpty.add(textFieldThang, "cell 2 1");
-		textFieldThang.setEditable(false);
-		
-		JLabel lblNhanVienThang = new JLabel("Nhân viên của tháng:");
-		lblNhanVienThang.setForeground(new Color(38, 70, 83));
-		lblNhanVienThang.setFont(new Font("Consolas", Font.PLAIN, 17));
-		panelEmpty.add(lblNhanVienThang, "cell 0 2,alignx trailing");
-		
-		textFieldNhanVienThang = new JTextField();
-		textFieldNhanVienThang.setFont(new Font("Consolas", Font.PLAIN, 21));
-		panelEmpty.add(textFieldNhanVienThang, "cell 1 2,growx");
-		textFieldNhanVienThang.setColumns(10);
-		textFieldNhanVienThang.setEditable(false);
-		
-		JLabel lblBestSellerItem = new JLabel("Mặt hàng bán chạy:");
-		lblBestSellerItem.setForeground(new Color(38, 70, 83));
-		lblBestSellerItem.setFont(new Font("Consolas", Font.PLAIN, 17));
-		panelEmpty.add(lblBestSellerItem, "cell 3 2,alignx trailing");
-		
-		textFieldBestSellerItem = new JTextField();
-		textFieldBestSellerItem.setFont(new Font("Consolas", Font.PLAIN, 21));
-		panelEmpty.add(textFieldBestSellerItem, "cell 4 2,growx");
-		textFieldBestSellerItem.setColumns(10);
-		textFieldBestSellerItem.setEditable(false);
-		
-		JLabel lblBestLoyalCus = new JLabel("Khách hàng trung thành:");
-		lblBestLoyalCus.setForeground(new Color(38, 70, 83));
-		lblBestLoyalCus.setFont(new Font("Consolas", Font.PLAIN, 17));
-		panelEmpty.add(lblBestLoyalCus, "cell 0 3,alignx trailing");
-		
-		textFieldBestLoyalCustomer = new JTextField();
-		textFieldBestLoyalCustomer.setFont(new Font("Consolas", Font.PLAIN, 21));
-		panelEmpty.add(textFieldBestLoyalCustomer, "cell 1 3,growx");
-		textFieldBestLoyalCustomer.setColumns(10);
-		textFieldBestLoyalCustomer.setEditable(false);
-		
-		JLabel lblSumThanhTien = new JLabel("Tổng doanh thu của tháng:");
-		lblSumThanhTien.setForeground(new Color(38, 70, 83));
-		lblSumThanhTien.setFont(new Font("Consolas", Font.PLAIN, 17));
-		panelEmpty.add(lblSumThanhTien, "cell 3 3,alignx trailing");
-		
-		textFieldSumThanhTien = new JTextField();
-		textFieldSumThanhTien.setFont(new Font("Consolas", Font.PLAIN, 21));
-		panelEmpty.add(textFieldSumThanhTien, "cell 4 3,growx");
-		textFieldSumThanhTien.setColumns(10);
-		textFieldSumThanhTien.setEditable(false);
-		
-				
 		JPanel panelKhachHang = new JPanel();
 		panelInfo.add(panelKhachHang);
 		panelKhachHang.setBackground(new Color(231, 111, 81));
@@ -188,9 +129,78 @@ public class TrangChuPanel extends JPanel {
 		lblDonHang.setFont(new Font("Arial", Font.PLAIN, 20));
 		panelDonHang.add(lblDonHang, BorderLayout.SOUTH);
 		
-		setLayout(groupLayout);
+
 		
-		TrangChuController controller = new TrangChuController(numberKhachHang, numberMatHang, numberDonHang, textFieldThang);
+		panelEmpty.setLayout(new MigLayout("", "[][][][grow]", "[][][][][]"));
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(TrangChuPanel.class.getResource("/images/LogoMakr_0YGHvD.png")));
+		panelEmpty.add(label, "cell 1 0");
+		
+		
+		JLabel lblThang = new JLabel("Tháng");
+		lblThang.setForeground(new Color(38, 70, 83));
+		lblThang.setFont(new Font("Consolas", Font.BOLD, 17));
+		panelEmpty.add(lblThang, "flowx,cell 0 1,alignx center");
+		
+		textFieldThang = new JTextField();
+		textFieldThang.setFont(new Font("Consolas", Font.PLAIN, 17));
+		panelEmpty.add(textFieldThang, "cell 0 1");
+		textFieldThang.setEditable(false);
+		
+		
+		JLabel lblBestSellerItem = new JLabel("Mặt hàng bán chạy:");
+		lblBestSellerItem.setForeground(new Color(38, 70, 83));
+		lblBestSellerItem.setFont(new Font("Consolas", Font.BOLD, 17));
+		panelEmpty.add(lblBestSellerItem, "cell 2 1,alignx trailing");
+		
+		textFieldBestSellerItem = new JTextField();
+		textFieldBestSellerItem.setFont(new Font("Consolas", Font.PLAIN, 21));
+		panelEmpty.add(textFieldBestSellerItem, "cell 3 1");
+		textFieldBestSellerItem.setEditable(false);
+		
+		
+		JLabel lblNhanVienThang = new JLabel("Nhân viên của tháng:");
+		lblNhanVienThang.setForeground(new Color(38, 70, 83));
+		lblNhanVienThang.setFont(new Font("Consolas", Font.PLAIN, 17));
+		panelEmpty.add(lblNhanVienThang, "cell 0 2,alignx trailing");
+		
+		textFieldNhanVienThang = new JTextField();
+		textFieldNhanVienThang.setFont(new Font("Consolas", Font.PLAIN, 21));
+		panelEmpty.add(textFieldNhanVienThang, "cell 1 2");
+		textFieldNhanVienThang.setColumns(20);
+		textFieldNhanVienThang.setEditable(false);
+		
+		
+		JLabel lblBestLoyalCus = new JLabel("Khách hàng trung thành:");
+		lblBestLoyalCus.setForeground(new Color(38, 70, 83));
+		lblBestLoyalCus.setFont(new Font("Consolas", Font.PLAIN, 17));
+		panelEmpty.add(lblBestLoyalCus, "cell 0 3,alignx trailing");
+		
+		textFieldBestLoyalCustomer = new JTextField();
+		textFieldBestLoyalCustomer.setFont(new Font("Consolas", Font.PLAIN, 21));
+		panelEmpty.add(textFieldBestLoyalCustomer, "cell 1 3");
+		textFieldBestLoyalCustomer.setColumns(20);
+		textFieldBestLoyalCustomer.setEditable(false);
+		
+		
+		JLabel lblSumThanhTien = new JLabel("Tổng doanh thu của tháng:");
+		lblSumThanhTien.setForeground(new Color(38, 70, 83));
+		lblSumThanhTien.setFont(new Font("Consolas", Font.PLAIN, 17));
+		panelEmpty.add(lblSumThanhTien, "cell 0 4,alignx trailing");
+		
+		textFieldSumThanhTien = new JTextField();
+		textFieldSumThanhTien.setFont(new Font("Consolas", Font.PLAIN, 21));
+		panelEmpty.add(textFieldSumThanhTien, "flowx,cell 1 4");
+		textFieldSumThanhTien.setEditable(false);
+		
+		JLabel lblVND = new JLabel("VNĐ");
+		lblVND.setFont(new Font("Consolas", Font.BOLD, 17));
+		lblVND.setForeground(new Color(38, 70, 83));
+		panelEmpty.add(lblVND, "cell 1 4");
+		
+		
+		TrangChuController controller = new TrangChuController(numberKhachHang, numberMatHang, numberDonHang, textFieldThang, textFieldNhanVienThang, textFieldBestLoyalCustomer, textFieldBestSellerItem, textFieldSumThanhTien);
 		controller.setData();
 		
 	}

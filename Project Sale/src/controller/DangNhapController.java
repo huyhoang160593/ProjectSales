@@ -49,11 +49,12 @@ public class DangNhapController {
 					}else {
 						TaiKhoan taiKhoan = taiKhoanService.login(textFieldTenDangNhap.getText().trim(), password.trim());
 						if(!taiKhoan.isTinh_trang()) {
-							lblCaution.setForeground(new Color(255, 0, 0));
-							lblCaution.setText("Tài khoản của bạn đã bị khoá tạm thời");
+							dialog.dispose();
+							MainJFrame frame = new MainJFrame(false);
+							frame.setVisible(true);
 						} else {
 							dialog.dispose();
-							MainJFrame frame = new MainJFrame();
+							MainJFrame frame = new MainJFrame(true);
 							frame.setVisible(true);
 						}
 					}

@@ -12,7 +12,6 @@ public class ThongKeServiceImpl implements ThongKeService{
 	private ThongKeDAO thongKeDAO = null;
 		
 	public ThongKeServiceImpl() {
-
 		this.thongKeDAO = new ThongKeDAOImpl();
 	}
 
@@ -28,11 +27,27 @@ public class ThongKeServiceImpl implements ThongKeService{
 		return thongKeDAO.getListByDoanhThu();
 	}
 
-	public static void main(String[] args) {
-		ThongKeService thongKeService = new ThongKeServiceImpl();
-		List<DoanhThuThangBean> list = thongKeService.getListByDoanhThu();
-		
-		boolean isnull = list.isEmpty();
-		System.out.println(isnull);
+	@Override
+	public String getBestEmployee() {
+		// TODO Auto-generated method stub
+		return thongKeDAO.getBestEmployee();
+	}
+
+	@Override
+	public String getBestCustomer() {
+		// TODO Auto-generated method stub
+		return thongKeDAO.getBestCustomer();
+	}
+
+	@Override
+	public String getBestSeller() {
+		// TODO Auto-generated method stub
+		return thongKeDAO.getBestSeller();
+	}
+
+	@Override
+	public int getDoanhThu() {
+		// TODO Auto-generated method stub
+		return thongKeDAO.getDoanhThu();
 	}
 }

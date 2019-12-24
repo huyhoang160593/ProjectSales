@@ -11,5 +11,11 @@ public interface ThongKeDAO {
 	
 	public List<DoanhThuThangBean> getListByDoanhThu();
 	
+	public String getBestEmployee();
 	
+	public String getBestCustomer();
+	
+	public String getBestSeller();
+	
+	public int getDoanhThu();
 }

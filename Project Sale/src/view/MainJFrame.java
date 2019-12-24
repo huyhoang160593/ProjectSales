@@ -35,7 +35,7 @@ public class MainJFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainJFrame frame = new MainJFrame();
+					MainJFrame frame = new MainJFrame(true);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +47,7 @@ public class MainJFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainJFrame() {
+	public MainJFrame(boolean flag) {
 		setTitle("MANAGEDSILY-Quản lý đơn hàng của bạn dễ dàng hơn");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1300, 720);
@@ -212,6 +212,11 @@ public class MainJFrame extends JFrame {
         listDanhMuc.add(new DanhMucBean("MatHang", jpnMatHang, jlbMatHang));
         listDanhMuc.add(new DanhMucBean("DonHang", jpnDonHang, jlbDonHang));
         listDanhMuc.add(new DanhMucBean("ThongKe", jpnThongKe, jlbThongKe));
+        
+        if(!flag) {
+        	jpnNhanVien.setVisible(false);
+        	jpnThongKe.setVisible(false);
+        }
  
         ChuyenManHinhController controller = new ChuyenManHinhController(jpnView);
         controller.setDashboard(jpnTrangChu, jlbTrangChu);

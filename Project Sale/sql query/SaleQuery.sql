@@ -95,6 +95,10 @@ select * from khach_hang
 SELECT * FROM mat_hang
 SELECT * FROM hoa_don
 SELECT * FROM chi_tiet_hoa_don
+SELECT * FROM tai_khoan
+
+insert into tai_khoan(ten_dang_nhap,mat_khau,tinh_trang) values ('employee0','23021999',0)
+
 
 
 select hd.ma_hoa_don,hd.ma_nhan_vien,ngay_ban,hd.ma_khach_hang,thanh_tien,nv.ten_nhan_vien,kh.ho_ten from hoa_don hd,nhan_vien nv,khach_hang kh where kh.ma_khach_hang = hd.ma_khach_hang and nv.ma_nhan_vien = hd.ma_nhan_vien
@@ -112,3 +116,32 @@ SELECT count(ma_hoa_don) AS dem FROM hoa_don
 SELECT CONVERT(date,ngay_ban) as Ngay_mua, COUNT(*) as so_luong FROM hoa_don GROUP BY CONVERT(date,ngay_ban);
 
 select convert(varchar(7), ngay_ban, 120) as thang_mua, sum(thanh_tien) as doanh_thu from hoa_don group by convert(varchar(7), ngay_ban, 120);
+
+create view best_empl
+as select hd.ma_nhan_vien,ten_nhan_vien,count(ma_hoa_don)as so_hoa_don,convert(varchar(7), ngay_ban, 120) as thang_ban from hoa_don hd, nhan_vien nv where hd.ma_nhan_vien = nv.ma_nhan_vien group by hd.ma_nhan_vien,ten_nhan_vien,convert(varchar(7), ngay_ban, 120)
+//phần dưới này viết trong java nè
+EXECUTE sp_refreshview 'best_empl'
+select ten_nhan_vien from best_empl where so_hoa_don like (select max(so_hoa_don) from best_empl where thang_ban like '2019-12' ) and thang_ban like '2019-12'
+
+
+create view best_customer
+as select hd.ma_khach_hang,ho_ten,count(ma_hoa_don)as so_hoa_don,convert(varchar(7), ngay_ban, 120) as thang_ban from hoa_don hd, khach_hang kh where hd.ma_khach_hang = kh.ma_khach_hang group by hd.ma_khach_hang,ho_ten,convert(varchar(7), ngay_ban, 120)
+
+EXECUTE sp_refreshview 'best_customer'
+select ho_ten from best_customer where so_hoa_don like (select max(so_hoa_don) from best_customer where thang_ban like '2019-12' ) and thang_ban like '2019-12'
+
+
+create view best_seller_item
+as select cthd.ma_mat_hang, ten_mat_hang, sum(so_luong)as so_ban_duoc from chi_tiet_hoa_don cthd, mat_hang mh where cthd.ma_mat_hang = mh.ma_mat_hang group by cthd.ma_mat_hang,ten_mat_hang
+
+EXECUTE sp_refreshview 'best_seller_item';
+select ten_mat_hang from best_seller_item where so_ban_duoc like (select max(so_ban_duoc) from best_seller_item);
+
+select sum(thanh_tien) as doanh_thu,convert(varchar(7), ngay_ban, 120) as thang_mua from hoa_don where convert(varchar(7), ngay_ban, 120) like '2019-12' group by convert(varchar(7), ngay_ban, 120)
+
+
+drop view monthy_sales
+//Mai mở lại thì phải tạo 3 view để có thể lấy ra được giá trị, nhớ trước mỗi lần gọi phải dùng phương thức refreshview rồi mới được chọn
+
+
+

@@ -3,6 +3,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import bean.DoanhThuThangBean;
@@ -58,5 +60,105 @@ public class ThongKeDAOImpl implements ThongKeDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public String getBestEmployee() {
+		// TODO Auto-generated method stub
+		Connection cons = DBConnect.getConnection();
+		String sqlRefresh = "EXECUTE sp_refreshview 'best_empl'";
+		String sql = "select ten_nhan_vien from best_empl where so_hoa_don like (select max(so_hoa_don) from best_empl where thang_ban like ? ) and thang_ban like ?";
+		try {
+			Statement stmt = cons.createStatement();
+			stmt.execute(sqlRefresh);
+			
+			String localDate = LocalDate.now().toString().substring(0, 7);
+			System.out.println(localDate);
+			PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
+			ps.setString(1,localDate);
+			ps.setString(2,localDate);
+			ResultSet rs = ps.executeQuery();
+			System.out.println(rs.next());
+			System.out.println(rs.getNString(1));
+			String name = rs.getNString(1);
+			return name;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public String getBestCustomer() {
+		// TODO Auto-generated method stub
+		Connection cons = DBConnect.getConnection();
+		String sqlRefresh = "EXECUTE sp_refreshview 'best_customer'";
+		String sql = "select ho_ten from best_customer where so_hoa_don like (select max(so_hoa_don) from best_customer where thang_ban like ? ) and thang_ban like ?";
+		try {
+			Statement stmt = cons.createStatement();
+			stmt.execute(sqlRefresh);
+			
+			String localDate = LocalDate.now().toString().substring(0, 7);
+			PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
+			ps.setString(1,localDate);
+			ps.setString(2,localDate);
+			ResultSet rs = ps.executeQuery();
+			System.out.println(rs.next());
+			System.out.println(rs.getNString(1));
+			String name = rs.getNString(1);
+			return name;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public String getBestSeller() {
+		// TODO Auto-generated method stub
+		Connection cons = DBConnect.getConnection();
+		String sqlRefresh = "EXECUTE sp_refreshview 'best_seller_item'";
+		String sql = "select ten_mat_hang from best_seller_item where so_ban_duoc like (select max(so_ban_duoc) from best_seller_item);";
+		try {
+			Statement stmt = cons.createStatement();
+			stmt.execute(sqlRefresh);
+			PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			System.out.println(rs.next());
+			System.out.println(rs.getNString(1));
+			String name = rs.getNString(1);
+			return name;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public int getDoanhThu() {
+		// TODO Auto-generated method stub
+		Connection cons = DBConnect.getConnection();
+		String sql = "select sum(thanh_tien) as doanh_thu,convert(varchar(7), ngay_ban, 120) as thang_mua from hoa_don where convert(varchar(7), ngay_ban, 120) like ? group by convert(varchar(7), ngay_ban, 120)";
+		try {			
+			String localDate = LocalDate.now().toString().substring(0, 7);
+			PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
+			ps.setString(1,localDate);
+			ResultSet rs = ps.executeQuery();
+			System.out.println(rs.next());
+			System.out.println(rs.getInt(1));
+			int doanhThu = rs.getInt(1);
+			return doanhThu;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }
