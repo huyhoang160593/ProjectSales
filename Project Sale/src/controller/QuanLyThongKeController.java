@@ -17,6 +17,7 @@ import bean.HoaDonBean;
 import service.ThongKeService;
 import service.ThongKeServiceImpl;
 
+//Phần controll lấy dữ liệu để thống kê ra các bảng
 public class QuanLyThongKeController {
 	private ThongKeService thongKeService = null;
 	public QuanLyThongKeController() {
@@ -33,7 +34,9 @@ public class QuanLyThongKeController {
 			}
 		}
 		
-		JFreeChart orderChart = ChartFactory.createBarChart("Biểu đồ thống kê số lượng đơn hàng trong ngày".toUpperCase(), "Thời gian", "Số lượng", dataset,PlotOrientation.VERTICAL,false,true,false);
+		//Tạo biến bảng với các thuộc tính được cài đặt lần lượt là: Tên biểu đồ, thuộc tính trục X, thuộc tính trụ Y, hướng cột theo trục Y, lengend:liệt kê các thuộc tính, tooltip, urls(chịu)
+		//Hai bảng được tạo khá tương tự chỉ khác nhau là một cái là kiểu cột và một cái là đường(bên dưới)
+		JFreeChart orderChart = ChartFactory.createBarChart("Biểu đồ thống kê số lượng đơn hàng trong ngày".toUpperCase(), "Thời gian", "Số lượng", dataset,PlotOrientation.VERTICAL,true,true,false);
 		
 		ChartPanel chartPanel = new ChartPanel(orderChart);
 		chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), 321));
@@ -54,7 +57,7 @@ public class QuanLyThongKeController {
 			}
 		}
 		
-		JFreeChart orderChart = ChartFactory.createLineChart("Biểu đồ thống kê doanh thu theo tháng".toUpperCase(), "Thời gian", "Doanh thu(vnđ)", dataset,PlotOrientation.VERTICAL,false,true,false);
+		JFreeChart orderChart = ChartFactory.createLineChart("Biểu đồ thống kê doanh thu theo tháng".toUpperCase(), "Thời gian", "Doanh thu(vnđ)", dataset,PlotOrientation.VERTICAL,true,true,false);
 		
 		ChartPanel chartPanel = new ChartPanel(orderChart);
 		chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), 321));

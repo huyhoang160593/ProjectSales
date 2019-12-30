@@ -53,27 +53,32 @@ public class QuanLyDonHangController {
 		this.donHangService = new DonHangServiceImpl();
 	}
 	
-	public void setDataToTable() {
-		List<DonHang> listItem = donHangService.getList();
-		DefaultTableModel model = classTableModel.setTableDonHang(listItem, COLUMNS);
-		JTable table = new JTable(model);
+	//đổ dữ liệu vào bảng 
+	public void setDataToTable() { // phương thức này có thể gọi lại nhiều lần để cập nhật lại bảng
+		List<DonHang> listItem = donHangService.getList();	//list item lấy ra từ csdl
+		DefaultTableModel model = classTableModel.setTableDonHang(listItem, COLUMNS);	// khởi tạo model với list đã có và tên cột tương ứng
+		JTable table = new JTable(model);	//add vào JTabel mới
 		
+		//tạo biến sắp xếp theo dòng từ dãy các dòng của bảng(lỗi phần mã sinh(mã đơn hàng))
 		rowSorter = new TableRowSorter<>(table.getModel());
+		
+		//đưa nó ngược trở lại table
 		table.setRowSorter(rowSorter);
 		
+		//Thanh tìm kiếm đa năng trong bảng
 		jtfSearch.getDocument().addDocumentListener(new DocumentListener() {
             @Override
-            public void insertUpdate(DocumentEvent e) {
+            public void insertUpdate(DocumentEvent e) { //thanh tìm kiếm được thêm 1 kí tự
                 String text = jtfSearch.getText();
-                if (text.trim().length() == 0) {
-                    rowSorter.setRowFilter(null);
+                if (text.trim().length() == 0) {	//xét nếu thanh tìm kiếm chống
+                    rowSorter.setRowFilter(null);	//bảng giữ nguyên như ban đầu
                 } else {
-                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text)); //Sử dụng regex để bắt kết quả không phân biệt hoa thường ("(?i)")- cờ GMI
                 }
             }
  
             @Override
-            public void removeUpdate(DocumentEvent e) {
+            public void removeUpdate(DocumentEvent e) {	//thanh tìm kiếm bị xoá 1 kí tự
                 String text = jtfSearch.getText();
                 if (text.trim().length() == 0) {
                     rowSorter.setRowFilter(null);
@@ -86,6 +91,8 @@ public class QuanLyDonHangController {
             public void changedUpdate(DocumentEvent e) {
             }
         });
+		
+		//Mỗi khi click đúp chuột vào đơn hàng tuỳ ý sẽ có thể xem được chi tiết đơn hàng
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -128,7 +135,7 @@ public class QuanLyDonHangController {
 		jpnView.repaint();
 	}
 	
-	public void setEvent() {
+	public void setEvent() {	//trang trí nút thêm và mở frame thêm nếu được yêu cầu(click chuột vào)
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

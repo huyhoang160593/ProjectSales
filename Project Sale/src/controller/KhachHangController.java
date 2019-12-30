@@ -45,17 +45,18 @@ public class KhachHangController {
 		setEvent();
 	}
 	
+	
 	public void setEvent() {
 		btnSubmit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					if (!checkNotNull()) {
+					if (!checkNotNull()) {	//phương thức kiểm tra dữ liệu bắt buộc
 						lblMsg.setText("Vui lòng nhập dữ liệu bắt buộc!");
 					} else {
 						khachHang.setHo_ten(textFieldHoTen.getText().trim());
 						khachHang.setSo_dien_thoai(textFieldSoDienThoai.getText());
-						Integer.parseInt(textFieldSoDienThoai.getText());
+						Integer.parseInt(textFieldSoDienThoai.getText());	//bắt lỗi khi người dùng cố tình đánh chữ vào ô SDT
 //						if(!numberOnly(khachHang.getSo_dien_thoai())) { 
 //							throw new NumberFormatException("Số điện thoại của bạn phải là số nhen");
 //						}
@@ -63,7 +64,7 @@ public class KhachHangController {
 						if(showDialog()) {
 							int lastId = khachHangService.createOrUpdate(khachHang);
 							System.out.println(lastId);
-							if (lastId != 0) {							
+							if (lastId != 0) {		//lastID quyết định xem dữ liệu đã được cập nhật vô csdl hay chưa					
 								khachHang.setMa_khach_hang(lastId);
 								textFieldMaKhachHang.setText("#" + khachHang.getMa_khach_hang());
 								lblMsg.setForeground(new Color(0, 255, 0));
@@ -74,13 +75,20 @@ public class KhachHangController {
 							}
 						}
 					}
+				} catch (NumberFormatException e2) {
+					lblMsg.setForeground(new Color(255, 0, 0));
+					lblMsg.setText("Số điện thoại của bạn phải là số nhen");
+					e2.printStackTrace();
+					// TODO: handle exception
 				} catch (Exception e2) {
+					// TODO: handle exception
 					lblMsg.setForeground(new Color(255, 0, 0));
 					lblMsg.setText(e2.toString());
 					e2.printStackTrace();
-					// TODO: handle exception
 				}
 			}
+			
+			//Trang trí nút lưu
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				btnSubmit.setBackground(new Color(0,200,83));
@@ -92,6 +100,7 @@ public class KhachHangController {
 		});
 	}
 	
+	//Kiểm tra xem người dùng có nhập đủ các thông tin, nếu không sẽ thông báo(ở trên)
 	private boolean checkNotNull(){
 		return textFieldHoTen.getText() != null && !textFieldHoTen.getText().equalsIgnoreCase("") && textFieldSoDienThoai.getText() != null && !textFieldSoDienThoai.getText().equalsIgnoreCase("");
 	}

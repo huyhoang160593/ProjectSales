@@ -68,6 +68,7 @@ public class DonHangInfoController {
 		this.listOrder = new ArrayList<ChiTietHoaDon>();
 	}
 	
+	//lấy dữ liệu csdl để đổ vào bảng
 	public void setDataToTable(DonHang donHang) {
 		listOrder = donHangService.getDetailOrderList(donHang.getMa_hoa_don());
 		DefaultTableModel model = classTableModel.setTableChiTietHoaDon(listOrder, COLUMN);	
@@ -87,6 +88,7 @@ public class DonHangInfoController {
         panelTable.repaint();
 	}
 	
+	//sét các thuộc tính lấy được
 	public void event(DonHang donHang) {
 		textFieldMaHoaDon.setEditable(false);
 		textFieldMaHoaDon.setText("#"+donHang.getMa_hoa_don());
@@ -104,6 +106,7 @@ public class DonHangInfoController {
 		textFieldSDT.setText(khachHang.getSo_dien_thoai());
 		textFieldSDT.setEditable(false);
 		
+		//Phím chuyển qua pdf sẽ đảm nhận vai trò dựa vào info trong frame để tạo ra một đơn hàng hoàn chỉnh theo mẫu(trong HoaDonPDF)
 		btnChuyenQuaPDF.addActionListener(new ActionListener() {
 			
 			@Override

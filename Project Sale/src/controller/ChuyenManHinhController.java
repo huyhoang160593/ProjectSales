@@ -23,10 +23,12 @@ public class ChuyenManHinhController {
 	
 	List<DanhMucBean> listItem = null;
 	
+	//Phương thức khởi tạo của class
 	public ChuyenManHinhController(JPanel jpnRoot) {
 		this.root = jpnRoot;
 	}	
 	
+	//Tạo sự kiện cho danh mục mỗi khi click vào sẽ khởi tạo inner class Lable Event
 	public void setEvent(List<DanhMucBean> listItem) {
 		this.listItem = listItem;
 		for (DanhMucBean item : listItem) {
@@ -46,6 +48,7 @@ public class ChuyenManHinhController {
 	       root.repaint();
 	}
 	
+	//Inner class dùng cho sự kiện được đặt ở trên
 	class LabelEvent implements MouseListener {
 		
 		private JPanel node;
@@ -60,6 +63,7 @@ public class ChuyenManHinhController {
 			this.jlbItem = jlbItem;
 		}
 
+		//Mỗi khi click vào một nhãn thì phần panel bên phải sẽ được gán vào tương ứng
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			// TODO Auto-generated method stub
@@ -87,6 +91,8 @@ public class ChuyenManHinhController {
             	 node = new TrangChuPanel();
                  break;
         }
+		
+		//sửa lỗi không còn bị dính component ảo mỗi khi nhảy panel
         root.removeAll();
         root.setLayout(new BorderLayout());
         root.add(node);
@@ -95,6 +101,7 @@ public class ChuyenManHinhController {
         setChangeBackgroud(kind);
 		}
 
+		//các phương thức trang trí mỗi khi di chuột vào, di chuột ra, hoặc khi click chuột, nhả chuột sau khi click
 		@Override
 		public void mouseEntered(MouseEvent arg0) {
 			// TODO Auto-generated method stub
@@ -129,6 +136,7 @@ public class ChuyenManHinhController {
 		
 	}
 	
+	//Sau khi ấn xong thì sẽ đổi lại hết màu của các phím còn lại khác phím được chọn(làm cho màu chuyển toàn list reset)
 	private void setChangeBackgroud(String kind) {
 		for (DanhMucBean item : listItem) {
 			if(item.getKind().equalsIgnoreCase(kind)) {

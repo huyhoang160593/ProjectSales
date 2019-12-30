@@ -49,7 +49,8 @@ public class MatHangController {
 		this.matHangService = new MatHangServiceImpl();
 	}
 	
-	public void setView(MatHang matHang,boolean flag) {
+	public void setView(MatHang matHang,boolean flag) {	//biến flag này rất đặc biệt, vì mình tích hợp 2 chức năng trong cùng một frame, nếu flag= true thì sẽ là frame thay đổi thông tin mặt hàng
+														//flag = false thì nó sẽ trở thành phương thức nhập thêm hàng vào kho
 		this.matHang = matHang;
 		//set data
 		jtfMaMatHang.setText("#" + matHang.getMa_mat_hang());
@@ -60,7 +61,7 @@ public class MatHangController {
 		jtfThoiGianNhap.setText(LocalDate.now().toString());
 		if(flag) {			
 			jtfTonKho.setText(Integer.toString(matHang.getTon_kho()));
-		} else {			
+		} else {	//khi chế độ nhập hàng được nhận diện thì ngoài tồn kho bị thay đổi ra mọi thứ đều sẽ bị tắt chỉnh sửa, tận dụng câu lệnh cũ để cập nhật csdl
 			jtfMaMatHang.setEditable(false);
 			jtfTenMatHang.setEditable(false);
 			jtfLoaiHang.setEditable(false);
@@ -73,7 +74,8 @@ public class MatHangController {
 		setEvent(flag);
 	}
 	
-	public void setEvent(boolean flag) {
+	//tương tự khách hàng, ngoài cái khác biệt kể trên ra quy trình chạy gần như khách hang, nhân viên cũng tương tự khách hàng
+	public void setEvent(boolean flag) {	
 		btnSubmit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

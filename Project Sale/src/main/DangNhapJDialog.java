@@ -20,6 +20,12 @@ import javax.swing.JDialog;
 import javax.swing.ImageIcon;
 import java.awt.SystemColor;
 
+/**
+ * Đây là nơi đầu tiên ứng dụng được khởi chạy, bắt đầu bằng màn hình đăng nhập
+ * Nếu ứng dụng đăng nhập được thì là sẽ phân chia quyền giữa chủ và nhân viên
+ * Không đăng nhập được thì sẽ bắt lỗi
+ */
+
 public class DangNhapJDialog extends JDialog {
 
 	/**

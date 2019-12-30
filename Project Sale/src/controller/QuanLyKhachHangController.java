@@ -95,7 +95,7 @@ public class QuanLyKhachHangController {
 		});
 		//Table event
 		
-			
+		//Bảng sẽ lấy thông tin trong dòng được chọn đó lưu vào một label ẩn, nhằm mục đích cho phím thay đổi	
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -187,7 +187,8 @@ public class QuanLyKhachHangController {
 			}
 		});
 		
-		
+		//Phím thay đổi sẽ lấy dữ liệu từ label ẩn đó, sau đó phân tách ra và gửi vào frame thay đổi, thay cho cách click đúp chuột để thay đổi như trước đây
+		//Mặt hàng và nhân viên tương tự
 		buttonThayDoi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

@@ -46,15 +46,19 @@ public class TrangChuController {
 	}
 	
 	public void setData() {
+		//Thêm chỉ số điếm được ở các khu vực khách hàng, mặt hàng, đơn hàng
 		int countKhachHang = khachHangService.count();
 		numberKhachHang.setText(Integer.toString(countKhachHang));
 		int countMatHang = matHangService.count();
 		numberMatHang.setText(Integer.toString(countMatHang));
 		int countDonHang = donHangService.count();
 		numberDonHang.setText(Integer.toString(countDonHang));
+		
+		//Lấy thời điểm hiện tại là mốc để xét thời gian
 		String nowMonth = LocalDate.now().toString().substring(0, 7);
 		textFieldThang.setText(nowMonth);
 		
+		//Các câu lệnh sql được thực thi để lấy các giá trị yêu cầu
 		textFieldNhanVienThang.setText(thongKeService.getBestEmployee());
 		
 		textFieldBestLoyalCustomer.setText(thongKeService.getBestCustomer());

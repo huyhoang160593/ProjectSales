@@ -3,6 +3,7 @@ package controller;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -15,6 +16,7 @@ import service.TaiKhoanService;
 import service.TaiKhoanServiceImpl;
 import view.MainJFrame;
 
+//Controller việc đăng nhập của phần mềm
 public class DangNhapController {
 	private JDialog dialog;
 	private JButton btnLogin;
@@ -32,6 +34,7 @@ public class DangNhapController {
 		this.textFieldMatKhau = textFieldMatKhau;
 		this.lblCaution = lblCaution;
 		
+		//gọi service để chuẩn bị dùng đến csdl
 		taiKhoanService = new TaiKhoanServiceImpl();
 	}
 	
@@ -58,10 +61,13 @@ public class DangNhapController {
 							frame.setVisible(true);
 						}
 					}
+				} catch (NullPointerException e2) {
+					// TODO: handle exception
+					JOptionPane.showMessageDialog(null,"Tài khoản hoặc mật khẩu của bạn không đúng!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+					e2.printStackTrace();
 				} catch (Exception e2) {
 					// TODO: handle exception
 					JOptionPane.showMessageDialog(null, e2.toString(), "Lỗi", JOptionPane.ERROR_MESSAGE);
-					e2.printStackTrace();
 				}
 			}
 		});

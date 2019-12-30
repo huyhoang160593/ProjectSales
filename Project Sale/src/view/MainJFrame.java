@@ -65,12 +65,14 @@ public class MainJFrame extends JFrame {
 		jpnView.setBackground(Color.DARK_GRAY);
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(jpnMenu, GroupLayout.PREFERRED_SIZE, 227, GroupLayout.PREFERRED_SIZE)
 					.addComponent(jpnView, GroupLayout.DEFAULT_SIZE, 1059, Short.MAX_VALUE))
 		);
+		
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
@@ -139,6 +141,7 @@ public class MainJFrame extends JFrame {
 							.addComponent(jpnThongKe, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
+		
 		gl_jpnMenu.setVerticalGroup(
 			gl_jpnMenu.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_jpnMenu.createSequentialGroup()
@@ -213,6 +216,7 @@ public class MainJFrame extends JFrame {
         listDanhMuc.add(new DanhMucBean("DonHang", jpnDonHang, jlbDonHang));
         listDanhMuc.add(new DanhMucBean("ThongKe", jpnThongKe, jlbThongKe));
         
+        //Phần phát hiện xem liệu tài khoản đăng nhập vào frame là nhân viên hay chủ nếu là nhân viên sẽ bị mất các tính năng dưới đây
         if(!flag) {
         	jpnNhanVien.setVisible(false);
         	jpnThongKe.setVisible(false);
