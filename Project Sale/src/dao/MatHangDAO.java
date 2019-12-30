@@ -14,4 +14,6 @@ public interface MatHangDAO {
 	public MatHang getMatHangInfoByMaMatHang(int ma_mat_hang);
 	
 	public int count();
+	
+	public int delete(int ma_mat_hang);
 }

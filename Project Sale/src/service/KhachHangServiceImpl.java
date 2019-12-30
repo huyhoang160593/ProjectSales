@@ -49,4 +49,10 @@ public class KhachHangServiceImpl implements KhachHangService {
 		return khachHangDAO.count();
 	}
 
+	@Override
+	public int delete(int ma_khach_hang) {
+		// TODO Auto-generated method stub
+		return khachHangDAO.delete(ma_khach_hang);
+	}
+
 }

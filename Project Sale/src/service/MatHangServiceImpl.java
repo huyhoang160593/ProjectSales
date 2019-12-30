@@ -43,6 +43,12 @@ public class MatHangServiceImpl implements MatHangService {
 		// TODO Auto-generated method stub
 		return matHangDAO.count();
 	}
+
+	@Override
+	public int delete(int ma_mat_hang) {
+		// TODO Auto-generated method stub
+		return matHangDAO.delete(ma_mat_hang);
+	}
 	
 	
 

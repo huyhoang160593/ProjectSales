@@ -35,6 +35,7 @@ public class QuanLyKhachHangController {
 	private JButton btnAdd;
 	private JButton buttonThayDoi;
 	private JTextField jtfSearch;
+	private JButton buttonDelete;
 	
 	private ClassTableModel classTableModel = null;
 	
@@ -43,12 +44,13 @@ public class QuanLyKhachHangController {
 	private KhachHangService khachHangService = null;
 	private TableRowSorter<TableModel> rowSorter = null;
 	
-	public QuanLyKhachHangController(JPanel jpnView,JLabel lblSecret, JButton btnAdd,JButton buttonThayDoi, JTextField jtfSearch) {
+	public QuanLyKhachHangController(JPanel jpnView,JLabel lblSecret, JButton btnAdd,JButton buttonThayDoi,JButton buttonDelete, JTextField jtfSearch) {
 		this.jpnView = jpnView;
 		this.lblSecret = lblSecret;
 		this.btnAdd = btnAdd;
 		this.buttonThayDoi = buttonThayDoi;
 		this.jtfSearch = jtfSearch;
+		this.buttonDelete = buttonDelete;
 		this.classTableModel = new ClassTableModel();
 		this.khachHangService = new KhachHangServiceImpl();
 	}
@@ -224,6 +226,28 @@ public class QuanLyKhachHangController {
 			}
 		});
 		
+		buttonDelete.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				String[] khInfo= lblSecret.getText().split("\\$");
+				System.out.println(khInfo[0]);
+				khachHangService.delete(Integer.parseInt(khInfo[0]));
+				setDataToTable();
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				buttonDelete.setBackground(new Color(38, 70, 83));
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				buttonDelete.setBackground(new Color(42, 157, 143));
+			}
+		});
 	}
 	
 	

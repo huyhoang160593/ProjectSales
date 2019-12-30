@@ -73,13 +73,11 @@ public class ThongKeDAOImpl implements ThongKeDAO {
 			stmt.execute(sqlRefresh);
 			
 			String localDate = LocalDate.now().toString().substring(0, 7);
-			System.out.println(localDate);
 			PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
 			ps.setString(1,localDate);
 			ps.setString(2,localDate);
 			ResultSet rs = ps.executeQuery();
-			System.out.println(rs.next());
-			System.out.println(rs.getNString(1));
+			rs.next();
 			String name = rs.getNString(1);
 			return name;
 			
@@ -105,8 +103,7 @@ public class ThongKeDAOImpl implements ThongKeDAO {
 			ps.setString(1,localDate);
 			ps.setString(2,localDate);
 			ResultSet rs = ps.executeQuery();
-			System.out.println(rs.next());
-			System.out.println(rs.getNString(1));
+			rs.next();
 			String name = rs.getNString(1);
 			return name;
 			
@@ -128,8 +125,7 @@ public class ThongKeDAOImpl implements ThongKeDAO {
 			stmt.execute(sqlRefresh);
 			PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
-			System.out.println(rs.next());
-			System.out.println(rs.getNString(1));
+			rs.next();
 			String name = rs.getNString(1);
 			return name;
 			
@@ -150,8 +146,7 @@ public class ThongKeDAOImpl implements ThongKeDAO {
 			PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
 			ps.setString(1,localDate);
 			ResultSet rs = ps.executeQuery();
-			System.out.println(rs.next());
-			System.out.println(rs.getInt(1));
+			rs.next();
 			int doanhThu = rs.getInt(1);
 			return doanhThu;
 			

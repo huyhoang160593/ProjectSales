@@ -14,4 +14,6 @@ public interface KhachHangDAO {
 	public KhachHang getKhachHangSDT(int ma_khach_hang);
 	
 	public int count();
+	
+	public int delete(int ma_khach_hang);
 }

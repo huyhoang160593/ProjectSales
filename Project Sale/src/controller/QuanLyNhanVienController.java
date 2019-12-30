@@ -36,6 +36,7 @@ public class QuanLyNhanVienController {
 	private JButton btnThayDoi;
 	private JButton btnAdd;
 	private JTextField jtfSearch;
+	private JButton buttonDelete;
 	
 	private ClassTableModel classTableModel = null;
 	
@@ -43,12 +44,13 @@ public class QuanLyNhanVienController {
 	
 	private NhanVienService nhanVienService = null;
 	private TableRowSorter<TableModel> rowSorter = null;
-	public QuanLyNhanVienController(JPanel jpnView,JLabel lblSecret,JButton btnThayDoi, JButton btnAdd, JTextField jtfSreach) {
+	public QuanLyNhanVienController(JPanel jpnView,JLabel lblSecret,JButton btnThayDoi, JButton btnAdd,JButton buttonDelete, JTextField jtfSreach) {
 		this.jpnView = jpnView;
 		this.lblSecret = lblSecret;
 		this.btnThayDoi = btnThayDoi;
 		this.btnAdd = btnAdd;
 		this.jtfSearch = jtfSreach;
+		this.buttonDelete = buttonDelete;
 		this.classTableModel = new ClassTableModel();
 		this.nhanVienService = new NhanVienServiceImpl();
 	}
@@ -225,6 +227,28 @@ public class QuanLyNhanVienController {
 			// TODO Auto-generated method stub
 			btnThayDoi.setBackground(new Color(42, 157, 143));
 		}
+		});
+		
+		buttonDelete.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				String[] nvInfo= lblSecret.getText().split("\\$");
+				nhanVienService.delete(Integer.parseInt(nvInfo[0]));
+				setDataToTable();
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				buttonDelete.setBackground(new Color(38, 70, 83));
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				buttonDelete.setBackground(new Color(42, 157, 143));
+			}
 		});
 	}
 }

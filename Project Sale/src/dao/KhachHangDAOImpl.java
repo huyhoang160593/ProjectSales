@@ -3,9 +3,12 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import model.KhachHang;
 
@@ -154,6 +157,23 @@ public class KhachHangDAOImpl implements KhachHangDAO{
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	@Override
+	public int delete(int ma_khach_hang) {
+		// TODO Auto-generated method stub
+		try {
+			Connection cons = DBConnect.getConnection();
+			String sql = "DELETE FROM khach_hang WHERE ma_khach_hang=?;";
+			PreparedStatement ps = cons.prepareStatement(sql);
+			ps.setInt(1, ma_khach_hang);
+			return ps.executeUpdate();	
+		} catch (SQLException e) {
+			// TODO: handle exception
+			JOptionPane.showMessageDialog(null, "Khách hàng hiện tại đã có đơn hàng nên không thể xoá", "Lỗi xoá khách hàng", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
+	return 0;
 	}
 
 }

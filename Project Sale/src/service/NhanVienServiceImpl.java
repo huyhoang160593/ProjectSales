@@ -30,5 +30,11 @@ public class NhanVienServiceImpl implements NhanVienService {
 		// TODO Auto-generated method stub
 		return nhanVienDAO.getNhanVienInfo(ten_nhan_vien);
 	}
+
+	@Override
+	public int delete(int ma_nhan_vien) {
+		// TODO Auto-generated method stub
+		return nhanVienDAO.delete(ma_nhan_vien);
+	}
 	
 }

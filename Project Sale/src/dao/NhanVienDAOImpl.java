@@ -3,9 +3,13 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import model.NhanVien;
 
 public class NhanVienDAOImpl implements NhanVienDAO{
@@ -96,6 +100,23 @@ public class NhanVienDAOImpl implements NhanVienDAO{
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public int delete(int ma_nhan_vien) {
+		// TODO Auto-generated method stub
+		try {
+			Connection cons = DBConnect.getConnection();
+			String sql = "DELETE FROM nhan_vien WHERE ma_nhan_vien=?;";
+			PreparedStatement ps = cons.prepareStatement(sql);
+			ps.setInt(1, ma_nhan_vien);
+			return ps.executeUpdate();	
+		} catch (SQLException e) {
+			// TODO: handle exception
+			JOptionPane.showMessageDialog(null, "Nhân viên hiện tại đã có đơn hàng nên không thể xoá", "Lỗi xoá nhân viên", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
+		return 0;
 	}
 		
 		

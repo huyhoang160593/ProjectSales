@@ -3,9 +3,12 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import model.MatHang;
 
@@ -144,6 +147,23 @@ public class MatHangDAOImpl implements MatHangDAO {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public int delete(int ma_mat_hang) {
+		// TODO Auto-generated method stub
+		try {
+			Connection cons = DBConnect.getConnection();
+			String sql = "DELETE FROM mat_hang WHERE ma_mat_hang=?;";
+			PreparedStatement ps = cons.prepareStatement(sql);
+			ps.setInt(1, ma_mat_hang);
+			return ps.executeUpdate();	
+		} catch (SQLException e) {
+			// TODO: handle exception
+			JOptionPane.showMessageDialog(null, "Mặt hàng hiện tại đã có đơn hàng nên không thể xoá", "Lỗi xoá mặt hàng", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 		return 0;

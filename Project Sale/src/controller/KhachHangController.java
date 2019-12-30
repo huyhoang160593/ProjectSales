@@ -31,7 +31,7 @@ public class KhachHangController {
 		this.textFieldHoTen = textFieldHoTen;
 		this.textFieldSoDienThoai = textFieldSoDienThoai;
 		this.textAreaDiaChi = textAreaDiaChi;
-		this.lblMsg = lblMsg;		
+		this.lblMsg = lblMsg;	
 		this.khachHangService = new KhachHangServiceImpl();
 	}
 	

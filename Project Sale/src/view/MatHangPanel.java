@@ -12,6 +12,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import controller.QuanLyMatHangController;
+import javax.swing.ImageIcon;
 
 public class MatHangPanel extends JPanel {
 
@@ -49,6 +50,12 @@ public class MatHangPanel extends JPanel {
 		btnThayDoi.setFont(new Font("Arial", Font.PLAIN, 20));
 		btnThayDoi.setBackground(new Color(42, 157, 143));
 		
+		JButton buttonDelete = new JButton("");
+		buttonDelete.setIcon(new ImageIcon(MatHangPanel.class.getResource("/images/baseline_highlight_off_white_18dp.png")));
+		buttonDelete.setForeground(Color.WHITE);
+		buttonDelete.setFont(new Font("Arial", Font.PLAIN, 20));
+		buttonDelete.setBackground(new Color(42, 157, 143));
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -57,24 +64,27 @@ public class MatHangPanel extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(jtfSearch, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+							.addComponent(buttonDelete, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnThayDoi, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnNhapKho, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnAdd))
-						.addComponent(jpnView, GroupLayout.DEFAULT_SIZE, 982, Short.MAX_VALUE))
+						.addComponent(jpnView, GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE))
 					.addGap(8))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnThayDoi, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnAdd)
 						.addComponent(jtfSearch, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNhapKho, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnNhapKho, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+						.addComponent(buttonDelete, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addComponent(jpnView, GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
 					.addGap(6))
@@ -84,7 +94,7 @@ public class MatHangPanel extends JPanel {
 		JLabel lblSecret = new JLabel();
 		lblSecret.setVisible(false);
 		
-		QuanLyMatHangController controller = new QuanLyMatHangController(jpnView, lblSecret, btnThayDoi, btnAdd, btnNhapKho, jtfSearch);
+		QuanLyMatHangController controller = new QuanLyMatHangController(jpnView, lblSecret, btnThayDoi, btnAdd, btnNhapKho, buttonDelete, jtfSearch);
 		controller.setDataToTable();
 		controller.setEvent();
 	}
