@@ -99,8 +99,6 @@ SELECT * FROM tai_khoan
 
 insert into tai_khoan(ten_dang_nhap,mat_khau,tinh_trang) values ('employee0','23021999',0)
 
-
-
 select hd.ma_hoa_don,hd.ma_nhan_vien,ngay_ban,hd.ma_khach_hang,thanh_tien,nv.ten_nhan_vien,kh.ho_ten from hoa_don hd,nhan_vien nv,khach_hang kh where kh.ma_khach_hang = hd.ma_khach_hang and nv.ma_nhan_vien = hd.ma_nhan_vien
 
 SELECT * FROM mat_hang WHERE ten_mat_hang=N'Củ Chuối'
