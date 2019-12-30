@@ -25,7 +25,7 @@ create table nhan_vien(
 create table mat_hang(
 	ma_mat_hang int IDENTITY primary key,
 	ten_mat_hang nvarchar(50) unique not null,
-	loai_hang nvarchar(50),
+	loai_hang nvarchar(50) not null,
 	don_gia int not null,
 	ton_kho int not null,
 	co_san bit not null,
@@ -57,8 +57,8 @@ create table chi_tiet_hoa_don(
 
 create table tai_khoan(
 	ma_tai_khoan int not null IDENTITY(1,2) primary key,
-	ten_dang_nhap varchar(100) default null,
-	mat_khau varchar(100) default null,
+	ten_dang_nhap varchar(30) default null,
+	mat_khau varchar(16) default null,
 	tinh_trang bit default null
 )
 
