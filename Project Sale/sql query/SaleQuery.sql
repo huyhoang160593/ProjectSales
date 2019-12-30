@@ -62,6 +62,9 @@ create table tai_khoan(
 	tinh_trang bit default null
 )
 
+--Tài khoản admin được tạo dùng cho phần mềm phải có tính trạng là 1
+--Tài khoản dùng cho nhân viên thì phải để tính trạng là 0
+
 drop table khach_hang
 drop table nhan_vien
 drop table mat_hang
@@ -96,6 +99,7 @@ SELECT * FROM mat_hang
 SELECT * FROM hoa_don
 SELECT * FROM chi_tiet_hoa_don
 SELECT * FROM tai_khoan
+
 
 insert into tai_khoan(ten_dang_nhap,mat_khau,tinh_trang) values ('employee0','23021999',0)
 
