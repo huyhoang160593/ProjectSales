@@ -67,7 +67,7 @@ public class ClassTableModel {
 			for (int i = 0; i < num; i++) {
 				nhanVien = listItem.get(i);
 				obj = new Object[columns];
-				obj[0] = nhanVien.getMa_nhan_vien();
+				obj[0] = Integer.toString(nhanVien.getMa_nhan_vien());	//Lỗi khó hiểu: Không thể sắp xếp theo stt đã được sửa
 				obj[1] = nhanVien.getTen_nhan_vien();
 				obj[2] = nhanVien.isGioi_tinh() == true ? "Nam" : "Nữ";
 				obj[3] = nhanVien.getDia_chi();
@@ -108,7 +108,7 @@ public class ClassTableModel {
 			for (int i = 0; i < num; i++) {
 				matHang = listItem.get(i);
 				obj = new Object[columns];
-				obj[0] = matHang.getMa_mat_hang();
+				obj[0] = Integer.toString(matHang.getMa_mat_hang());
 				obj[1] = matHang.getTen_mat_hang();
 				obj[2] = matHang.getLoai_hang();
 				obj[3] = matHang.getDon_gia();
